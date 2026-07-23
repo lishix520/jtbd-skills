@@ -45,7 +45,7 @@ Solutions change over time (e.g., vinyl records -> cassette tapes -> CDs -> MP3s
 | *Use Slack to align the team* | **Align team members on project goals** |
 | *Build an AI dashboard to track sales* | **Monitor sales performance** |
 | *Boil water with a stovetop kettle* | **Prepare a hot beverage for consumption** |
-| *Use circular saw to cut wood* | **Cut wood in a straight line** |
+| *Use circular saw to cut wood* | **Cut wood** |
 
 ---
 

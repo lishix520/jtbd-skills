@@ -36,6 +36,7 @@ Classify each relevant statement before defining the job:
 | Desired outcome | A measurable success criterion, such as less time, lower likelihood, or reduced effort |
 | Emotional job | How the executor wants to feel |
 | Social job | How the executor wants to be perceived |
+| Non-core activities | Purchase decisions, consumption chain support (install/clean/setup), or vendor internal activities |
 | Context | A circumstance that disambiguates the job without prescribing a solution |
 | Evidence gap | Information required to define the job reliably |
 
@@ -93,6 +94,10 @@ classification:
   desired_outcomes: []
   emotional_jobs: []
   social_jobs: []
+  non_core_job_activities:
+    - statement: ""
+      type: vendor_internal_activity | purchase_activity | consumption_chain_job
+      reason: ""
   context: []
 
 evidence:

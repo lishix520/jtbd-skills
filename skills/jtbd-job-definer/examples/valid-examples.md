@@ -1,6 +1,4 @@
-# Valid Core Functional Job Examples
-
-This document provides valid **Core Functional Job** statements across diverse industries and domains. All examples conform to the solution-free, outcome-free, and emotion-free rules of Outcome-Driven Innovation (ODI).
+> **Note**: The valid statements below represent **illustrative candidate job hypotheses** extracted from scenario evidence. In actual engagements, candidate jobs must be empirically validated with job executors.
 
 ---
 
@@ -68,9 +66,9 @@ This document provides valid **Core Functional Job** statements across diverse i
 ## Domain 4: Hardware, Trades & Industrial
 
 ### Example 4.1
-- **Candidate Statement**: `Cut wood in a straight line`
-- **Job Executor**: Carpenter / Tradesman
-- **Rationale**: Replaces "Use a Bosch circular saw". Completely solution-free and outcome-free (does not say "accurately" or "straight").
+- **Candidate Statement**: `Cut wood`
+- **Job Executor**: Carpenter / Tradesperson
+- **Rationale**: Completely solution-free (replaces "Use a Bosch circular saw") and outcome-free. "In a straight line" is a performance criterion belonging in a Desired Outcome statement (*Minimize the deviation from the intended cutting line*).
 
 ### Example 4.2
 - **Candidate Statement**: `Control indoor temperature in a residence`

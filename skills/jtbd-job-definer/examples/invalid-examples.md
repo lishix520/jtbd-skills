@@ -30,19 +30,26 @@ This document categorizes common anti-patterns and errors when formulating **Cor
 ## Error Category 2: Outcome / Performance Metric Contamination
 
 ### Example 2.1
+- **Invalid Statement**: `Cut wood in a straight line`
+- **Error Type**: Outcome Contamination
+- **Violation**: `in a straight line` is a performance quality criterion (Desired Outcome).
+- **Audit Rationale**: "In a straight line" measures the quality/precision of execution (*Minimize the deviation from the intended cutting line*), not the core functional job.
+- **Outcome-Free Rewrite**: `Cut wood`
+
+### Example 2.2
 - **Invalid Statement**: `Quickly and reliably share documents with external clients`
 - **Error Type**: Outcome Contamination
 - **Violation**: `Quickly` (speed outcome) and `reliably` (reliability outcome).
 - **Audit Rationale**: Speed and reliability are Desired Outcomes used to evaluate performance, not the job itself.
 - **Outcome-Free Rewrite**: `Share documents with external clients`
 
-### Example 2.2
+### Example 2.3
 - **Invalid Statement**: `Safely restore blood flow in a blocked artery without damaging tissue`
 - **Error Type**: Outcome & Constraint Contamination
 - **Violation**: `Safely` and `without damaging tissue` are desired outcomes/constraints.
 - **Outcome-Free Rewrite**: `Restore blood flow in a blocked artery`
 
-### Example 2.3
+### Example 2.4
 - **Invalid Statement**: `Easily and cheaply commute to work`
 - **Error Type**: Outcome Contamination
 - **Violation**: `Easily` and `cheaply` are performance criteria.

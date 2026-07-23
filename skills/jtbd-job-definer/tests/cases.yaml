@@ -15,13 +15,23 @@ cases:
       must_not_include_terms:
         - quickly
         - reliably
-      candidate_job_contains: "know project status"
+      candidate_job_contains_any:
+        - "know project status"
+        - "monitor project status"
+        - "assess project status"
+      requires_status: candidate
+      missing_evidence_contains: ["job executor", "scope boundary"]
 
   - id: emotional-is-not-functional-job
     input: "New managers want to feel confident when running one-on-ones."
     expected:
       classification_contains: ["emotional_jobs"]
-      candidate_job_contains: "conduct one-on-one"
+      must_not_claim_validated_job: true
+      candidate_job_contains_any:
+        - "conduct one-on-one"
+        - "manage direct report"
+      requires_status: candidate
+      missing_evidence_contains: ["functional objective scope"]
 
   - id: solution-free-rewrite
     input: "Use Slack to keep the team aligned."
@@ -34,8 +44,12 @@ cases:
   - id: reject-insufficient-evidence
     input: "Customers love our dashboard."
     expected:
+      classification_contains: ["solution_or_feature"]
       status: insufficient_evidence
       must_not_claim_validated_job: true
+      missing_evidence_contains:
+        - "job executor"
+        - "functional progress"
 
   - id: medical-device-solution-stripping
     input: "Surgeons use our balloon catheter to safely open blocked coronary arteries quickly."
@@ -50,6 +64,7 @@ cases:
   - id: vendor-perspective-rejection
     input: "Our marketing team needs to sell more HVAC thermostats to contractors."
     expected:
-      classification_contains: ["vendor_activity"]
+      classification_contains: ["non_core_job_activities"]
+      non_core_job_activity_type_contains: ["vendor_internal_activity"]
       must_not_claim_validated_job: true
       rationale_contains: "vendor internal activity"
