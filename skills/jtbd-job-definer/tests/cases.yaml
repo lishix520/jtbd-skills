@@ -1,0 +1,55 @@
+version: 0.1
+
+cases:
+  - id: feature-is-not-job
+    input: "Users need an AI button that automatically summarizes meeting notes."
+    expected:
+      classification_contains: ["solution_or_feature"]
+      must_not_claim_validated_job: true
+      missing_evidence_contains: ["job executor", "functional progress"]
+
+  - id: outcome-is-not-job
+    input: "Managers want to quickly and reliably know project status."
+    expected:
+      classification_contains: ["desired_outcomes"]
+      must_not_include_terms:
+        - quickly
+        - reliably
+      candidate_job_contains: "know project status"
+
+  - id: emotional-is-not-functional-job
+    input: "New managers want to feel confident when running one-on-ones."
+    expected:
+      classification_contains: ["emotional_jobs"]
+      candidate_job_contains: "conduct one-on-one"
+
+  - id: solution-free-rewrite
+    input: "Use Slack to keep the team aligned."
+    expected:
+      classification_contains: ["solution_or_feature"]
+      must_not_include_terms:
+        - Slack
+      missing_evidence_contains: ["what alignment means"]
+
+  - id: reject-insufficient-evidence
+    input: "Customers love our dashboard."
+    expected:
+      status: insufficient_evidence
+      must_not_claim_validated_job: true
+
+  - id: medical-device-solution-stripping
+    input: "Surgeons use our balloon catheter to safely open blocked coronary arteries quickly."
+    expected:
+      classification_contains: ["solution_or_feature", "desired_outcomes"]
+      must_not_include_terms:
+        - balloon catheter
+        - safely
+        - quickly
+      candidate_job_contains: "open blocked coronary arteries"
+
+  - id: vendor-perspective-rejection
+    input: "Our marketing team needs to sell more HVAC thermostats to contractors."
+    expected:
+      classification_contains: ["vendor_activity"]
+      must_not_claim_validated_job: true
+      rationale_contains: "vendor internal activity"
