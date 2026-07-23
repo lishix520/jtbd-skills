@@ -1,6 +1,8 @@
 # JTBD Skills Suite (Outcome-Driven Innovation & Jobs-to-be-Done)
 
-A modular, production-ready Agent Skills repository for applying **Jobs-to-be-Done (JTBD)** and **Outcome-Driven Innovation® (ODI)** methodologies in product development, market strategy, and requirement definition.
+A modular open-source Agent Skills repository for applying
+Jobs-to-be-Done (JTBD) and Outcome-Driven Innovation (ODI)
+methods to product research, market strategy, and requirement definition.
 
 Designed according to the [Agent Skills Specification](https://github.com/agentskills/agentskills).
 
