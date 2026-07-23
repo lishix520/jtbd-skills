@@ -17,15 +17,21 @@ jtbd-skills/
 ├── principles/
 │   └── SKILL.md                 # Shared contracts, evidence rules, and cross-skill terminology
 └── skills/
-    └── jtbd-job-definer/         # Core Functional Job Definer (Atomic Skill 1)
+    ├── jtbd-job-definer/        # Core Functional Job Definer (Atomic Skill 1)
+    │   ├── SKILL.md             # Main skill definition & frontmatter
+    │   ├── references/
+    │   │   └── job-statement-rules.md   # Detailed syntax, scope, and resolution rules
+    │   ├── examples/
+    │   │   ├── valid-examples.md        # Valid core functional job statements
+    │   │   └── invalid-examples.md      # Anti-pattern examples & rewrites
+    │   └── tests/
+    │       └── cases.yaml               # Test suite for agent validation & auditing
+    └── jtbd-job-mapper/         # Universal Job Mapper (Atomic Skill 2)
         ├── SKILL.md             # Main skill definition & frontmatter
         ├── references/
-        │   └── job-statement-rules.md   # Detailed syntax, scope, and resolution rules
-        ├── examples/
-        │   ├── valid-examples.md        # Valid core functional job statements
-        │   └── invalid-examples.md      # Anti-pattern examples & rewrites
+        │   └── universal-job-map-rules.md # Stage boundaries & mapping rules
         └── tests/
-            └── cases.yaml               # Test suite for agent validation & auditing
+            └── cases.yaml               # Test suite for job mapping validation
 ```
 
 ---
@@ -46,6 +52,7 @@ All skills in this repository strictly adhere to core ODI principles:
 | :--- | :--- | :--- |
 | **`principles`** | Cross-skill contract, terminology & evidence rules | `v0.1` |
 | **`jtbd-job-definer`** | Extract, audit, and rewrite solution-free Core Functional Jobs | `v0.1` |
+| **`jtbd-job-mapper`** | Deconstruct defined jobs into solution-free Universal Job Maps | `v0.1 (Draft)` |
 
 ---
 
