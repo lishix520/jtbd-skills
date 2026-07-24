@@ -35,12 +35,21 @@ jtbd-skills/
     │   │   └── invalid-job-maps.md      # Map-level anti-pattern examples
     │   └── tests/
     │       └── cases.yaml               # Test suite for job mapping validation
-    └── jtbd-outcome-engineer/   # Desired Outcome Engineer (Atomic Skill 3)
+    ├── jtbd-outcome-engineer/   # Desired Outcome Engineer (Atomic Skill 3)
+    │   ├── SKILL.md             # Main skill definition & frontmatter
+    │   ├── references/
+    │   │   └── outcome-statement-rules.md # Syntax & metric rules
+    │   ├── examples/
+    │   │   ├── valid-outcomes.md        # Provisional desired outcome examples
+    │   │   └── invalid-outcomes.md      # Anti-pattern outcome examples
+    │   └── tests/
+    │       └── cases.yaml               # Test suite for outcome validation
+    └── jtbd-opportunity-calculator/ # Opportunity Calculator (Atomic Skill 4)
         ├── SKILL.md             # Main skill definition & frontmatter
         ├── references/
-        │   └── outcome-statement-rules.md # Syntax & metric rules
+        │   └── opportunity-algorithm-rules.md # Mathematical formula & scale rules
         └── tests/
-            └── cases.yaml               # Test suite for outcome validation
+            └── cases.yaml               # Test suite for score calculation validation
 ```
 
 ---
@@ -62,7 +71,8 @@ All skills in this repository strictly adhere to core ODI principles:
 | **`principles`** | Cross-skill contract, terminology & evidence rules | `v0.1` |
 | **`jtbd-job-definer`** | Extract, audit, and rewrite solution-free Core Functional Jobs | `v0.1` |
 | **`jtbd-job-mapper`** | Deconstruct defined jobs into solution-free Universal Job Maps | `v0.1` |
-| **`jtbd-outcome-engineer`** | Formulate formulaic Desired Outcome Statements for a job map step | `v0.1 (Draft)` |
+| **`jtbd-outcome-engineer`** | Formulate formulaic Desired Outcome Statements for a job map step | `v0.1` |
+| **`jtbd-opportunity-calculator`** | Compute quantitative ODI Opportunity Scores from survey ratings | `v0.1 (Draft)` |
 
 ---
 

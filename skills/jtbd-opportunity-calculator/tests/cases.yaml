@@ -1,0 +1,76 @@
+version: 0.1
+
+cases:
+  - id: standard-opportunity-calculation
+    input:
+      survey_metadata:
+        importance_scale: "1_to_10"
+        satisfaction_scale: "1_to_10"
+        sample_size: 250
+        population_definition: "US Project Managers"
+        collection_method: "Online quantitative survey"
+      outcomes:
+        - id: "O1"
+          statement: "Minimize the time it takes to verify the completeness of status information"
+          importance_mean: 9.2
+          satisfaction_mean: 3.4
+        - id: "O2"
+          statement: "Minimize the effort required to format status updates"
+          importance_mean: 6.0
+          satisfaction_mean: 7.5
+    expected:
+      data_quality_status: statistically_valid
+      results:
+        - id: "O1"
+          satisfaction_gap: 5.8
+          opportunity_score: 15.0
+          classification: underserved
+        - id: "O2"
+          satisfaction_gap: 0.0
+          opportunity_score: 6.0
+          classification: overserved
+
+  - id: reject-text-guessing
+    input:
+      survey_metadata:
+        importance_scale: "1_to_10"
+        satisfaction_scale: "1_to_10"
+        sample_size: 0
+      text_feedback: "Project managers hate waiting for status info and feel it's extremely important."
+    expected:
+      must_not_invent_ratings: true
+      data_quality_status: invalid_metadata
+      must_flag_missing_numerical_data: true
+
+  - id: scale-mismatch-rejection
+    input:
+      survey_metadata:
+        importance_scale: "1_to_5"
+        satisfaction_scale: "1_to_10"
+        sample_size: 150
+      outcomes:
+        - id: "O1"
+          statement: "Minimize the time it takes to locate status information"
+          importance_mean: 4.5
+          satisfaction_mean: 5.0
+    expected:
+      must_flag_scale_mismatch: true
+      must_not_apply_unnormalized_threshold: true
+
+  - id: flag-exploratory-small-sample
+    input:
+      survey_metadata:
+        importance_scale: "1_to_10"
+        satisfaction_scale: "1_to_10"
+        sample_size: 15
+        population_definition: "Internal PM team"
+      outcomes:
+        - id: "O1"
+          statement: "Minimize the likelihood of omitting required status details"
+          importance_mean: 8.5
+          satisfaction_mean: 4.0
+    expected:
+      data_quality_status: exploratory
+      opportunity_score: 13.0
+      data_limitations_contains:
+        - "sample size"

@@ -43,6 +43,8 @@ $$\text{Desired Outcome} = \text{Direction} + \text{Performance Metric} + \text{
 | **Cost (Expense)** | `Minimize the cost required to [action/verb] [object]` | *Minimize the cost required to obtain status information* |
 | **Output / Yield** | `Maximize the [output/yield]` | *Maximize the percentage of valid records processed* |
 
+> **Output / Yield Strictness Rule**: For output/yield metrics, name a concrete count, proportion, volume, coverage, or throughput measure. Do NOT use abstract terms such as productivity, quality, or value.
+
 ---
 
 ## Likelihood Target Specificity Rule
@@ -57,12 +59,12 @@ A likelihood outcome statement MUST name a concrete undesired event, failure mod
 ## Anti-Patterns & Blacklist Words
 
 ### 1. Vague Quality Buzzwords (REJECT)
-Do NOT use non-metric buzzwords in outcome statements. Convert them to formulaic metrics:
+Do NOT use non-metric buzzwords as unqualified outcome adjectives. Convert them to formulaic metrics:
 
 | Vague Buzzword | Error Reason | Formulaic Metric Conversion |
 | :--- | :--- | :--- |
 | *Fast* | Vague quality term | **Minimize the time it takes to...** |
-| *Accurate* | Vague quality term | **Minimize the likelihood of omitting/miscalculating...** |
+| *Accurate* | Unqualified outcome adjective | **Minimize the likelihood of omitting/miscalculating...** (Do not use "accurate" as an unqualified adjective. Concrete verification targets like *confirm the accuracy of reported metrics* are acceptable). |
 | *Safe* | Vague quality term | **Minimize the likelihood of injury/damage during...** |
 | *Easy / Seamless* | Vague quality term | **Minimize the effort required to...** |
 | *Cheap / Affordable* | Vague quality term | **Minimize the cost required to...** |
