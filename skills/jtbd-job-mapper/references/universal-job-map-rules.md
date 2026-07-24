@@ -66,6 +66,7 @@ A valid job map step:
 - **Execute vs. Monitor**: `Execute` does the action; `Monitor` observes status or output.
 - **Monitor vs. Modify**: `Monitor` observes deviations; `Modify` makes adjustments.
 - **Modify vs. Conclude**: `Modify` adjusts in-flight work; `Conclude` wraps up and finishes the job.
+- **Conclude vs. Cleanup / Lifecycle**: Cleanup belongs in `Conclude` ONLY when it is necessary to complete, hand off, or make the result usable for the defined Core Functional Job. Otherwise, classify it as a separate independent job or a consumption-chain lifecycle activity.
 
 ---
 

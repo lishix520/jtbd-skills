@@ -88,7 +88,7 @@ stages:
   - `execute`: `present` (`Start the countdown`)
   - `monitor`: `unknown`
   - `modify`: `not_applicable`
-  - `conclude`: `present` (`Silence the timer alert`)
+  - `conclude`: `unknown` (whether ending/silencing is in scope is not established from the evidence)
 
 ---
 

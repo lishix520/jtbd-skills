@@ -1,0 +1,72 @@
+version: 0.1
+
+cases:
+  - id: require-job-map-step-input
+    input:
+      core_functional_job: "Prepare a project status update"
+      job_executor: "Project manager"
+      job_map_step: null
+    expected:
+      outcomes_status: insufficient_input
+      evidence_gaps_contains:
+        - job map step
+      must_not_generate_outcomes: true
+
+  - id: reject-solution-contaminated-outcome
+    input:
+      core_functional_job: "Prepare a project status update"
+      job_executor: "Project manager"
+      job_map_step:
+        category: locate
+        statement: "Identify relevant project status information"
+      candidate_outcomes:
+        - "Minimize the time it takes to click the Jira export button"
+    expected:
+      excluded_classification_contains:
+        - solution
+      must_not_include_terms:
+        - Jira
+        - button
+
+  - id: reject-compound-outcome
+    input:
+      core_functional_job: "Prepare a project status update"
+      job_executor: "Project manager"
+      job_map_step:
+        category: confirm
+        statement: "Verify the completeness of status information"
+      candidate_outcomes:
+        - "Minimize the time and likelihood of error when verifying completeness"
+    expected:
+      excluded_classification_contains:
+        - compound_outcome
+      must_split_into_separate_outcomes: true
+
+  - id: proper-syntactic-formatting
+    input:
+      core_functional_job: "Prepare a project status update"
+      job_executor: "Project manager"
+      job_map_step:
+        category: confirm
+        statement: "Verify the completeness of status information"
+      customer_feedback: "It's too slow to check whether status info is complete."
+    expected:
+      formatted_outcome_contains:
+        direction: minimize
+        metric_type: time
+      statement_must_start_with: "Minimize the time it takes to"
+
+  - id: reject-emotional-outcome
+    input:
+      core_functional_job: "Prepare a project status update"
+      job_executor: "Project manager"
+      job_map_step:
+        category: confirm
+        statement: "Verify the completeness of status information"
+      candidate_outcomes:
+        - "Maximize the feeling of confidence during executive reviews"
+    expected:
+      excluded_classification_contains:
+        - emotional_social
+      must_not_include_terms:
+        - feeling of confidence

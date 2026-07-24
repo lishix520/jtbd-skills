@@ -26,12 +26,21 @@ jtbd-skills/
     │   │   └── invalid-examples.md      # Anti-pattern examples & rewrites
     │   └── tests/
     │       └── cases.yaml               # Test suite for agent validation & auditing
-    └── jtbd-job-mapper/         # Universal Job Mapper (Atomic Skill 2)
+    ├── jtbd-job-mapper/         # Universal Job Mapper (Atomic Skill 2)
+    │   ├── SKILL.md             # Main skill definition & frontmatter
+    │   ├── references/
+    │   │   └── universal-job-map-rules.md # Stage boundaries & mapping rules
+    │   ├── examples/
+    │   │   ├── valid-job-maps.md        # Provisional valid job map examples
+    │   │   └── invalid-job-maps.md      # Map-level anti-pattern examples
+    │   └── tests/
+    │       └── cases.yaml               # Test suite for job mapping validation
+    └── jtbd-outcome-engineer/   # Desired Outcome Engineer (Atomic Skill 3)
         ├── SKILL.md             # Main skill definition & frontmatter
         ├── references/
-        │   └── universal-job-map-rules.md # Stage boundaries & mapping rules
+        │   └── outcome-statement-rules.md # Syntax & metric rules
         └── tests/
-            └── cases.yaml               # Test suite for job mapping validation
+            └── cases.yaml               # Test suite for outcome validation
 ```
 
 ---
@@ -52,7 +61,8 @@ All skills in this repository strictly adhere to core ODI principles:
 | :--- | :--- | :--- |
 | **`principles`** | Cross-skill contract, terminology & evidence rules | `v0.1` |
 | **`jtbd-job-definer`** | Extract, audit, and rewrite solution-free Core Functional Jobs | `v0.1` |
-| **`jtbd-job-mapper`** | Deconstruct defined jobs into solution-free Universal Job Maps | `v0.1 (Draft)` |
+| **`jtbd-job-mapper`** | Deconstruct defined jobs into solution-free Universal Job Maps | `v0.1` |
+| **`jtbd-outcome-engineer`** | Formulate formulaic Desired Outcome Statements for a job map step | `v0.1 (Draft)` |
 
 ---
 
