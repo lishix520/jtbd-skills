@@ -44,12 +44,23 @@ jtbd-skills/
     │   │   └── invalid-outcomes.md      # Anti-pattern outcome examples
     │   └── tests/
     │       └── cases.yaml               # Test suite for outcome validation
-    └── jtbd-opportunity-calculator/ # Opportunity Calculator (Atomic Skill 4)
+    ├── jtbd-opportunity-calculator/ # Opportunity Calculator (Atomic Skill 4)
+    │   ├── SKILL.md             # Main skill definition & frontmatter
+    │   ├── references/
+    │   │   └── opportunity-algorithm-rules.md # Mathematical formula & scale rules
+    │   ├── scripts/
+    │   │   └── calculate_opportunity.py       # Deterministic calculation script
+    │   ├── examples/
+    │   │   ├── valid-calculations.md          # Valid calculation examples
+    │   │   └── invalid-calculations.md        # Calculation anti-pattern examples
+    │   └── tests/
+    │       └── cases.yaml               # Test suite for score calculation validation
+    └── jtbd-growth-strategist/   # Growth Strategist (Atomic Skill 5)
         ├── SKILL.md             # Main skill definition & frontmatter
         ├── references/
-        │   └── opportunity-algorithm-rules.md # Mathematical formula & scale rules
+        │   └── growth-strategy-matrix-rules.md # Matrix prerequisites & evidence rules
         └── tests/
-            └── cases.yaml               # Test suite for score calculation validation
+            └── cases.yaml               # Test suite for strategy assessment validation
 ```
 
 ---
@@ -72,7 +83,8 @@ All skills in this repository strictly adhere to core ODI principles:
 | **`jtbd-job-definer`** | Extract, audit, and rewrite solution-free Core Functional Jobs | `v0.1` |
 | **`jtbd-job-mapper`** | Deconstruct defined jobs into solution-free Universal Job Maps | `v0.1` |
 | **`jtbd-outcome-engineer`** | Formulate formulaic Desired Outcome Statements for a job map step | `v0.1` |
-| **`jtbd-opportunity-calculator`** | Compute quantitative ODI Opportunity Scores from survey ratings | `v0.1 (Draft)` |
+| **`jtbd-opportunity-calculator`** | Compute quantitative ODI Opportunity Scores from survey ratings | `v0.1` |
+| **`jtbd-growth-strategist`** | Map opportunity landscapes and market evidence to growth strategies | `v0.1 (Draft)` |
 
 ---
 

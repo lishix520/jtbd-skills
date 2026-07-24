@@ -104,8 +104,12 @@ methodological_assessment:
 
 scale_handling:
   calculation_scale: "1_to_10"
-  normalization: none | caller_provided
-  threshold_interpretation: standard | heuristic_only | unsupported
+  normalization: none
+  threshold_interpretation: standard
+
+## Future Scope
+
+Future versions may support caller-provided, documented normalization for non-10-point scales. v0.1 rejects all non-1_to_10 scales and does not apply normalization.
 
 data_limitations: []
 

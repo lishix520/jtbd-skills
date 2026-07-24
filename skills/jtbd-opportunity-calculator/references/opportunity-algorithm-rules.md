@@ -57,10 +57,10 @@ Classification is determined strictly by the Opportunity Score bounds:
 
 ---
 
-## Scale Normalization Rules
+## Future Scope: Scale Normalization
 
-If survey data uses a 5-point or 7-point scale, scales must be normalized before comparison:
+Future versions may support caller-provided normalization for 5-point or 7-point scales using linear transformations:
 
 $$Scale_{10} = 1.0 + \left( \frac{Rating - Min_{orig}}{Max_{orig} - Min_{orig}} \right) \times 9.0$$
 
-- **Rule**: Linear scale transformations provide heuristic comparison only. Always set `threshold_interpretation: heuristic_only` for normalized non-10-point scales.
+- **v0.1 Rule**: v0.1 strictly requires matching `1_to_10` scales and does not normalize non-10 scales. Any non-10-point scale input is rejected as `data_quality_status: invalid`.

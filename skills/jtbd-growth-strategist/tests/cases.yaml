@@ -1,0 +1,116 @@
+version: 0.1
+
+cases:
+  - id: recommendation-ready-differentiated-strategy
+    input:
+      opportunity_analysis:
+        data_quality_status: complete
+        calculation_status: completed
+        methodological_assessment:
+          sample_size_status: adequate
+          representativeness: unverified
+          collection_method_status: reported
+        results:
+          - id: "O1"
+            statement: "Minimize the time it takes to verify the completeness of status information"
+            opportunity_score: 15.0
+            classification: extreme_underserved
+      segment_definition:
+        name: "Enterprise PMs"
+        evidence: ["Formal survey of 250 enterprise project managers"]
+        sample_size: 250
+      market_context:
+        current_alternatives: ["Manual spreadsheets", "Basic task boards"]
+        price_evidence: ["Enterprise PMs report $50/user/mo willingness to pay for complete verification"]
+        performance_evidence: ["Automated verification reduces check time by 80%"]
+        nonconsumption_evidence: []
+      strategy_constraints:
+        target_price_position: premium
+        target_performance_position: superior
+    expected:
+      strategy_assessment_status: recommendation_ready
+      candidate_strategies_contains:
+        - strategy: differentiated
+          confidence: high
+      excluded_strategies_contains:
+        - strategy: disruptive
+
+  - id: hypothesis-only-exploratory-data
+    input:
+      opportunity_analysis:
+        data_quality_status: complete
+        calculation_status: completed
+        methodological_assessment:
+          sample_size_status: small
+          representativeness: unverified
+          collection_method_status: missing
+        data_limitations:
+          - "Sample size N = 15 (< 100); results represent exploratory hypotheses."
+        results:
+          - id: "O1"
+            statement: "Minimize the time it takes to verify status information"
+            opportunity_score: 13.0
+            classification: high_underserved
+      segment_definition:
+        name: "Internal PM team"
+        sample_size: 15
+      market_context:
+        current_alternatives: ["Spreadsheets"]
+        price_evidence: []
+        performance_evidence: []
+      strategy_constraints:
+        target_price_position: unknown
+        target_performance_position: superior
+    expected:
+      strategy_assessment_status: hypothesis_only
+      candidate_strategies_labeled_as_hypotheses: true
+      evidence_gaps_contains:
+        - "sample size"
+
+  - id: insufficient-evidence-missing-price-performance
+    input:
+      opportunity_analysis:
+        data_quality_status: complete
+        calculation_status: completed
+        results:
+          - id: "O1"
+            statement: "Minimize the effort required to format updates"
+            opportunity_score: 6.0
+            classification: overserved_candidate
+            overserved_signal: true
+      segment_definition:
+        name: "Small business PMs"
+        sample_size: 120
+      market_context:
+        current_alternatives: []
+        price_evidence: []
+        performance_evidence: []
+      strategy_constraints:
+        target_price_position: unknown
+        target_performance_position: unknown
+    expected:
+      strategy_assessment_status: insufficient_evidence
+      evidence_gaps_contains:
+        - "price evidence"
+        - "performance position"
+      must_not_recommend_single_strategy: true
+
+  - id: reject-disruptive-when-underserved-dominates
+    input:
+      opportunity_analysis:
+        data_quality_status: complete
+        results:
+          - id: "O1"
+            statement: "Minimize the time it takes to verify information"
+            opportunity_score: 16.0
+            classification: extreme_underserved
+      segment_definition:
+        name: "Mainstream PMs"
+      market_context:
+        price_evidence: ["Customers willing to pay premium for speed"]
+      strategy_constraints:
+        target_price_position: low_cost
+    expected:
+      excluded_strategies_contains:
+        - strategy: disruptive
+          reason_contains: "extreme underserved outcome dominates"
