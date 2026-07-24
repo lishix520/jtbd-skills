@@ -22,7 +22,7 @@ It models the tension between staying with a status quo and adopting a prospecti
 - ❌ **Feature Request (Not Pull)**: "Please add a Jira button that creates a weekly report."
   * *Rule*: Feature requests express a solution preference, not evidence of an attractive prospective alternative. Record under `feature_requests` in `jtbd-context-explorer`; do NOT classify as Pull without evidence of desired progress.
 - ⚠️ **Vendor Claim (`unverified_claim`)**: "Our dashboard cuts reporting time by 80%."
-  * *Rule*: Product claims made by vendors represent prospective benefits, but must be tagged `status: unverified_claim` until verified by customer evidence.
+  * *Rule*: Product claims made by vendors represent prospective benefits, but must be tagged `status: unverified_claim` until verified by customer evidence. Customer quotes must establish that the vendor solution is actively in their evaluation set before associating the vendor claim with the customer's switching context.
 - ✅ **Customer Pull**: "If a reporting service could automatically combine team updates, I would stop doing manual copy-paste."
 
 ---

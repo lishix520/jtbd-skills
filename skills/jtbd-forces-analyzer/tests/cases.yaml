@@ -67,8 +67,14 @@ cases:
           text: "I worry a new reporting tool could lose our history or fail the audit."
         - id: research-03
           type: interview
-          text: "We are evaluating a reporting service."
+          text: "We are evaluating a reporting service as an alternative to spreadsheets."
     expected:
+      analysis_status: evidence_extracted
+      switching_context_contains:
+        current_approach:
+          - spreadsheet template
+        prospective_alternative:
+          - reporting service
       forces_contains:
         habit:
           - spreadsheet template
@@ -81,11 +87,20 @@ cases:
       sources:
         - id: vendor-01
           type: vendor_claim
-          text: "Our dashboard cuts reporting time by 80%."
+          text: "Our Acme dashboard cuts reporting time by 80%."
         - id: research-01
           type: interview
-          text: "We currently compile reports in spreadsheets and are evaluating alternatives."
+          text: "We currently compile reports in spreadsheets."
+        - id: research-02
+          type: interview
+          text: "We are evaluating the Acme dashboard as an alternative to our spreadsheet process."
     expected:
+      analysis_status: evidence_extracted
+      switching_context_contains:
+        current_approach:
+          - spreadsheets
+        prospective_alternative:
+          - Acme dashboard
       forces_contains:
         pull:
           - "cuts reporting time"
@@ -99,7 +114,18 @@ cases:
         - id: research-01
           type: interview
           text: "After the trial, I got budget approval to replace our spreadsheet process."
+        - id: research-02
+          type: interview
+          text: "The trial was for a reporting service that consolidates team updates."
     expected:
+      analysis_status: evidence_extracted
+      switching_context_contains:
+        current_approach:
+          - spreadsheet process
+        prospective_alternative:
+          - reporting service
       hire_signals:
         big_hire: present
         little_hire: unknown
+      switching_readiness:
+        status: insufficient_evidence

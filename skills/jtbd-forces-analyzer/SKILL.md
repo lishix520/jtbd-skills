@@ -28,6 +28,12 @@ The input must establish, or explicitly leave unknown:
 If source material is absent, return `analysis_status: insufficient_input`.
 If no current approach or prospective alternative is established, return `analysis_status: insufficient_switching_context`; do not invent one.
 
+## Analysis Status Discipline
+
+- **`analysis_status: evidence_extracted`**: A valid switching context exists (both current approach and prospective alternative are established) AND at least one supported item is extracted from either the Four Forces or hire signals.
+- **`analysis_status: insufficient_switching_context`**: Material fails to establish either a current approach or a prospective alternative.
+- **`analysis_status: insufficient_input`**: No source material is provided.
+
 ## Scope
 
 Extract and classify evidence for:
