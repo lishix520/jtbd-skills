@@ -69,7 +69,7 @@ Opportunity classification is determined strictly by the Opportunity Score bound
   - `collection_method_status`: `reported` vs `missing`.
 - **Scale Handling**:
   - `calculation_scale`: "1_to_10"
-  - `threshold_interpretation`: `standard` (for 1-10 scale) vs `heuristic_only` (for normalized non-10 scale).
+  - `threshold_interpretation`: `standard`
 
 ## Procedure
 

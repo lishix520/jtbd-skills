@@ -26,6 +26,7 @@ cases:
             source_type: stated_preference_survey
             sample_size: 250
             limitations: ["Stated preference may not predict actual purchase behavior."]
+        cost_evidence: []
         performance_evidence:
           - claim: "Automated verification reduced check time by 80%."
             source_type: controlled_user_test
@@ -66,6 +67,7 @@ cases:
       market_context:
         current_alternatives: ["Spreadsheets"]
         price_evidence: []
+        cost_evidence: []
         performance_evidence: []
       strategy_constraints:
         target_price_position: unknown
@@ -97,6 +99,7 @@ cases:
       market_context:
         current_alternatives: []
         price_evidence: []
+        cost_evidence: []
         performance_evidence: []
       strategy_constraints:
         target_price_position: unknown
@@ -129,6 +132,7 @@ cases:
         price_evidence:
           - claim: "Customers willing to pay premium for speed"
             source_type: customer_interview
+        cost_evidence: []
         performance_evidence: []
       strategy_constraints:
         target_price_position: low_cost
@@ -149,17 +153,20 @@ cases:
         results:
           - id: "O1"
             statement: "Minimize the likelihood of data leakage during status verification"
-            opportunity_score: 11.5
-            classification: moderate_underserved
+            opportunity_score: 15.0
+            classification: extreme_underserved
       segment_definition:
-        name: "Defense & Healthcare PMs"
-        evidence: ["HIPAA and air-gapped security compliance constraint"]
+        name: "Defense & Security PMs"
+        evidence:
+          - "HIPAA and air-gapped security compliance constraint"
+          - "Security PMs rank data leakage prevention as Opp=15.0 vs mainstream Opp=4.0"
         sample_size: 110
       market_context:
         current_alternatives: ["Air-gapped manual paper logs"]
         price_evidence:
           - claim: "Defense PMs require self-hosted offline deployment."
             source_type: customer_interview
+        cost_evidence: []
         performance_evidence:
           - claim: "Zero-network verification reduces compliance audit failure risk."
             source_type: field_observation
@@ -172,4 +179,4 @@ cases:
       candidate_strategies_contains:
         - strategy: discrete
           confidence: high
-          prerequisite_conditions_contains: "HIPAA and air-gapped security"
+          prerequisite_conditions_contains: "distinct outcome priorities"

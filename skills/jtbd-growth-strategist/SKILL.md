@@ -1,6 +1,6 @@
 ---
 name: jtbd-growth-strategist
-description: Evaluate market growth strategy candidates (Differentiated, Dominant, Disruptive, Discrete, Sustaining) using calculated ODI Opportunity Scores, segment definitions, price/performance evidence, and market constraints. Use when asked to map market opportunities to growth strategies, evaluate strategy feasibility against customer evidence, identify disconfirming evidence, or define next validation actions.
+description: Evaluate market growth strategy candidates (Differentiated, Dominant, Disruptive, Discrete, Sustaining) using calculated ODI Opportunity Scores, segment definitions, price/cost/performance evidence, and market constraints. Use when asked to map market opportunities to growth strategies, evaluate strategy feasibility against customer evidence, identify disconfirming evidence, or define next validation actions.
 ---
 
 # JTBD Growth Strategist
@@ -14,7 +14,7 @@ The Growth Strategist acts as a decision support engine. It evaluates whether cu
 Input must include:
 - `opportunity_analysis`: `data_quality_status`, `calculation_status`, `methodological_assessment`, and `results` from `jtbd-opportunity-calculator`
 - `segment_definition`: Target segment name, evidence, and sample size
-- `market_context`: Current alternatives, structured `price_evidence`, `performance_evidence`, and `nonconsumption_evidence`
+- `market_context`: Current alternatives, structured `price_evidence`, `cost_evidence`, `performance_evidence`, and `nonconsumption_evidence`
 - `strategy_constraints`: Target price position and target performance position
 
 Output:
@@ -26,26 +26,28 @@ Output:
 - `next_validation_actions`: Smallest specific experiments or data collection steps needed
 
 Do not:
-- Force a single "winner" strategy when price/performance evidence is missing
+- Force a single "winner" strategy when price/cost/performance evidence is missing
 - Claim `evidence_aligned` is a forecast of commercial success or market victory
-- Recommend a Disruptive strategy without evidence of overserved outcomes ($Opp < 8.0$) or non-consumption
+- Recommend a Dominant strategy without structured `cost_evidence` demonstrating lower/parity cost-to-serve
+- Recommend a Disruptive strategy without structured `cost_evidence` and overserved outcomes ($Opp < 8.0$) or non-consumption
 - Recommend a Differentiated strategy without high-value underserved outcomes ($Opp \ge 12.0$) and willingness-to-pay evidence
+- Recommend a Discrete strategy without explicit evidence of distinct outcome priorities
 - Invent financial forecasts, ROI projections, or market size estimations
 
 ## Strategy Selection Prerequisites
 
-### Performance / Price Strategies
+### Performance / Price / Cost Strategies
 | Strategy | Minimum Evidence Prerequisites |
 | :--- | :--- |
-| **`differentiated`** | Underserved outcomes ($Opp \ge 12.0$) AND structured price evidence showing willingness to pay a premium for superior performance. |
-| **`dominant`** | Underserved outcomes ($Opp \ge 10.0$) AND performance + cost evidence showing the solution can deliver superior performance at lower or parity cost. |
-| **`disruptive`** | Overserved outcomes ($Opp < 8.0$) OR non-consumption evidence; requires target low-cost position and sufficient performance. |
-| **`sustaining`** | Appropriately served outcomes ($8.0 \le Opp < 10.0$) in core market; requires parity cost and incremental performance. |
+| **`differentiated`** | Underserved outcomes ($Opp \ge 12.0$) AND structured `price_evidence` showing willingness to pay a premium for superior performance. |
+| **`dominant`** | Underserved outcomes ($Opp \ge 10.0$) AND structured `performance_evidence` showing superior performance AND `cost_evidence` showing lower or parity cost-to-serve. |
+| **`disruptive`** | Overserved outcomes ($Opp < 8.0$) OR non-consumption evidence AND structured `cost_evidence` supporting low-cost position and sufficient performance. |
+| **`sustaining`** | Appropriately served outcomes ($8.0 \le Opp < 10.0$) in core market; requires parity price and cost structure for incremental performance. |
 
 ### Context-Specific Strategy
 | Strategy | Minimum Evidence Prerequisites |
 | :--- | :--- |
-| **`discrete`** | Triggered by distinct environmental, regulatory, workflow, or geographic constraints different from mainstream users; requires distinct outcome-priority evidence. Price/performance position is contextual. |
+| **`discrete`** | 1. Environmental, regulatory, security, geographic, or workflow constraint.<br>2. Segment outcome priorities demonstrably different from mainstream users.<br>3. Operational evidence supporting solution feasibility under the constraint. |
 
 ## Strategy Assessment Status Discipline
 
@@ -53,17 +55,17 @@ Do not:
   - `opportunity_analysis.data_quality_status == "complete"`
   - `opportunity_analysis.calculation_status == "completed"`
   - `methodological_assessment.sample_size_status == "adequate"` ($N \ge 100$)
-  - `price_evidence` and `performance_evidence` contain reported claims with source types
-  - At least one strategy meets all prerequisites without unmitigated disconfirming evidence
+  - The selected candidate strategy meets EVERY prerequisite specified in its own rule with structured, sourced evidence
+  - No unmitigated disconfirming evidence exists
 - **`hypothesis_only`**:
-  - `methodological_assessment.sample_size_status == "small"` ($N < 100$), OR price/performance evidence is based on domain rationale rather than market research. Candidate strategies are explicitly labeled as hypotheses.
+  - `methodological_assessment.sample_size_status == "small"` ($N < 100$), OR evidence relies on unverified domain rationale. Candidate strategies are explicitly labeled as hypotheses.
 - **`insufficient_evidence`**:
-  - `opportunity_analysis.calculation_status != "completed"`, OR structured `price_evidence` / `performance_evidence` is completely missing.
+  - `opportunity_analysis.calculation_status != "completed"`, OR required price/cost/performance evidence for candidate strategies is missing.
 
 ## Procedure
 
 1. Audit `opportunity_analysis` (`data_quality_status`, `calculation_status`, `sample_size_status`).
-2. Evaluate `market_context` for structured price and performance evidence (checking `source_type` and claims).
+2. Evaluate `market_context` for structured price, cost, and performance evidence (checking `source_type` and claims).
 3. Compare opportunity landscape against the Strategy Prerequisites Matrix.
 4. Identify `disconfirming_evidence` for each strategy (e.g., attempting a premium price position when extreme underserved outcomes dominate).
 5. Categorize candidate strategies into supported vs excluded.
@@ -102,6 +104,6 @@ next_validation_actions: []
 ## Reference Materials
 
 Read `references/growth-strategy-matrix-rules.md` before:
-- Distinguishing between Performance/Price strategies vs Context-Specific (`discrete`) strategy
-- Evaluating structured evidence source types (`stated_preference_survey`, `controlled_user_test`, etc.)
-- Mapping disconfirming evidence to strategy exclusions
+- Evaluating structured evidence source types for `price_evidence`, `cost_evidence`, and `performance_evidence`
+- Assessing prerequisites for `dominant` vs `differentiated` strategies
+- Auditing `discrete` strategy prerequisites (constraints + distinct outcome priorities)
