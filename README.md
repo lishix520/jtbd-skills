@@ -66,12 +66,18 @@ jtbd-skills/
 │   │   │   └── invalid-strategy-assessments.md # Strategy evaluation anti-pattern examples
 │   │   └── tests/
 │   │       └── cases.yaml               # Test suite for strategy assessment validation
-│   └── jtbd-context-explorer/   # Context Explorer (Atomic Skill 6)
+│   ├── jtbd-context-explorer/   # Context Explorer (Atomic Skill 6)
+│   │   ├── SKILL.md             # Main skill definition & frontmatter
+│   │   ├── references/
+│   │   │   └── context-exploration-rules.md # Circumstance & progress extraction rules
+│   │   └── tests/
+│   │       └── cases.yaml               # Test suite for context extraction validation
+│   └── jtbd-forces-analyzer/    # Four Forces Analyzer (Atomic Skill 7)
 │       ├── SKILL.md             # Main skill definition & frontmatter
 │       ├── references/
-│       │   └── context-exploration-rules.md # Circumstance & progress extraction rules
+│       │   └── four-forces-rules.md     # Push, Pull, Habit, and Anxiety rules
 │       └── tests/
-│           └── cases.yaml               # Test suite for context extraction validation
+│           └── cases.yaml               # Test suite for Four Forces analysis validation
 └── integration/
     └── project-status-update/    # Golden Path Integration Fixture
         ├── README.md            # Fixture architecture & pipeline documentation
@@ -108,6 +114,7 @@ All skills in this repository strictly adhere to core ODI principles:
 | **`jtbd-opportunity-calculator`** | Compute quantitative ODI Opportunity Scores from survey ratings | `v0.1` |
 | **`jtbd-growth-strategist`** | Map opportunity landscapes and market evidence to growth strategies | `v0.1` |
 | **`jtbd-context-explorer`** | Extract qualitative circumstances, progress, and non-consumption evidence | `v0.2 (Draft)` |
+| **`jtbd-forces-analyzer`** | Organize switching evidence into Push, Pull, Habit, and Anxiety forces | `v0.2 (Draft)` |
 
 ## ⚡ Quick Start
 

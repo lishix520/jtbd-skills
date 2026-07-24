@@ -1,0 +1,105 @@
+version: 0.1
+
+cases:
+  - id: reject-empty-input
+    input: {}
+    expected:
+      analysis_status: insufficient_input
+      must_not_invent:
+        - switching_context
+        - forces
+
+  - id: stop-without-switching-context
+    input:
+      sources:
+        - id: research-01
+          type: interview
+          text: "I dislike updating spreadsheets."
+    expected:
+      analysis_status: insufficient_switching_context
+      must_not_invent:
+        - prospective_alternative
+        - push
+        - pull
+        - habit
+        - anxiety
+
+  - id: do-not-treat-feature-request-as-pull
+    input:
+      sources:
+        - id: research-01
+          type: feedback
+          text: "Please add a Jira button that creates a weekly report."
+    expected:
+      analysis_status: insufficient_switching_context
+      must_not_classify_as:
+        - pull
+        - validated_switching_context
+
+  - id: distinguish-push-from-general-dissatisfaction
+    input:
+      sources:
+        - id: research-01
+          type: interview
+          text: "I spend two hours each week combining spreadsheets. Now that the team has doubled, I miss review deadlines."
+        - id: research-02
+          type: interview
+          text: "We are considering a reporting service that combines team updates automatically."
+    expected:
+      analysis_status: evidence_extracted
+      forces_contains:
+        push:
+          - "miss review deadlines"
+      switching_context_contains:
+        current_approach:
+          - spreadsheets
+        prospective_alternative:
+          - reporting service
+
+  - id: distinguish-habit-and-anxiety
+    input:
+      sources:
+        - id: research-01
+          type: interview
+          text: "Everyone knows the spreadsheet template, so changing it would disrupt our weekly routine."
+        - id: research-02
+          type: interview
+          text: "I worry a new reporting tool could lose our history or fail the audit."
+        - id: research-03
+          type: interview
+          text: "We are evaluating a reporting service."
+    expected:
+      forces_contains:
+        habit:
+          - spreadsheet template
+        anxiety:
+          - lose our history
+          - fail the audit
+
+  - id: preserve-unverified-vendor-claim
+    input:
+      sources:
+        - id: vendor-01
+          type: vendor_claim
+          text: "Our dashboard cuts reporting time by 80%."
+        - id: research-01
+          type: interview
+          text: "We currently compile reports in spreadsheets and are evaluating alternatives."
+    expected:
+      forces_contains:
+        pull:
+          - "cuts reporting time"
+      pull_status: unverified_claim
+      must_not_claim:
+        - customer_verified_performance
+
+  - id: big-hire-not-little-hire
+    input:
+      sources:
+        - id: research-01
+          type: interview
+          text: "After the trial, I got budget approval to replace our spreadsheet process."
+    expected:
+      hire_signals:
+        big_hire: present
+        little_hire: unknown
