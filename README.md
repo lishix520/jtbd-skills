@@ -102,6 +102,24 @@ All skills in this repository strictly adhere to core ODI principles:
 | **`jtbd-opportunity-calculator`** | Compute quantitative ODI Opportunity Scores from survey ratings | `v0.1` |
 | **`jtbd-growth-strategist`** | Map opportunity landscapes and market evidence to growth strategies | `v0.1` |
 
+## ⚡ Quick Start
+
+Validate the repository and run the end-to-end integration pipeline in 3 commands:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/lishix520/jtbd-skills.git && cd jtbd-skills
+
+# 2. Run deterministic Opportunity Calculator script against the Golden Path Fixture
+python3 skills/jtbd-opportunity-calculator/scripts/calculate_opportunity.py \
+  integration/project-status-update/04-survey-input.json > /tmp/calculated_out.json
+
+# 3. Verify script calculation against golden output
+diff -u /tmp/calculated_out.json integration/project-status-update/05-opportunity-results.json
+```
+
+For complete architecture details, pipeline contracts, and evidence hierarchies, see [ARCHITECTURE.md](./ARCHITECTURE.md).
+
 ---
 
 ## 📄 License

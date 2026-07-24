@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.1.1] - 2026-07-24
+
+### Fixed
+- **CI Workflow Formatting**: Fixed YAML multi-line shell command syntax in `.github/workflows/validate.yml` to prevent shell continuation escaping errors.
+
+### Added
+- **Quick Start Section**: Added 3-command Quick Start guide to `README.md`.
+- **`ARCHITECTURE.md`**: Architectural design documentation detailing data pipeline contracts, confidence hierarchy, and hard stopping rules across all 5 skills.
+- **GitHub Issue Templates**: Added `bug_report.md`, `skill_proposal.md`, and `methodology_correction.md` under `.github/ISSUE_TEMPLATE/`.
+
+---
+
 ## [0.1.0] - 2026-07-24
 
 ### Added

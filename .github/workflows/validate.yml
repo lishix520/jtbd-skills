@@ -56,9 +56,6 @@ jobs:
 
       - name: Test Deterministic Opportunity Calculator against Golden Fixture
         run: |
-          python3 skills/jtbd-opportunity-calculator/scripts/calculate_opportunity.py \
-            integration/project-status-update/04-survey-input.json \
-            > /tmp/calculated_out.json
-
+          python3 skills/jtbd-opportunity-calculator/scripts/calculate_opportunity.py integration/project-status-update/04-survey-input.json > /tmp/calculated_out.json
           diff -u /tmp/calculated_out.json integration/project-status-update/05-opportunity-results.json
           echo "Golden Path Fixture Output Matches Deterministic Script Execution!"
