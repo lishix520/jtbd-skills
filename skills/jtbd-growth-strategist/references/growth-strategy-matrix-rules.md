@@ -8,89 +8,98 @@ Rather than generating speculative consulting advice, this reference defines exp
 
 ---
 
-## Growth Strategy Classification Matrix
+## Strategy Families
 
-```text
-                  High Customer Satisfaction / Overserved
-                                    │
-                                    │   DISRUPTIVE
-        DISCRETE                    │   Low price,
-        Niche environment,          │   sufficient performance
-        distinct workflow           │
-                                    │
-Low Performance ────────────────────┼──────────────────── High Performance
-                                    │
-                                    │   DOMINANT / DIFFERENTIATED
-        SUSTAINING                  │   High performance,
-        Incremental improvement,    │   underserved outcomes
-        parity price                │
-                                    │
-                  Low Customer Satisfaction / Underserved
-```
+Growth strategies are categorized into two distinct families:
+
+### 1. Performance / Price Strategies (Mainstream Market Alignment)
+
+These 4 strategies depend on position along the Performance and Price continuum relative to incumbents:
+
+- **`differentiated`**: High performance at a premium price. Target underserved outcomes ($Opp \ge 12.0$) for customers willing to pay more.
+- **`dominant`**: Superior performance at a lower or parity price. Target underserved outcomes ($Opp \ge 10.0$) while maintaining low unit costs.
+- **`disruptive`**: Sufficient performance at a significantly lower price. Target overserved outcomes ($Opp < 8.0$) or non-consumers.
+- **`sustaining`**: Incremental performance improvements at parity price. Target appropriately served outcomes ($8.0 \le Opp < 10.0$) to defend core market share.
+
+### 2. Context-Specific Strategy (Niche / Environment Alignment)
+
+- **`discrete`**: Target customers operating in a distinct physical environment, security regime, regulatory framework, or specialized workflow.
+  - **Triggers**: Unique environmental or regulatory constraints (e.g., offline defense systems, HIPAA-isolated healthcare workflows).
+  - **Prerequisite**: Requires outcome-priority evidence distinct from mainstream users.
+  - **Price / Performance Position**: Contextual (can be premium or low-cost depending on niche constraints). It does NOT require overserved outcome scores.
+
+---
+
+## Structured Market Evidence Discipline
+
+To achieve `status: evidence_aligned`, market context claims MUST use structured evidence objects with stated source types:
+
+### Price Evidence Schema:
+- `claim`: Clear statement of price position or willingness-to-pay.
+- `source_type`: `stated_preference_survey` | `transactional_data` | `conjoint_analysis` | `customer_interview`
+- `sample_size`: Numeric sample count ($N$) or `null`.
+- `limitations`: List of known caveats (e.g., "Stated preference may not predict actual purchase behavior").
+
+### Performance Evidence Schema:
+- `claim`: Clear statement of performance improvement.
+- `source_type`: `controlled_user_test` | `internal_benchmark` | `field_observation` | `customer_interview`
+- `sample_size`: Numeric sample count ($N$) or `null`.
+- `baseline`: Specific incumbent solution benchmarked against (e.g., "manual spreadsheet verification").
+- `limitations`: List of known caveats.
 
 ---
 
 ## Detailed Strategy Prerequisites & Disconfirming Evidence
 
 ### 1. Differentiated Strategy
-Target customers are willing to pay a premium price for a solution that solves significantly underserved outcomes.
-
-- **Required Prerequisites**:
-  - Opportunity Score $\ge 12.0$ (High or Extreme Underserved) on key functional outcomes.
-  - Price evidence demonstrating customer willingness to pay a premium.
-  - Performance evidence showing target solution can achieve superior performance on target outcomes.
+- **Prerequisites**:
+  - Underserved outcomes ($Opp \ge 12.0$).
+  - Structured `price_evidence` demonstrating willingness to pay a premium.
+  - Structured `performance_evidence` demonstrating superior capability.
 - **Disconfirming Evidence**:
-  - Customer satisfaction with existing solutions is high ($S_i \ge 8.0$).
-  - Target customers are price-sensitive or unwilling to pay extra for performance gains.
+  - Mainstream satisfaction is high ($S_i \ge 8.0$).
+  - Customers are price-sensitive or reject premium pricing.
 
 ### 2. Dominant Strategy
-Target customers seek significantly better performance AND lower or parity cost simultaneously.
-
-- **Required Prerequisites**:
-  - Opportunity Score $\ge 10.0$ (Moderate, High, or Extreme Underserved).
-  - Cost evidence demonstrating the solution can be delivered at equal or lower cost than incumbents.
-  - Performance evidence showing superior performance on key outcomes.
+- **Prerequisites**:
+  - Underserved outcomes ($Opp \ge 10.0$).
+  - Structured `performance_evidence` showing superior performance.
+  - Cost/price evidence showing parity or lower price position.
 - **Disconfirming Evidence**:
-  - High unit economics or high cost structure requiring a premium price position.
+  - High unit economics require a premium price position.
 
 ### 3. Disruptive Strategy
-Target customers are overserved by existing solutions, or are non-consumers locked out of the market by cost/complexity.
-
-- **Required Prerequisites**:
-  - Opportunity Score $< 8.0$ (Overserved outcomes) OR explicit non-consumption evidence.
-  - Target price position is low-cost relative to current market alternatives.
-  - Solution provides "sufficient" performance on core outcomes while removing unnecessary features.
+- **Prerequisites**:
+  - Overserved outcomes ($Opp < 8.0$) OR non-consumption evidence.
+  - Low-cost target price position relative to incumbents.
+  - Sufficient performance on core functional outcomes.
 - **Disconfirming Evidence**:
-  - Mainstream customers demand higher performance and reject simpler, low-cost alternatives.
-  - Underserved outcomes ($Opp \ge 12.0$) dominate the market landscape.
+  - Extreme underserved outcomes ($Opp \ge 15.0$) dominate the market landscape.
 
 ### 4. Discrete Strategy
-Target customers execute the job in a unique context, environment, regulatory regime, or workflow that requires a specialized solution.
-
-- **Required Prerequisites**:
+- **Prerequisites**:
   - Segment definition evidence showing distinct outcome prioritization compared to mainstream users.
   - Specific environmental, security, regulatory, or workflow constraints.
 - **Disconfirming Evidence**:
-  - Segment outcome priorities are identical to the mainstream market.
+  - Segment outcome priorities match mainstream users.
 
 ### 5. Sustaining Strategy
-Incumbent market with satisfied customers ($8.0 \le Opp < 10.0$) requiring continuous incremental improvements to maintain market share.
-
-- **Required Prerequisites**:
+- **Prerequisites**:
   - Outcomes are appropriately served ($8.0 \le Opp < 10.0$).
-  - Parity price and incremental performance improvements.
+  - Parity price position.
 - **Disconfirming Evidence**:
-  - Extreme underserved outcomes ($Opp \ge 15.0$) exist and are left unaddressed.
+  - Extreme underserved outcomes ($Opp \ge 15.0$) are left unaddressed.
 
 ---
 
 ## Assessment Status Rules
 
-1. **`recommendation_ready`**:
-   - `data_quality_status == "complete"`
-   - `sample_size_status == "adequate"` ($N \ge 100$)
-   - Both price evidence and performance evidence are reported.
-2. **`hypothesis_only`**:
-   - Data is `exploratory` ($N < 100$), OR price/performance evidence is based on domain rationale.
-3. **`insufficient_evidence`**:
-   - `data_quality_status != "complete"`, OR price/performance evidence is completely missing.
+- **`evidence_aligned`**:
+  - `opportunity_analysis.data_quality_status == "complete"`
+  - `opportunity_analysis.calculation_status == "completed"`
+  - `methodological_assessment.sample_size_status == "adequate"` ($N \ge 100$)
+  - `price_evidence` and `performance_evidence` contain reported claims with source types.
+- **`hypothesis_only`**:
+  - `methodological_assessment.sample_size_status == "small"` ($N < 100$), OR evidence relies on unverified domain rationale.
+- **`insufficient_evidence`**:
+  - `opportunity_analysis.calculation_status != "completed"`, OR price/performance evidence is missing.

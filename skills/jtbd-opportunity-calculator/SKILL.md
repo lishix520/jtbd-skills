@@ -26,7 +26,7 @@ Do not:
 - Claim sample size $\ge 100$ is proof of statistical validity or representativeness
 - Classify high-importance outcomes ($I_i \ge 8.0$) as overserved simply because $S_i > I_i$
 - Invent, estimate, or hallucinate numeric ratings from qualitative text or interview quotes
-- Apply standard 10-point thresholds to 5-point or 7-point scales without explicit scale handling metadata
+- Apply 10-point thresholds to any scale other than matching `1_to_10` inputs; v0.1 rejects non-10-point scales
 - Formulate business growth strategies or product roadmaps (delegate to `jtbd-growth-strategist`)
 
 ## Mathematical Formula
