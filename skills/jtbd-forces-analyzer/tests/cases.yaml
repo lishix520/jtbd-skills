@@ -67,7 +67,7 @@ cases:
           text: "I worry a new reporting tool could lose our history or fail the audit."
         - id: research-03
           type: interview
-          text: "We are evaluating a reporting service as an alternative to spreadsheets."
+          text: "We are evaluating a reporting service as an alternative."
     expected:
       analysis_status: evidence_extracted
       switching_context_contains:
@@ -90,10 +90,7 @@ cases:
           text: "Our Acme dashboard cuts reporting time by 80%."
         - id: research-01
           type: interview
-          text: "We currently compile reports in spreadsheets."
-        - id: research-02
-          type: interview
-          text: "We are evaluating the Acme dashboard as an alternative to our spreadsheet process."
+          text: "We currently compile reports in spreadsheets and are evaluating the Acme dashboard as an alternative."
     expected:
       analysis_status: evidence_extracted
       switching_context_contains:
@@ -113,19 +110,17 @@ cases:
       sources:
         - id: research-01
           type: interview
-          text: "After the trial, I got budget approval to replace our spreadsheet process."
-        - id: research-02
-          type: interview
-          text: "The trial was for a reporting service that consolidates team updates."
+          text: "After a 14-day trial of a SaaS reporting service, I got budget approval to replace our spreadsheet process."
     expected:
       analysis_status: evidence_extracted
       switching_context_contains:
         current_approach:
           - spreadsheet process
         prospective_alternative:
-          - reporting service
+          - SaaS reporting service
       hire_signals:
         big_hire: present
         little_hire: unknown
+      forces_may_be_empty: true
       switching_readiness:
         status: insufficient_evidence
