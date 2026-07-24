@@ -34,11 +34,13 @@ cases:
           type: feedback
           text: "I need a Jira button that automatically creates my weekly report."
     expected:
-      current_approaches_or_competing_alternatives_contains:
-        - Jira
+      feature_requests_contains:
+        - "Jira button"
       must_not_treat_as:
         - validated_core_job
         - desired_outcome
+        - current_approach_without_evidence
+        - competing_alternative_without_evidence
       evidence_gaps_contains:
         - "underlying functional progress"
 
@@ -54,6 +56,22 @@ cases:
       current_approaches_contains:
         - spreadsheets
 
+  - id: distinguish-do-nothing-from-non-consumption
+    input:
+      sources:
+        - id: research-01
+          type: interview
+          text: "I know there are reporting tools, but the weekly update is not important enough for me to change anything."
+    expected:
+      current_approaches_contains:
+        - "do nothing"
+      competing_alternatives_contains:
+        - "reporting tools"
+      must_not_classify_as:
+        - non_consumption
+      evidence_gaps_contains:
+        - "whether perceived value or switching effort prevents adoption"
+
   - id: identify-non-consumption-with-barrier
     input:
       sources:
@@ -67,7 +85,7 @@ cases:
       current_approaches_contains:
         - spreadsheets
       constraints_contains:
-        - policy
+        - policy prohibits cloud tools
 
   - id: separate-emotional-and-social-signals
     input:

@@ -8,30 +8,36 @@ It extracts evidence about *why* and *under what conditions* a person seeks to m
 
 ---
 
-## Core Distinctions
+## Core Distinctions & Rules
 
-### 1. Circumstance vs. Functional Job vs. Solution
-- **Circumstance (Situation / Trigger / Constraint)**: The background context or pressure.
-  * *Example*: "The weekly executive review is tomorrow, and three remote teams have not sent updates."
-- **Candidate Functional Progress**: The underlying goal (to be evaluated by `jtbd-job-definer`).
-  * *Example*: "Prepare a project status update."
-- **Solution (Feature Request / Tool)**: A specific product or implementation.
-  * *Example*: "Build a Jira button that auto-generates reports." (MUST be logged under `current_approaches` / `competing_alternatives` or feature requests, NOT as a job).
+### 1. Feature Requests vs. Current Approaches / Jobs
+- **Feature Requests**: A statement proposing a specific product capability, interface element, or tool (e.g., "Build a Jira button that auto-generates reports").
+  * **Rule**: Record under `feature_requests`. Do NOT log under `current_approaches` or `competing_alternatives` unless independent source material proves the product is already being used or actively evaluated. Do NOT treat a feature request as a validated Core Functional Job.
 
 ---
 
-### 2. Non-Consumption Threshold Rules
-Do NOT classify general product dissatisfaction as non-consumption.
+### 2. Direct vs. Imferred Desired Progress
+- **Direct Evidence**: Explicit customer statements of intent or desire (e.g., "I want to finish status reporting before Friday").
+- **Inferred Progress**: Strongly implied progress extracted from circumstances or complaints.
+  * **Rule**: Strongly implied desired progress is ALWAYS `status: inferred`, even when the supporting source excerpt is direct evidence.
 
-- ❌ **Insufficient (Dissatisfaction)**: "I dislike updating spreadsheets." -> Log as `current_approaches` (`spreadsheets`), NOT non-consumption.
-- ✅ **Sufficient (Non-Consumption)**: "We considered cloud reporting software, but security policy prohibits cloud tools, so we keep using spreadsheets."
+---
+
+### 3. Non-Consumption vs. Dissatisfaction vs. Do Nothing
+- ❌ **Dissatisfaction (Not Non-Consumption)**: "I dislike updating spreadsheets." -> Log as `current_approaches` (`spreadsheets`), NOT non-consumption.
+- ❌ **Do Nothing / Perceived Value Barrier (Not Non-Consumption)**: "I know there are reporting tools, but the weekly update is not important enough for me to change anything."
+  * `current_approaches`: "Do nothing"
+  * `competing_alternatives`: "Reporting tools"
+  * `non_consumption`: Do NOT classify as non-consumption; perceived value is too low to trigger adoption.
+- ✅ **Sufficient Non-Consumption**: "We considered cloud reporting software, but security policy prohibits cloud tools, so we keep using spreadsheets."
   * `non_consumption`: "Cloud reporting software"
-  * `barrier_type`: `security_or_privacy` (or `policy_or_regulation`)
+  * `barrier_type`: `policy_or_regulation` (or `security_or_privacy`)
+  * `constraints`: "Policy prohibits cloud tools"
   * `current_approaches`: "Spreadsheets"
 
 ---
 
-### 3. Emotional vs. Social Signals
+### 4. Emotional vs. Social Signals
 Keep psychological internal feelings distinct from external social perceptions:
 
 - **Emotional Signal**: Internal psychological feeling (e.g., anxiety, confidence, frustration, peace of mind).
@@ -42,16 +48,8 @@ Keep psychological internal feelings distinct from external social perceptions:
 
 ---
 
-## Barrier Type Classifications for Non-Consumption
+## Top-Level Constraints Schema
 
-| Barrier Type | Definition & Trigger Excerpt |
-| :--- | :--- |
-| **`access`** | Physical, network, or permission lockout preventing usage. |
-| **`affordability`** | Price exceeds budget or willingness to pay. |
-| **`complexity`** | Skill, training, or usability barrier makes usage infeasible. |
-| **`suitability`** | Solution does not match the specific physical/operational context. |
-| **`availability`** | Solution is not available in the region or platform. |
-| **`policy_or_regulation`** | Organizational policy, legal compliance, or government regulation prohibits usage. |
-| **`security_or_privacy`** | Security requirements or privacy concerns prevent adoption. |
-| **`perceived_value`** | Potential user believes the benefit is not worth the effort of switching. |
-| **`unknown`** | Non-consumption is evident, but the specific barrier is unstated. |
+Extract top-level organizational, security, regulatory, environmental, time, or money restrictions into `constraints`:
+
+- **Type Classifications**: `policy_or_regulation`, `security_or_privacy`, `environment`, `access`, `skill`, `time`, `money`, `compatibility`, `privacy`, `safety`, `organizational`, `unknown`.
