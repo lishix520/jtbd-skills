@@ -1,0 +1,87 @@
+version: 0.1
+
+cases:
+  - id: reject-empty-input
+    input: {}
+    expected:
+      analysis_status: insufficient_input
+      must_not_invent:
+        - circumstances
+        - desired_progress
+        - current_approaches
+        - non_consumption
+
+  - id: extract-circumstance-without-defining-job
+    input:
+      sources:
+        - id: research-01
+          type: interview
+          text: "The weekly review is tomorrow, and three teams still have not sent updates."
+    expected:
+      analysis_status: evidence_extracted
+      circumstances_contains:
+        - "weekly review"
+        - "three teams"
+      must_not_output_fields:
+        - core_functional_job
+        - opportunity_score
+        - strategy_recommendation
+
+  - id: distinguish-feature-request-from-progress
+    input:
+      sources:
+        - id: research-01
+          type: feedback
+          text: "I need a Jira button that automatically creates my weekly report."
+    expected:
+      current_approaches_or_competing_alternatives_contains:
+        - Jira
+      must_not_treat_as:
+        - validated_core_job
+        - desired_outcome
+      evidence_gaps_contains:
+        - "underlying functional progress"
+
+  - id: require-evidence-for-non-consumption
+    input:
+      sources:
+        - id: research-01
+          type: interview
+          text: "I dislike updating spreadsheets."
+    expected:
+      must_not_classify_as:
+        - non_consumption
+      current_approaches_contains:
+        - spreadsheets
+
+  - id: identify-non-consumption-with-barrier
+    input:
+      sources:
+        - id: research-01
+          type: interview
+          text: "We considered cloud reporting software, but policy prohibits cloud tools, so we keep using spreadsheets."
+    expected:
+      non_consumption_contains:
+        - cloud reporting software
+      barrier_type: policy_or_regulation
+      current_approaches_contains:
+        - spreadsheets
+      constraints_contains:
+        - policy
+
+  - id: separate-emotional-and-social-signals
+    input:
+      sources:
+        - id: research-01
+          type: interview
+          text: "I feel anxious before the executive review because I do not want them to think I have lost control."
+    expected:
+      emotional_signals_contains:
+        - anxious
+      social_signals_contains:
+        - lost control
+      social_audience_contains:
+        - executives
+      must_not_treat_as:
+        - core_functional_job
+        - desired_outcome

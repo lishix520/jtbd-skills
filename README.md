@@ -57,15 +57,21 @@ jtbd-skills/
 │   │   │   └── invalid-calculations.md        # Calculation anti-pattern examples
 │   │   └── tests/
 │   │       └── cases.yaml               # Test suite for score calculation validation
-│   └── jtbd-growth-strategist/   # Growth Strategist (Atomic Skill 5)
+│   ├── jtbd-growth-strategist/   # Growth Strategist (Atomic Skill 5)
+│   │   ├── SKILL.md             # Main skill definition & frontmatter
+│   │   ├── references/
+│   │   │   └── growth-strategy-matrix-rules.md # Matrix prerequisites & evidence rules
+│   │   ├── examples/
+│   │   │   ├── valid-strategy-assessments.md   # Valid strategy evaluation examples
+│   │   │   └── invalid-strategy-assessments.md # Strategy evaluation anti-pattern examples
+│   │   └── tests/
+│   │       └── cases.yaml               # Test suite for strategy assessment validation
+│   └── jtbd-context-explorer/   # Context Explorer (Atomic Skill 6)
 │       ├── SKILL.md             # Main skill definition & frontmatter
 │       ├── references/
-│       │   └── growth-strategy-matrix-rules.md # Matrix prerequisites & evidence rules
-│       ├── examples/
-│       │   ├── valid-strategy-assessments.md   # Valid strategy evaluation examples
-│       │   └── invalid-strategy-assessments.md # Strategy evaluation anti-pattern examples
+│       │   └── context-exploration-rules.md # Circumstance & progress extraction rules
 │       └── tests/
-│           └── cases.yaml               # Test suite for strategy assessment validation
+│           └── cases.yaml               # Test suite for context extraction validation
 └── integration/
     └── project-status-update/    # Golden Path Integration Fixture
         ├── README.md            # Fixture architecture & pipeline documentation
@@ -101,6 +107,7 @@ All skills in this repository strictly adhere to core ODI principles:
 | **`jtbd-outcome-engineer`** | Formulate formulaic Desired Outcome Statements for a job map step | `v0.1` |
 | **`jtbd-opportunity-calculator`** | Compute quantitative ODI Opportunity Scores from survey ratings | `v0.1` |
 | **`jtbd-growth-strategist`** | Map opportunity landscapes and market evidence to growth strategies | `v0.1` |
+| **`jtbd-context-explorer`** | Extract qualitative circumstances, progress, and non-consumption evidence | `v0.2 (Draft)` |
 
 ## ⚡ Quick Start
 
