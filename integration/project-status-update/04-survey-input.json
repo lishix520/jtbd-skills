@@ -1,0 +1,26 @@
+{
+  "fixture_notice": "Synthetic ratings for deterministic integration testing only; not customer research or proof of market.",
+  "survey_metadata": {
+    "importance_scale": "1_to_10",
+    "satisfaction_scale": "1_to_10",
+    "sample_size": 250,
+    "population_definition": "Synthetic project-manager respondent population",
+    "collection_method": "Synthetic fixture"
+  },
+  "outcomes": [
+    {
+      "id": "O-001",
+      "statement": "Minimize the time it takes to identify relevant project status information",
+      "importance_mean": 9.0,
+      "satisfaction_mean": 4.0,
+      "segment": "Enterprise project managers"
+    },
+    {
+      "id": "O-002",
+      "statement": "Minimize the likelihood of omitting required status information during verification",
+      "importance_mean": 8.0,
+      "satisfaction_mean": 6.0,
+      "segment": "Enterprise project managers"
+    }
+  ]
+}

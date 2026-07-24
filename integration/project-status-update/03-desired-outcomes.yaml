@@ -1,0 +1,46 @@
+job_context:
+  core_functional_job: "Prepare a project status update"
+  job_executor: "Project manager"
+  job_map_step:
+    category: locate
+    statement: "Identify relevant project status information"
+
+outcomes_status: provisional
+
+desired_outcomes:
+  - id: "O-001"
+    statement: "Minimize the time it takes to identify relevant project status information"
+    direction: minimize
+    metric_type: time
+    measurement_target: "identify relevant project status information"
+    contextual_clarifier: ""
+    source_step:
+      category: locate
+      statement: "Identify relevant project status information"
+    status: evidence_supported
+    basis: direct_evidence
+    evidence:
+      - source_id: research-01
+        excerpt: "I have to collect updates from several teams before weekly review."
+    assumptions: []
+
+  - id: "O-002"
+    statement: "Minimize the likelihood of omitting required status information during verification"
+    direction: minimize
+    metric_type: likelihood
+    measurement_target: "omitting required status information during verification"
+    contextual_clarifier: "during verification"
+    source_step:
+      category: confirm
+      statement: "Verify the completeness of status information"
+    status: evidence_supported
+    basis: direct_evidence
+    evidence:
+      - source_id: research-02
+        excerpt: "The hardest part is knowing whether an important change was omitted."
+    assumptions: []
+
+excluded_items: []
+evidence_gaps:
+  - "Direct customer quotes regarding effort and cost metric types for status preparation."
+next_research_question: "What specific types of status details are most frequently omitted during verification?"

@@ -14,53 +14,69 @@ Designed according to the [Agent Skills Specification](https://github.com/agents
 jtbd-skills/
 ├── README.md
 ├── LICENSE
+├── CONTRIBUTING.md
+├── CHANGELOG.md
 ├── principles/
 │   └── SKILL.md                 # Shared contracts, evidence rules, and cross-skill terminology
-└── skills/
-    ├── jtbd-job-definer/        # Core Functional Job Definer (Atomic Skill 1)
-    │   ├── SKILL.md             # Main skill definition & frontmatter
-    │   ├── references/
-    │   │   └── job-statement-rules.md   # Detailed syntax, scope, and resolution rules
-    │   ├── examples/
-    │   │   ├── valid-examples.md        # Valid core functional job statements
-    │   │   └── invalid-examples.md      # Anti-pattern examples & rewrites
-    │   └── tests/
-    │       └── cases.yaml               # Test suite for agent validation & auditing
-    ├── jtbd-job-mapper/         # Universal Job Mapper (Atomic Skill 2)
-    │   ├── SKILL.md             # Main skill definition & frontmatter
-    │   ├── references/
-    │   │   └── universal-job-map-rules.md # Stage boundaries & mapping rules
-    │   ├── examples/
-    │   │   ├── valid-job-maps.md        # Provisional valid job map examples
-    │   │   └── invalid-job-maps.md      # Map-level anti-pattern examples
-    │   └── tests/
-    │       └── cases.yaml               # Test suite for job mapping validation
-    ├── jtbd-outcome-engineer/   # Desired Outcome Engineer (Atomic Skill 3)
-    │   ├── SKILL.md             # Main skill definition & frontmatter
-    │   ├── references/
-    │   │   └── outcome-statement-rules.md # Syntax & metric rules
-    │   ├── examples/
-    │   │   ├── valid-outcomes.md        # Provisional desired outcome examples
-    │   │   └── invalid-outcomes.md      # Anti-pattern outcome examples
-    │   └── tests/
-    │       └── cases.yaml               # Test suite for outcome validation
-    ├── jtbd-opportunity-calculator/ # Opportunity Calculator (Atomic Skill 4)
-    │   ├── SKILL.md             # Main skill definition & frontmatter
-    │   ├── references/
-    │   │   └── opportunity-algorithm-rules.md # Mathematical formula & scale rules
-    │   ├── scripts/
-    │   │   └── calculate_opportunity.py       # Deterministic calculation script
-    │   ├── examples/
-    │   │   ├── valid-calculations.md          # Valid calculation examples
-    │   │   └── invalid-calculations.md        # Calculation anti-pattern examples
-    │   └── tests/
-    │       └── cases.yaml               # Test suite for score calculation validation
-    └── jtbd-growth-strategist/   # Growth Strategist (Atomic Skill 5)
-        ├── SKILL.md             # Main skill definition & frontmatter
-        ├── references/
-        │   └── growth-strategy-matrix-rules.md # Matrix prerequisites & evidence rules
-        └── tests/
-            └── cases.yaml               # Test suite for strategy assessment validation
+├── skills/
+│   ├── jtbd-job-definer/        # Core Functional Job Definer (Atomic Skill 1)
+│   │   ├── SKILL.md             # Main skill definition & frontmatter
+│   │   ├── references/
+│   │   │   └── job-statement-rules.md   # Detailed syntax, scope, and resolution rules
+│   │   ├── examples/
+│   │   │   ├── valid-examples.md        # Valid core functional job statements
+│   │   │   └── invalid-examples.md      # Anti-pattern examples & rewrites
+│   │   └── tests/
+│   │       └── cases.yaml               # Test suite for agent validation & auditing
+│   ├── jtbd-job-mapper/         # Universal Job Mapper (Atomic Skill 2)
+│   │   ├── SKILL.md             # Main skill definition & frontmatter
+│   │   ├── references/
+│   │   │   └── universal-job-map-rules.md # Stage boundaries & mapping rules
+│   │   ├── examples/
+│   │   │   ├── valid-job-maps.md        # Provisional valid job map examples
+│   │   │   └── invalid-job-maps.md      # Map-level anti-pattern examples
+│   │   └── tests/
+│   │       └── cases.yaml               # Test suite for job mapping validation
+│   ├── jtbd-outcome-engineer/   # Desired Outcome Engineer (Atomic Skill 3)
+│   │   ├── SKILL.md             # Main skill definition & frontmatter
+│   │   ├── references/
+│   │   │   └── outcome-statement-rules.md # Syntax & metric rules
+│   │   ├── examples/
+│   │   │   ├── valid-outcomes.md        # Provisional desired outcome examples
+│   │   │   └── invalid-outcomes.md      # Anti-pattern outcome examples
+│   │   └── tests/
+│   │       └── cases.yaml               # Test suite for outcome validation
+│   ├── jtbd-opportunity-calculator/ # Opportunity Calculator (Atomic Skill 4)
+│   │   ├── SKILL.md             # Main skill definition & frontmatter
+│   │   ├── references/
+│   │   │   └── opportunity-algorithm-rules.md # Mathematical formula & scale rules
+│   │   ├── scripts/
+│   │   │   └── calculate_opportunity.py       # Deterministic calculation script
+│   │   ├── examples/
+│   │   │   ├── valid-calculations.md          # Valid calculation examples
+│   │   │   └── invalid-calculations.md        # Calculation anti-pattern examples
+│   │   └── tests/
+│   │       └── cases.yaml               # Test suite for score calculation validation
+│   └── jtbd-growth-strategist/   # Growth Strategist (Atomic Skill 5)
+│       ├── SKILL.md             # Main skill definition & frontmatter
+│       ├── references/
+│       │   └── growth-strategy-matrix-rules.md # Matrix prerequisites & evidence rules
+│       ├── examples/
+│       │   ├── valid-strategy-assessments.md   # Valid strategy evaluation examples
+│       │   └── invalid-strategy-assessments.md # Strategy evaluation anti-pattern examples
+│       └── tests/
+│           └── cases.yaml               # Test suite for strategy assessment validation
+└── integration/
+    └── project-status-update/    # Golden Path Integration Fixture
+        ├── README.md            # Fixture architecture & pipeline documentation
+        ├── 00-research-input.md # Synthetic research statements
+        ├── 01-job-definition.yaml # Skill 1 Output
+        ├── 02-job-map.yaml      # Skill 2 Output
+        ├── 03-desired-outcomes.yaml # Skill 3 Output
+        ├── 04-survey-input.json # Quantitative survey input
+        ├── 05-opportunity-results.json # Skill 4 Output (Script-generated)
+        ├── 06-strategy-assessment.yaml # Skill 5 Output (Insufficient evidence stopping)
+        └── validation.md        # Traceability & hash validation report
 ```
 
 ---
@@ -84,7 +100,7 @@ All skills in this repository strictly adhere to core ODI principles:
 | **`jtbd-job-mapper`** | Deconstruct defined jobs into solution-free Universal Job Maps | `v0.1` |
 | **`jtbd-outcome-engineer`** | Formulate formulaic Desired Outcome Statements for a job map step | `v0.1` |
 | **`jtbd-opportunity-calculator`** | Compute quantitative ODI Opportunity Scores from survey ratings | `v0.1` |
-| **`jtbd-growth-strategist`** | Map opportunity landscapes and market evidence to growth strategies | `v0.1 (Draft)` |
+| **`jtbd-growth-strategist`** | Map opportunity landscapes and market evidence to growth strategies | `v0.1` |
 
 ---
 

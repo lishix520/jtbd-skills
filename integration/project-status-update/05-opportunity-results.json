@@ -1,0 +1,54 @@
+{
+  "survey_metadata": {
+    "importance_scale": "1_to_10",
+    "satisfaction_scale": "1_to_10",
+    "sample_size": 250,
+    "population_definition": "Synthetic project-manager respondent population",
+    "collection_method": "Synthetic fixture"
+  },
+  "data_quality_status": "complete",
+  "calculation_status": "completed",
+  "methodological_assessment": {
+    "sample_size_status": "adequate",
+    "representativeness": "unverified",
+    "collection_method_status": "reported"
+  },
+  "scale_handling": {
+    "calculation_scale": "1_to_10",
+    "normalization": "none",
+    "threshold_interpretation": "standard"
+  },
+  "calculation_summary": {
+    "total_outcomes_evaluated": 2,
+    "underserved_count": 2,
+    "appropriately_served_count": 0,
+    "overserved_count": 0
+  },
+  "data_limitations": [],
+  "results": [
+    {
+      "id": "O-001",
+      "statement": "Minimize the time it takes to identify relevant project status information",
+      "importance_mean": 9.0,
+      "satisfaction_mean": 4.0,
+      "satisfaction_gap": 5.0,
+      "satisfaction_relation": "below_importance",
+      "opportunity_score": 14.0,
+      "classification": "high_underserved",
+      "overserved_signal": false,
+      "segment": "Enterprise project managers"
+    },
+    {
+      "id": "O-002",
+      "statement": "Minimize the likelihood of omitting required status information during verification",
+      "importance_mean": 8.0,
+      "satisfaction_mean": 6.0,
+      "satisfaction_gap": 2.0,
+      "satisfaction_relation": "below_importance",
+      "opportunity_score": 10.0,
+      "classification": "moderate_underserved",
+      "overserved_signal": false,
+      "segment": "Enterprise project managers"
+    }
+  ]
+}

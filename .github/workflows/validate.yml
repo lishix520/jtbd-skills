@@ -1,0 +1,64 @@
+name: Validate JTBD Skills Suite
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml
+
+      - name: Validate YAML Syntax Across Repository
+        run: |
+          python -c "
+          import glob, yaml, sys
+          yaml_files = glob.glob('**/*.yaml', recursive=True) + glob.glob('**/*.yml', recursive=True)
+          for file in yaml_files:
+              with open(file, 'r', encoding='utf-8') as f:
+                  try:
+                      yaml.safe_load(f)
+                      print(f'OK: {file}')
+                  except Exception as e:
+                      print(f'ERROR in {file}: {e}')
+                      sys.exit(1)
+          "
+
+      - name: Validate JSON Syntax Across Repository
+        run: |
+          python -c "
+          import glob, json, sys
+          json_files = glob.glob('**/*.json', recursive=True)
+          for file in json_files:
+              with open(file, 'r', encoding='utf-8') as f:
+                  try:
+                      json.load(f)
+                      print(f'OK: {file}')
+                  except Exception as e:
+                      print(f'ERROR in {file}: {e}')
+                      sys.exit(1)
+          "
+
+      - name: Test Deterministic Opportunity Calculator against Golden Fixture
+        run: |
+          python3 skills/jtbd-opportunity-calculator/scripts/calculate_opportunity.py \
+            integration/project-status-update/04-survey-input.json \
+            > /tmp/calculated_out.json
+
+          diff -u /tmp/calculated_out.json integration/project-status-update/05-opportunity-results.json
+          echo "Golden Path Fixture Output Matches Deterministic Script Execution!"

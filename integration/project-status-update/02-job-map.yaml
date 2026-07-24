@@ -1,0 +1,98 @@
+job:
+  core_functional_job: "Prepare a project status update"
+  status: candidate
+  job_executor:
+    value: "Project manager"
+    status: inferred
+
+map_status: provisional
+
+stages:
+  - category: define
+    applicability: unknown
+    steps: []
+
+  - category: locate
+    applicability: present
+    steps:
+      - statement: "Identify relevant project status information"
+        status: evidence_supported
+        basis: direct_evidence
+        evidence:
+          - source_id: research-01
+            excerpt: "I have to collect updates from several teams before weekly review."
+        assumptions: []
+
+  - category: prepare
+    applicability: unknown
+    steps: []
+
+  - category: confirm
+    applicability: present
+    steps:
+      - statement: "Verify the completeness of status information"
+        status: evidence_supported
+        basis: direct_evidence
+        evidence:
+          - source_id: research-02
+            excerpt: "The hardest part is knowing whether an important change was omitted."
+        assumptions: []
+
+  - category: execute
+    applicability: present
+    steps:
+      - statement: "Compose the status update"
+        status: hypothesis
+        basis: domain_rationale
+        evidence: []
+        assumptions: ["Central action of preparing the status update."]
+
+  - category: monitor
+    applicability: conditional
+    steps:
+      - statement: "Track changes affecting reported project status"
+        status: evidence_supported
+        basis: direct_evidence
+        evidence:
+          - source_id: research-03
+            excerpt: "If status changes just before the meeting, I often have to revise the update."
+        assumptions: []
+    notes: "Applies when project status changes prior to delivery."
+
+  - category: modify
+    applicability: conditional
+    steps:
+      - statement: "Revise the status update"
+        status: evidence_supported
+        basis: direct_evidence
+        evidence:
+          - source_id: research-03
+            excerpt: "If status changes just before the meeting, I often have to revise the update."
+        assumptions: []
+    notes: "Applies when status changes require updating the draft."
+
+  - category: conclude
+    applicability: unknown
+    steps: []
+
+flow:
+  edges:
+    - from: locate
+      to: confirm
+    - from: confirm
+      to: execute
+    - from: execute
+      to: monitor
+      when: "status changes occur before delivery"
+    - from: monitor
+      to: modify
+      when: "status changes require revising the update"
+    - from: modify
+      to: execute
+      when: "re-composing is required"
+  branches: []
+
+excluded_items: []
+evidence_gaps:
+  - "Empirical validation for define, prepare, and conclude stages."
+next_research_question: "Do project managers perform explicit preparation or formatting steps before verifying completeness?"

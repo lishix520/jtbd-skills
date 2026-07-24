@@ -1,0 +1,27 @@
+job_context:
+  core_functional_job: "Prepare a project status update"
+  job_executor: "Project manager"
+  segment_name: "Enterprise project managers"
+
+strategy_assessment:
+  status: insufficient_evidence
+  primary_rationale: "Although opportunity scores show high underserved needs (O-001 Opp = 14.0), no structured price_evidence (willingness-to-pay), performance_evidence, or cost_evidence is present to evaluate candidate growth strategies."
+
+candidate_strategies: []
+
+excluded_strategies:
+  - strategy: disruptive
+    reason: "The opportunity landscape is dominated by high underserved outcomes (O-001 Opp = 14.0), not overserved outcomes or non-consumption."
+    contradicting_evidence:
+      - "O-001 Opp = 14.0 (High Underserved)"
+
+disconfirming_evidence: []
+evidence_gaps:
+  - "Segment-specific willingness-to-pay price evidence for the high-underserved outcome (O-001)."
+  - "Structured performance evidence demonstrating capability gains over manual status collection."
+  - "Unit-cost or operational cost-to-serve evidence."
+  - "Evidence of specialized environmental/workflow constraints or distinct outcome priorities required for a discrete strategy."
+
+next_validation_actions:
+  - "Conduct a stated-preference pricing study to test willingness-to-pay for 80% faster status identification."
+  - "Run a controlled usability/performance benchmark against current spreadsheet status collection methods."

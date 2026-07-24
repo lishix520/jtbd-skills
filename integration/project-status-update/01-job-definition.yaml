@@ -1,0 +1,29 @@
+job_executor:
+  value: "Project manager"
+  status: inferred
+
+core_functional_job:
+  statement: "Prepare a project status update"
+  status: candidate
+  rationale: "Derived from synthetic direct research statements describing the core task."
+
+evidence:
+  direct:
+    - source_id: research-01
+      excerpt: "I have to collect updates from several teams before weekly review."
+    - source_id: research-02
+      excerpt: "The hardest part is knowing whether an important change was omitted."
+    - source_id: research-03
+      excerpt: "If status changes just before the meeting, I often have to revise the update."
+  inferred: []
+  contradictions: []
+
+quality_check:
+  customer_perspective: pass
+  functional_only: pass
+  solution_free: pass
+  outcome_free: pass
+  appropriately_scoped: pass
+
+missing_evidence:
+  - "Whether this is the primary Core Functional Job or a step within a broader project governance job."
