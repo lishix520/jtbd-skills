@@ -1,13 +1,13 @@
 ---
 name: jtbd-opportunity-calculator
-description: Calculate Opportunity Scores for Desired Outcome Statements using quantitative survey ratings (Importance and Satisfaction). Use when asked to compute ODI opportunity scores, classify outcomes into underserved, appropriately served, or overserved categories, audit survey scale compatibility, or report data quality and sample limitations.
+description: Calculate Outcome-Driven Innovation (ODI) Opportunity Scores from quantitative customer survey data. Use when asked to compute opportunity scores, classify outcomes into underserved or overserved categories, audit survey scale compatibility, report methodological limitations, or run deterministic calculations on survey datasets.
 ---
 
 # JTBD Opportunity Calculator
 
 Calculate Outcome-Driven Innovation® (ODI) Opportunity Scores from quantitative customer survey data.
 
-The Opportunity Score identifies where customers struggle to get a job done (underserved) vs. where they are receiving features they do not value (overserved).
+The Opportunity Score identifies where customers struggle to get a job done (underserved) vs. where current solutions exceed customer value without adding utility (overserved).
 
 ## Scope
 
@@ -17,19 +17,21 @@ Input must include:
 
 Output:
 - Calculated Opportunity Score per outcome statement
-- Classification: `underserved` ($Opp \ge 10.0$), `appropriately_served` ($8.0 \le Opp < 10.0$), or `overserved` ($Opp < 8.0$ or $Satisfaction > Importance$)
-- Assessment status: `statistically_valid` vs `exploratory`
-- Identification of scale mismatches, missing ratings, or data quality limitations
+- Classification: `extreme_underserved` ($Opp \ge 15.0$), `high_underserved` ($12.0 \le Opp < 15.0$), `moderate_underserved` ($10.0 \le Opp < 12.0$), `appropriately_served` ($8.0 \le Opp < 10.0$), or `overserved_candidate` ($Opp < 8.0$)
+- Satisfaction relation (`below_importance`, `matches_importance`, `above_importance`) and `overserved_signal` flag
+- Methodological assessment (`sample_size_status`, `representativeness`, `collection_method_status`)
+- Identification of missing ratings, scale mismatches, or data limitations
 
 Do not:
-- Invent, estimate, or hallucinate numeric ratings from qualitative text or interviews
-- Recalculate or redefine Core Functional Jobs, Job Maps, or Outcome Statements
-- Apply the 10.0 threshold to non-10-point scales without scale normalization
+- Claim sample size $\ge 100$ is proof of statistical validity or representativeness
+- Classify high-importance outcomes ($I_i \ge 8.0$) as overserved simply because $S_i > I_i$
+- Invent, estimate, or hallucinate numeric ratings from qualitative text or interview quotes
+- Apply standard 10-point thresholds to 5-point or 7-point scales without explicit scale handling metadata
 - Formulate business growth strategies or product roadmaps (delegate to `jtbd-growth-strategist`)
 
 ## Mathematical Formula
 
-For each outcome $i$, using identical 1-to-10 scales:
+For each outcome $i$, using 1-to-10 scales:
 
 $$\text{Opportunity Score}_i = \text{Importance}_i + \max(\text{Importance}_i - \text{Satisfaction}_i, 0)$$
 
@@ -38,35 +40,49 @@ $$\text{Opportunity Score}_i = \text{Importance}_i + \max(\text{Importance}_i - 
 3. **Satisfaction Gap**: If $I_i > S_i$, the gap is $(I_i - S_i)$. If $S_i \ge I_i$, the gap is $0$.
 4. **Max Value**: On a 1-to-10 scale, maximum possible Opportunity Score is $10.0 + (10.0 - 1.0) = 19.0$.
 
+## Opportunity Classification Rules
+
+Opportunity classification is determined strictly by the Opportunity Score bounds:
+
+- **`extreme_underserved`**: $Opp \ge 15.0$
+- **`high_underserved`**: $12.0 \le Opp < 15.0$
+- **`moderate_underserved`**: $10.0 \le Opp < 12.0$
+- **`appropriately_served`**: $8.0 \le Opp < 10.0$
+- **`overserved_candidate`**: $Opp < 8.0$
+
+### Satisfaction Relation & Overserved Signal:
+- `satisfaction_relation`:
+  - `below_importance`: $I_i > S_i$
+  - `matches_importance`: $I_i == S_i$
+  - `above_importance`: $S_i > I_i$
+- `overserved_signal`: Set to `true` ONLY when $Opp < 8.0$ AND $S_i > I_i$. High importance outcomes ($I_i \ge 8.0$) with $S_i > I_i$ have $Opp \ge 8.0$ and are classified as `appropriately_served`, NOT `overserved_candidate`.
+
 ## Scale & Data Quality Discipline
 
-- **Identical Scale Requirement**: `importance_scale` and `satisfaction_scale` MUST be identical. If scales differ (e.g., 5-point vs 10-point), reject calculation or normalize scales before applying the formula.
-- **Sample Validity Classification**:
-  - `statistically_valid`: `sample_size` $\ge 100$, representative population definition, and collection method specified.
-  - `exploratory`: `sample_size` $< 100$ or missing survey metadata. Scores must be flagged as exploratory hypotheses.
-- **No Text Guessing**: If `importance_mean` or `satisfaction_mean` is null, state `status: insufficient_data`. Never guess numbers from phrases like "users really want this".
+- **Data Quality Status**:
+  - `complete`: Required metadata and numeric ratings are present.
+  - `incomplete`: Missing values, missing metadata, or text input without ratings (`calculation_status: blocked`).
+  - `invalid`: Scale mismatch, out-of-bounds ratings ($< 1.0$ or $> 10.0$), or non-numeric values.
+- **Methodological Assessment**:
+  - `sample_size_status`: `adequate` ($N \ge 100$), `small` ($N < 100$), or `unknown` ($N = 0$).
+  - `representativeness`: `unverified` (sample size alone does not prove representativeness).
+  - `collection_method_status`: `reported` vs `missing`.
+- **Scale Handling**:
+  - `calculation_scale`: "1_to_10"
+  - `threshold_interpretation`: `standard` (for 1-10 scale) vs `heuristic_only` (for normalized non-10 scale).
 
 ## Procedure
 
-1. Audit `survey_metadata`. Check for scale consistency and sample size.
-2. Validate that each outcome contains numerical `importance_mean` and `satisfaction_mean`.
-3. Compute Satisfaction Gap: $\max(I_i - S_i, 0)$.
-4. Compute Opportunity Score: $I_i + \text{Satisfaction Gap}$.
-5. Classify opportunity landscape:
-   - **`underserved`**: $Opp \ge 10.0$ (High priority for core innovation)
-   - **`appropriately_served`**: $8.0 \le Opp < 10.0$
-   - **`overserved`**: $Opp < 8.0$ or $S_i > I_i$ (Candidate for disruptive/low-cost innovation)
-6. Sort outcomes by Opportunity Score descending.
-7. Return calculation report and data limitation warnings.
-
-## Validation Checklist
-
-Reject calculation or return warnings if:
-
-- `importance_mean` or `satisfaction_mean` is non-numeric, null, or out of scale bounds
-- `importance_scale` and `satisfaction_scale` differ without explicit normalization
-- Ratings are derived from text prompt speculation rather than survey data
-- Opportunity threshold 10.0 is applied directly to a 5-point or 7-point scale without transformation
+1. Audit `survey_metadata`. Check for scale consistency and required fields. If numerical ratings are missing, return `data_quality_status: incomplete` and `calculation_status: blocked`.
+2. Evaluate scale handling. If scales differ, reject calculation (`data_quality_status: invalid`).
+3. For each outcome:
+   a. Compute Satisfaction Gap: $\max(I_i - S_i, 0)$.
+   b. Compute Opportunity Score: $I_i + \text{Satisfaction Gap}$.
+   c. Determine `satisfaction_relation` (`below_importance`, `matches_importance`, `above_importance`).
+   d. Set `overserved_signal: true` if $Opp < 8.0$ and $S_i > I_i$.
+   e. Assign opportunity classification based on Opportunity Score.
+4. Assess methodological limitations and populate `data_limitations`.
+5. Return the calculation report.
 
 ## Output Format
 
@@ -77,13 +93,21 @@ survey_metadata:
   sample_size: 0
   population_definition: ""
   collection_method: ""
-  data_quality_status: statistically_valid | exploratory | invalid_metadata
 
-calculation_summary:
-  total_outcomes_evaluated: 0
-  underserved_count: 0
-  appropriately_served_count: 0
-  overserved_count: 0
+data_quality_status: complete | incomplete | invalid
+calculation_status: completed | blocked
+
+methodological_assessment:
+  sample_size_status: adequate | small | unknown
+  representativeness: unverified
+  collection_method_status: reported | missing
+
+scale_handling:
+  calculation_scale: "1_to_10"
+  normalization: none | caller_provided
+  threshold_interpretation: standard | heuristic_only | unsupported
+
+data_limitations: []
 
 results:
   - id: ""
@@ -91,17 +115,18 @@ results:
     importance_mean: 0.0
     satisfaction_mean: 0.0
     satisfaction_gap: 0.0
+    satisfaction_relation: below_importance | matches_importance | above_importance
     opportunity_score: 0.0
-    classification: underserved | appropriately_served | overserved
+    classification: extreme_underserved | high_underserved | moderate_underserved | appropriately_served | overserved_candidate
+    overserved_signal: true | false
     segment: ""
 
-data_limitations: []
 next_research_question: ""
 ```
 
 ## Reference Materials
 
 Read `references/opportunity-algorithm-rules.md` before:
-- Handling 5-point or 7-point survey scale normalization
-- Interpreting opportunity landscapes ($Opp \ge 15.0$ extreme vs $10.0 \le Opp < 12.0$ moderate)
-- Handling multi-segment survey results
+- Handling non-10-point scale normalization
+- Analyzing opportunity landscapes and satisfaction relations
+- Executing deterministic Python calculations using `scripts/calculate_opportunity.py`

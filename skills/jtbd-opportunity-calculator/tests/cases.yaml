@@ -19,16 +19,48 @@ cases:
           importance_mean: 6.0
           satisfaction_mean: 7.5
     expected:
-      data_quality_status: statistically_valid
+      data_quality_status: complete
+      calculation_status: completed
+      methodological_assessment:
+        sample_size_status: adequate
+        representativeness: unverified
+        collection_method_status: reported
       results:
         - id: "O1"
           satisfaction_gap: 5.8
+          satisfaction_relation: below_importance
           opportunity_score: 15.0
-          classification: underserved
+          classification: extreme_underserved
+          overserved_signal: false
         - id: "O2"
           satisfaction_gap: 0.0
+          satisfaction_relation: above_importance
           opportunity_score: 6.0
-          classification: overserved
+          classification: overserved_candidate
+          overserved_signal: true
+
+  - id: high-importance-high-satisfaction-not-overserved
+    input:
+      survey_metadata:
+        importance_scale: "1_to_10"
+        satisfaction_scale: "1_to_10"
+        sample_size: 150
+        population_definition: "Senior PMs"
+        collection_method: "Survey"
+      outcomes:
+        - id: "O1"
+          statement: "Minimize the likelihood of omitting required status details"
+          importance_mean: 9.0
+          satisfaction_mean: 9.5
+    expected:
+      data_quality_status: complete
+      results:
+        - id: "O1"
+          satisfaction_gap: 0.0
+          satisfaction_relation: above_importance
+          opportunity_score: 9.0
+          classification: appropriately_served
+          overserved_signal: false
 
   - id: reject-text-guessing
     input:
@@ -38,9 +70,11 @@ cases:
         sample_size: 0
       text_feedback: "Project managers hate waiting for status info and feel it's extremely important."
     expected:
+      data_quality_status: incomplete
+      calculation_status: blocked
       must_not_invent_ratings: true
-      data_quality_status: invalid_metadata
-      must_flag_missing_numerical_data: true
+      data_limitations_contains:
+        - "missing numerical data"
 
   - id: scale-mismatch-rejection
     input:
@@ -54,8 +88,9 @@ cases:
           importance_mean: 4.5
           satisfaction_mean: 5.0
     expected:
+      data_quality_status: invalid
+      calculation_status: blocked
       must_flag_scale_mismatch: true
-      must_not_apply_unnormalized_threshold: true
 
   - id: flag-exploratory-small-sample
     input:
@@ -64,13 +99,12 @@ cases:
         satisfaction_scale: "1_to_10"
         sample_size: 15
         population_definition: "Internal PM team"
-      outcomes:
-        - id: "O1"
-          statement: "Minimize the likelihood of omitting required status details"
-          importance_mean: 8.5
-          satisfaction_mean: 4.0
+        collection_method: ""
     expected:
-      data_quality_status: exploratory
-      opportunity_score: 13.0
+      data_quality_status: complete
+      methodological_assessment:
+        sample_size_status: small
+        collection_method_status: missing
       data_limitations_contains:
-        - "sample size"
+        - "Sample size N < 100"
+        - "Collection method missing"

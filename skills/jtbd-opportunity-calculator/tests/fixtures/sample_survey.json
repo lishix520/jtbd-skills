@@ -1,0 +1,32 @@
+{
+  "survey_metadata": {
+    "importance_scale": "1_to_10",
+    "satisfaction_scale": "1_to_10",
+    "sample_size": 250,
+    "population_definition": "US Project Managers",
+    "collection_method": "Online quantitative survey"
+  },
+  "outcomes": [
+    {
+      "id": "O1",
+      "statement": "Minimize the time it takes to verify the completeness of status information",
+      "importance_mean": 9.2,
+      "satisfaction_mean": 3.4,
+      "segment": "All"
+    },
+    {
+      "id": "O2",
+      "statement": "Minimize the effort required to format status updates",
+      "importance_mean": 6.0,
+      "satisfaction_mean": 7.5,
+      "segment": "All"
+    },
+    {
+      "id": "O3",
+      "statement": "Minimize the likelihood of omitting required status details",
+      "importance_mean": 9.0,
+      "satisfaction_mean": 9.5,
+      "segment": "All"
+    }
+  ]
+}
