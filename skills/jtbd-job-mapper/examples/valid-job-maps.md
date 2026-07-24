@@ -1,6 +1,8 @@
 # Valid Universal Job Map Examples
 
-> **Note**: The valid job maps below represent **provisional illustrative maps** constructed using domain rationale. In actual ODI engagements, step statements and applicability statuses must be empirically validated with job executors.
+> These are illustrative, provisional maps.
+> Their steps are hypotheses based on stated domain rationale, not verified
+> findings from customer research.
 
 ---
 

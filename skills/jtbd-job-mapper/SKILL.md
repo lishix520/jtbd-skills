@@ -18,7 +18,7 @@ Input must include:
 - Evidence, a domain description, or an explicit request to produce a provisional map
 
 Output:
-- A sequence of job steps using the Universal Job Map categories
+- Job-map stages and a functional dependency flow using Universal Job Map categories
 - Evidence and confidence for each step
 - Explicit gaps, alternative paths, and non-applicable stages
 - A map suitable as input to `jtbd-outcome-engineer`
