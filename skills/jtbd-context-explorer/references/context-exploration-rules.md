@@ -25,10 +25,10 @@ It extracts evidence about *why* and *under what conditions* a person seeks to m
 
 ### 3. Non-Consumption vs. Dissatisfaction vs. Do Nothing
 - ❌ **Dissatisfaction (Not Non-Consumption)**: "I dislike updating spreadsheets." -> Log as `current_approaches` (`spreadsheets`), NOT non-consumption.
-- ❌ **Do Nothing / Perceived Value Barrier (Not Non-Consumption)**: "I know there are reporting tools, but the weekly update is not important enough for me to change anything."
+- ❌ **Do Nothing / Low Perceived Value (Requires classification discipline)**: "I know there are reporting tools, but the weekly update is not important enough for me to change anything."
   * `current_approaches`: "Do nothing"
   * `competing_alternatives`: "Reporting tools"
-  * `non_consumption`: Do NOT classify as non-consumption; perceived value is too low to trigger adoption.
+  * **Rule**: Do not classify "do nothing" as non-consumption from a single statement alone. Record the behavior and the available alternative, then investigate whether low perceived value, switching effort, habit, risk, or lack of access prevents adoption. Log an `evidence_gap`.
 - ✅ **Sufficient Non-Consumption**: "We considered cloud reporting software, but security policy prohibits cloud tools, so we keep using spreadsheets."
   * `non_consumption`: "Cloud reporting software"
   * `barrier_type`: `policy_or_regulation` (or `security_or_privacy`)
