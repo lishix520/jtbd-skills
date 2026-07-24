@@ -4,7 +4,45 @@ This document details 4 major **anti-patterns and invalid strategy evaluations**
 
 ---
 
-## Anti-Pattern 1: Attempting Dominant Strategy Without Cost Evidence
+## Anti-Pattern 1: Selecting Differentiated Strategy Based on High Score Alone (Missing WTP / Performance Evidence)
+
+### Input Attempt
+```yaml
+opportunity_analysis:
+  data_quality_status: complete
+  calculation_status: completed
+  results:
+    - id: "O1"
+      statement: "Minimize the time it takes to verify status information"
+      opportunity_score: 15.5
+      classification: extreme_underserved
+market_context:
+  price_evidence: []       # Missing willingness-to-pay evidence!
+  performance_evidence: [] # Missing superior performance evidence!
+strategy_constraints:
+  target_price_position: premium
+```
+
+### Rule Violation
+- **Missing Required Evidence**: A Differentiated strategy requires structured `price_evidence` demonstrating willingness to pay a premium AND structured `performance_evidence` demonstrating superior capability. High Opportunity Score alone does NOT justify a Differentiated strategy.
+
+### Correct System Response
+```yaml
+strategy_assessment:
+  status: insufficient_evidence
+  primary_rationale: "Differentiated strategy requires structured price_evidence (willingness to pay premium) and performance_evidence (superior capability)."
+
+evidence_gaps:
+  - "Price evidence demonstrating customer willingness to pay premium pricing for speed."
+  - "Performance evidence demonstrating that target solution achieves superior speed over incumbents."
+
+next_validation_actions:
+  - "Conduct a conjoint analysis survey to measure premium price willingness for 80% faster verification."
+```
+
+---
+
+## Anti-Pattern 2: Claiming Dominant Strategy Without Cost Evidence
 
 ### Input Attempt
 ```yaml
@@ -43,23 +81,27 @@ next_validation_actions:
 
 ---
 
-## Anti-Pattern 2: Attempting Discrete Strategy Without Distinct Outcome Priorities
+## Anti-Pattern 3: Selecting Discrete Strategy Based on Regulatory Constraint Alone (Missing Distinct Outcome Priority Evidence)
 
 ### Input Attempt
 ```yaml
 segment_definition:
-  name: "Healthcare PMs"
-  evidence: ["HIPAA compliance tag"]
+  name: "Healthcare Security PMs"
+  evidence: ["HIPAA air-gapped security compliance constraint"]
 opportunity_analysis:
   results:
     - id: "O1"
       statement: "Minimize the time it takes to format updates"
       opportunity_score: 8.5
       classification: appropriately_served
+market_context:
+  constraint_evidence:
+    - claim: "Healthcare PMs require HIPAA air-gapped compliance."
+      source_type: regulatory_document
 ```
 
 ### Rule Violation
-- **Missing Distinct Outcome Priority Evidence**: A Discrete strategy cannot be triggered by a segment name or compliance tag alone. It requires evidence that the niche segment prioritizes outcomes differently from mainstream users.
+- **Missing Distinct Outcome Priority Evidence**: A Discrete strategy cannot be triggered by a compliance tag or constraint evidence alone. It requires evidence that the niche segment prioritizes outcomes differently from mainstream users.
 
 ### Correct System Response
 ```yaml
@@ -69,46 +111,10 @@ strategy_assessment:
 
 excluded_strategies:
   - strategy: discrete
-    reason: "Compliance tag alone does not establish distinct outcome prioritization."
+    reason: "Compliance constraint alone does not establish distinct outcome prioritization."
 
 evidence_gaps:
-  - "Quantitative or qualitative evidence demonstrating that Healthcare PMs rank specific outcomes (e.g., data privacy) significantly higher than mainstream users."
-```
-
----
-
-## Anti-Pattern 3: Upgrading Small Sample Data to `evidence_aligned`
-
-### Input Attempt
-```yaml
-opportunity_analysis:
-  data_quality_status: complete
-  calculation_status: completed
-  methodological_assessment:
-    sample_size_status: small  # N = 15 (< 100)
-    representativeness: unverified
-results:
-  - id: "O1"
-    statement: "Minimize status check delay"
-    opportunity_score: 14.0
-```
-
-### Rule Violation
-- **Over-Asserting Confidence**: Small sample size ($N < 100$) cannot support `status: evidence_aligned`. Strategy outputs must be downgraded to `hypothesis_only`.
-
-### Correct System Response
-```yaml
-strategy_assessment:
-  status: hypothesis_only
-  primary_rationale: "Opportunity Scores are based on a small sample (N = 15 < 100). Candidate strategies represent exploratory hypotheses."
-
-candidate_strategies:
-  - strategy: differentiated
-    confidence: low
-    strategic_fit_rationale: "Exploratory hypothesis based on small sample data (N = 15)."
-
-evidence_gaps:
-  - "Statistically adequate quantitative survey sample (N >= 100)."
+  - "Segment evidence demonstrating that Healthcare PMs rank specific outcomes (e.g., data privacy) significantly higher than mainstream users."
 ```
 
 ---

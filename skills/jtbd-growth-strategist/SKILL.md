@@ -39,7 +39,7 @@ Do not:
 ### Performance / Price / Cost Strategies
 | Strategy | Minimum Evidence Prerequisites |
 | :--- | :--- |
-| **`differentiated`** | Underserved outcomes ($Opp \ge 12.0$) AND structured `price_evidence` showing willingness to pay a premium for superior performance. |
+| **`differentiated`** | Underserved outcomes ($Opp \ge 12.0$) AND structured `price_evidence` showing willingness to pay a premium AND structured `performance_evidence` showing superior capability. |
 | **`dominant`** | Underserved outcomes ($Opp \ge 10.0$) AND structured `performance_evidence` showing superior performance AND `cost_evidence` showing lower or parity cost-to-serve. |
 | **`disruptive`** | Overserved outcomes ($Opp < 8.0$) OR non-consumption evidence AND structured `cost_evidence` supporting low-cost position and sufficient performance. |
 | **`sustaining`** | Appropriately served outcomes ($8.0 \le Opp < 10.0$) in core market; requires parity price and cost structure for incremental performance. |
@@ -60,7 +60,7 @@ Do not:
 - **`hypothesis_only`**:
   - `methodological_assessment.sample_size_status == "small"` ($N < 100$), OR evidence relies on unverified domain rationale. Candidate strategies are explicitly labeled as hypotheses.
 - **`insufficient_evidence`**:
-  - `opportunity_analysis.calculation_status != "completed"`, OR required price/cost/performance evidence for candidate strategies is missing.
+  - `opportunity_analysis.calculation_status != "completed"`, OR required evidence for the candidate strategy is missing.
 
 ## Procedure
 
