@@ -49,6 +49,12 @@ To achieve `status: evidence_aligned`, market context claims MUST use structured
 - `baseline`: Benchmark cost comparison (e.g., "incumbent cloud infrastructure cost").
 - `limitations`: List of known caveats.
 
+### Constraint Evidence Schema (for Discrete Strategies):
+- `claim`: Statement of specific environmental, security, regulatory, or workflow constraint.
+- `source_type`: `regulatory_document` | `security_audit` | `field_observation` | `customer_interview`
+- `sample_size`: Numeric sample count ($N$) or `null`.
+- `limitations`: List of known caveats.
+
 ### Performance Evidence Schema:
 - `claim`: Statement of performance improvement.
 - `source_type`: `controlled_user_test` | `internal_benchmark` | `field_observation` | `customer_interview`

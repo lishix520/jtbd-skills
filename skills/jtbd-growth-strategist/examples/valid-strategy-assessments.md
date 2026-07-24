@@ -49,26 +49,26 @@ next_validation_actions:
 ## Example 2: Discrete Strategy Assessment (Niche Context & Distinct Priorities)
 
 - **Core Functional Job**: `Prepare a project status update`
-- **Target Segment**: Defense & Security Project Managers ($N = 110$)
+- **Target Segment**: Defense & National Security Project Managers ($N = 110$)
 
 ```yaml
 job_context:
   core_functional_job: "Prepare a project status update"
   job_executor: "Security Project Manager"
-  segment_name: "Defense & Security PMs"
+  segment_name: "Defense & National Security PMs"
 
 strategy_assessment:
   status: evidence_aligned
-  primary_rationale: "Defense PMs operate under air-gapped regulatory compliance constraints. They prioritize data leakage prevention (Opp = 15.0) significantly higher than mainstream PMs (Opp = 4.0). Offline self-hosted deployment is operationally viable."
+  primary_rationale: "Defense PMs operate under classified air-gapped security compliance constraints. They prioritize data leakage prevention (Opp = 15.0) significantly higher than mainstream PMs (Opp = 4.0). Offline self-hosted deployment is operationally viable."
 
 candidate_strategies:
   - strategy: discrete
     confidence: high
-    strategic_fit_rationale: "Solves a unique regulatory and security constraint for a segment with distinct outcome priorities separate from the mainstream market."
+    strategic_fit_rationale: "Solves a unique classified security constraint for a segment with distinct outcome priorities separate from the mainstream market."
     supporting_outcomes:
       - "O1: Minimize the likelihood of data leakage during status verification (Opp: 15.0 vs Mainstream Opp: 4.0)"
     prerequisite_conditions:
-      - "HIPAA and air-gapped security compliance constraint."
+      - "Classified air-gapped security compliance constraint."
       - "Demonstrably higher prioritization of data leakage prevention compared to mainstream users."
 
 excluded_strategies:

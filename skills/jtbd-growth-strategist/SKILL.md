@@ -14,7 +14,7 @@ The Growth Strategist acts as a decision support engine. It evaluates whether cu
 Input must include:
 - `opportunity_analysis`: `data_quality_status`, `calculation_status`, `methodological_assessment`, and `results` from `jtbd-opportunity-calculator`
 - `segment_definition`: Target segment name, evidence, and sample size
-- `market_context`: Current alternatives, structured `price_evidence`, `cost_evidence`, `performance_evidence`, and `nonconsumption_evidence`
+- `market_context`: Current alternatives, structured `price_evidence`, `cost_evidence`, `performance_evidence`, `constraint_evidence`, and `nonconsumption_evidence`
 - `strategy_constraints`: Target price position and target performance position
 
 Output:

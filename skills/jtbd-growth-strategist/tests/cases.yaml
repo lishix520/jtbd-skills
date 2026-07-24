@@ -33,6 +33,7 @@ cases:
             sample_size: 40
             baseline: "manual verification"
             limitations: []
+        constraint_evidence: []
         nonconsumption_evidence: []
       strategy_constraints:
         target_price_position: premium
@@ -69,6 +70,7 @@ cases:
         price_evidence: []
         cost_evidence: []
         performance_evidence: []
+        constraint_evidence: []
       strategy_constraints:
         target_price_position: unknown
         target_performance_position: superior
@@ -101,6 +103,7 @@ cases:
         price_evidence: []
         cost_evidence: []
         performance_evidence: []
+        constraint_evidence: []
       strategy_constraints:
         target_price_position: unknown
         target_performance_position: unknown
@@ -134,6 +137,7 @@ cases:
             source_type: customer_interview
         cost_evidence: []
         performance_evidence: []
+        constraint_evidence: []
       strategy_constraints:
         target_price_position: low_cost
     expected:
@@ -156,20 +160,27 @@ cases:
             opportunity_score: 15.0
             classification: extreme_underserved
       segment_definition:
-        name: "Defense & Security PMs"
+        name: "Defense & National Security PMs"
         evidence:
-          - "HIPAA and air-gapped security compliance constraint"
-          - "Security PMs rank data leakage prevention as Opp=15.0 vs mainstream Opp=4.0"
+          - "Classified air-gapped network security compliance constraint"
+          - "Defense PMs rank data leakage prevention as Opp=15.0 vs mainstream Opp=4.0"
         sample_size: 110
       market_context:
         current_alternatives: ["Air-gapped manual paper logs"]
-        price_evidence:
+        price_evidence: []
+        cost_evidence: []
+        constraint_evidence:
           - claim: "Defense PMs require self-hosted offline deployment."
             source_type: customer_interview
-        cost_evidence: []
+            sample_size: 18
+            limitations: []
         performance_evidence:
-          - claim: "Zero-network verification reduces compliance audit failure risk."
+          - claim: "Zero-network verification reduced compliance audit failures."
             source_type: field_observation
+            sample_size: 12
+            baseline: "air-gapped manual paper logs"
+            limitations:
+              - "Observational comparison; not a controlled study."
         nonconsumption_evidence: ["Cloud-only status tools are banned by regulation."]
       strategy_constraints:
         target_price_position: parity
