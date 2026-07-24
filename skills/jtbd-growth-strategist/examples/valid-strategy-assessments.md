@@ -46,7 +46,7 @@ next_validation_actions:
 
 ---
 
-## Example 2: Discrete Strategy Assessment (Niche Context & Distinct Priorities)
+## Example 2: Discrete Strategy Assessment (Niche Context & Exploratory Observational Evidence)
 
 - **Core Functional Job**: `Prepare a project status update`
 - **Target Segment**: Defense & National Security Project Managers ($N = 110$)
@@ -58,12 +58,12 @@ job_context:
   segment_name: "Defense & National Security PMs"
 
 strategy_assessment:
-  status: evidence_aligned
-  primary_rationale: "Defense PMs operate under classified air-gapped security compliance constraints. They prioritize data leakage prevention (Opp = 15.0) significantly higher than mainstream PMs (Opp = 4.0). Offline self-hosted deployment is operationally viable."
+  status: hypothesis_only
+  primary_rationale: "Defense PMs operate under classified air-gapped security compliance constraints and prioritize data leakage prevention (Opp = 15.0 vs mainstream Opp = 4.0). While candidate strategic fit is clear, operational feasibility relies on small-sample observational field data (N = 12)."
 
 candidate_strategies:
   - strategy: discrete
-    confidence: high
+    confidence: medium
     strategic_fit_rationale: "Solves a unique classified security constraint for a segment with distinct outcome priorities separate from the mainstream market."
     supporting_outcomes:
       - "O1: Minimize the likelihood of data leakage during status verification (Opp: 15.0 vs Mainstream Opp: 4.0)"
@@ -78,9 +78,9 @@ excluded_strategies:
 
 disconfirming_evidence: []
 evidence_gaps:
-  - "On-premise installation time across varied defense server environments."
+  - "Independent feasibility evidence from controlled trials across defense server environments."
 next_validation_actions:
-  - "Deploy a zero-network pilot container in 2 isolated defense lab environments."
+  - "Deploy a zero-network pilot container in 2 isolated defense lab environments to gather controlled feasibility benchmarks."
 ```
 
 ---

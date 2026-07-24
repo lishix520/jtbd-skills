@@ -135,6 +135,8 @@ cases:
         price_evidence:
           - claim: "Customers willing to pay premium for speed"
             source_type: customer_interview
+            sample_size: 200
+            limitations: ["Stated preference"]
         cost_evidence: []
         performance_evidence: []
         constraint_evidence: []
@@ -186,8 +188,10 @@ cases:
         target_price_position: parity
         target_performance_position: superior
     expected:
-      strategy_assessment_status: evidence_aligned
+      strategy_assessment_status: hypothesis_only
       candidate_strategies_contains:
         - strategy: discrete
-          confidence: high
+          confidence: medium
           prerequisite_conditions_contains: "distinct outcome priorities"
+      evidence_gaps_contains:
+        - "independent feasibility evidence"
