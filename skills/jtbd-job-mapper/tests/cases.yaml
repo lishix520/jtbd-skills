@@ -30,6 +30,9 @@ cases:
       stages_must_include:
         - define
         - execute
+      flow_must_include_edges:
+        - from: define
+          to: execute
       stages_may_be_not_applicable_or_unknown:
         - locate
         - prepare
@@ -67,7 +70,13 @@ cases:
         - execute
         - monitor
         - modify
-      loops_required: true
+      flow_must_include_edges:
+        - from: execute
+          to: monitor
+        - from: monitor
+          to: modify
+        - from: modify
+          to: execute
 
   - id: reject-lifecycle-activity
     input:

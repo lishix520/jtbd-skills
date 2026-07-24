@@ -29,10 +29,21 @@ The 8 Universal Job Map categories answer specific functional questions:
 
 Do NOT force all 8 stages to contain steps. Mark each category accurately:
 
-- **`present`**: Supported by direct evidence or clear functional necessity.
+- **`present`**: Supported by direct evidence or an explicitly labeled domain rationale.
 - **`conditional`**: Occurs only under specified circumstances or conditions.
 - **`not_applicable`**: Genuinely irrelevant to this specific core functional job.
 - **`unknown`**: Insufficient evidence to determine whether steps exist; do NOT invent steps.
+
+---
+
+## Functional Flow & Dependency Modeling
+
+Use `flow.edges` to represent functional dependencies, conditions, and loops instead of a rigid linear 8-step list:
+
+- **Forward Dependencies**: e.g., `from: define`, `to: execute`.
+- **Conditional Branches**: e.g., `from: monitor`, `to: modify`, `when: "when a deviation is detected"`.
+- **Loops & Re-execution**: e.g., `from: modify`, `to: execute`, `when: "when a correction requires another attempt"`.
+- **Completion Edge**: e.g., `from: monitor`, `to: conclude`, `when: "when execution is verified complete"`.
 
 ---
 

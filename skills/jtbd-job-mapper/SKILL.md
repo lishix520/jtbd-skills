@@ -45,7 +45,7 @@ Use these categories as an organizing framework:
 8. Conclude — finalize, preserve, communicate, hand off, or close the job
 
 A category may be:
-- `present`: supported by evidence or a strong domain rationale
+- `present`: supported by direct evidence or an explicitly labeled domain rationale
 - `conditional`: occurs only in stated circumstances
 - `not_applicable`: genuinely irrelevant to this job
 - `unknown`: insufficient evidence; do not invent a step
@@ -71,7 +71,7 @@ Every step must:
 4. For each Universal Job Map category, identify supported candidate actions.
 5. Mark unsupported categories as `unknown` or `not_applicable`; never fill them merely for completeness.
 6. Check that each step advances the specified Core Functional Job.
-7. Identify loops, branches, and conditional steps.
+7. Identify loops, branches, and conditional steps using `flow.edges`.
 8. Audit for solution, outcome, vendor, purchase, and lifecycle contamination.
 9. Return the map and the smallest next research question needed to resolve the highest-impact uncertainty.
 
@@ -106,22 +106,17 @@ stages:
     steps:
       - statement: ""
         status: evidence_supported | hypothesis
+        basis: direct_evidence | domain_rationale | explicit_request
         evidence: []
         assumptions: []
     notes: ""
 
-sequence:
-  - define
-  - locate
-  - prepare
-  - confirm
-  - execute
-  - monitor
-  - modify
-  - conclude
-
-branches: []
-loops: []
+flow:
+  edges:
+    - from: define | locate | prepare | confirm | execute | monitor | modify | conclude
+      to: define | locate | prepare | confirm | execute | monitor | modify | conclude
+      when: "" # optional condition for loops or branches
+  branches: []
 
 excluded_items:
   - statement: ""
