@@ -35,23 +35,29 @@ def calculate_opportunity(survey_data: Dict[str, Any]) -> Dict[str, Any]:
     
     data_limitations: List[str] = []
     
-    # Check scale mismatch
-    if importance_scale != satisfaction_scale:
+    # Check scale validity (v0.1 strictly requires matching 1_to_10 scales)
+    if importance_scale != "1_to_10" or satisfaction_scale != "1_to_10":
         return {
             "survey_metadata": meta,
             "data_quality_status": "invalid",
             "calculation_status": "blocked",
-            "data_limitations": ["Scale mismatch: importance_scale and satisfaction_scale must be identical."],
+            "data_limitations": [
+                "Unsupported scale: v0.1 requires matching 1_to_10 importance and satisfaction scales."
+            ],
             "results": []
         }
     
     # Check if outcomes present
     if not outcomes:
+        limitations = ["Missing numerical data: No outcome ratings provided."]
+        if survey_data.get("text_feedback"):
+            limitations.append("Qualitative text feedback was not converted into numerical ratings.")
+            
         return {
             "survey_metadata": meta,
             "data_quality_status": "incomplete",
             "calculation_status": "blocked",
-            "data_limitations": ["Missing numerical data: No outcome ratings provided."],
+            "data_limitations": limitations,
             "results": []
         }
 
@@ -92,8 +98,20 @@ def calculate_opportunity(survey_data: Dict[str, Any]) -> Dict[str, Any]:
         imp_val = float(imp)
         sat_val = float(sat)
         
-        gap = max(imp_val - sat_val, 0.0)
-        opp = imp_val + gap
+        # Check out-of-bounds ratings
+        if not (1.0 <= imp_val <= 10.0) or not (1.0 <= sat_val <= 10.0):
+            return {
+                "survey_metadata": meta,
+                "data_quality_status": "invalid",
+                "calculation_status": "blocked",
+                "data_limitations": [
+                    "Out-of-bounds rating: importance_mean and satisfaction_mean must be within 1.0 to 10.0."
+                ],
+                "results": []
+            }
+        
+        gap = round(max(imp_val - sat_val, 0.0), 2)
+        opp = round(imp_val + gap, 2)
         
         if sat_val > imp_val:
             sat_rel = "above_importance"
@@ -133,7 +151,7 @@ def calculate_opportunity(survey_data: Dict[str, Any]) -> Dict[str, Any]:
         "scale_handling": {
             "calculation_scale": importance_scale,
             "normalization": "none",
-            "threshold_interpretation": "standard" if importance_scale == "1_to_10" else "heuristic_only"
+            "threshold_interpretation": "standard"
         },
         "calculation_summary": {
             "total_outcomes_evaluated": total_count,

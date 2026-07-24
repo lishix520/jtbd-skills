@@ -62,6 +62,25 @@ cases:
           classification: appropriately_served
           overserved_signal: false
 
+  - id: reject-out-of-bounds-ratings
+    input:
+      survey_metadata:
+        importance_scale: "1_to_10"
+        satisfaction_scale: "1_to_10"
+        sample_size: 100
+        population_definition: "Test population"
+        collection_method: "Survey"
+      outcomes:
+        - id: "O1"
+          statement: "Minimize the time it takes to verify information"
+          importance_mean: 11.0
+          satisfaction_mean: 4.0
+    expected:
+      data_quality_status: invalid
+      calculation_status: blocked
+      data_limitations_contains:
+        - "Out-of-bounds rating"
+
   - id: reject-text-guessing
     input:
       survey_metadata:
@@ -74,7 +93,7 @@ cases:
       calculation_status: blocked
       must_not_invent_ratings: true
       data_limitations_contains:
-        - "missing numerical data"
+        - "Qualitative text feedback was not converted into numerical ratings"
 
   - id: scale-mismatch-rejection
     input:
@@ -100,11 +119,17 @@ cases:
         sample_size: 15
         population_definition: "Internal PM team"
         collection_method: ""
+      outcomes:
+        - id: "O1"
+          statement: "Minimize the time it takes to locate status information"
+          importance_mean: 8.0
+          satisfaction_mean: 5.0
     expected:
       data_quality_status: complete
+      calculation_status: completed
       methodological_assessment:
         sample_size_status: small
         collection_method_status: missing
       data_limitations_contains:
-        - "Sample size N < 100"
+        - "Sample size N = 15 (< 100)"
         - "Collection method missing"
