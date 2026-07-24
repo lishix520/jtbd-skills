@@ -56,6 +56,34 @@ cases:
         metric_type: time
       statement_must_start_with: "Minimize the time it takes to"
 
+  - id: allow-effort-metric
+    input:
+      core_functional_job: "Prepare a project status update"
+      job_executor: "Project manager"
+      job_map_step:
+        category: prepare
+        statement: "Organize status information"
+      customer_feedback: "It takes too much manual effort to organize updates."
+    expected:
+      formatted_outcome_contains:
+        direction: minimize
+        metric_type: effort
+      statement_must_start_with: "Minimize the effort required to"
+
+  - id: reject-abstract-likelihood-target
+    input:
+      core_functional_job: "Prepare a project status update"
+      job_executor: "Project manager"
+      job_map_step:
+        category: confirm
+        statement: "Verify the completeness of status information"
+      candidate_outcomes:
+        - "Minimize the likelihood of error during verification"
+    expected:
+      excluded_classification_contains:
+        - vague_metric
+      reason_contains: "concrete undesired event"
+
   - id: reject-emotional-outcome
     input:
       core_functional_job: "Prepare a project status update"

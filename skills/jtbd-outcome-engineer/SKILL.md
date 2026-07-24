@@ -34,11 +34,11 @@ Do not:
 
 Every valid Desired Outcome Statement MUST follow this structure:
 
-$$\text{Desired Outcome} = \text{Direction} + \text{Performance Metric} + \text{Object of Control} + [\text{Optional Contextual Clarifier}]$$
+$$\text{Desired Outcome} = \text{Direction} + \text{Performance Metric} + \text{Measurement Target} + [\text{Optional Contextual Clarifier}]$$
 
 1. **Direction**: Must be `Minimize` (preferred for 95%+ of ODI metrics: time, likelihood of error, effort, cost) or `Maximize` (when increasing output/yield without trade-offs).
-2. **Performance Metric**: The unit of measurement, usually `the time it takes to...` or `the likelihood of...`.
-3. **Object of Control**: The precise physical, digital, or informational entity being controlled or acted upon during the step.
+2. **Performance Metric**: The unit of measurement (e.g., `the time it takes to...`, `the likelihood of...`, `the effort required to...`, `the cost required to...`).
+3. **Measurement Target**: The specific action, object, event, state, or result whose performance is being measured during the job-map step.
 4. **Optional Contextual Clarifier**: Added ONLY to specify the condition under which the outcome is desired.
 
 ## Classification Distinctions
@@ -50,6 +50,7 @@ Classify each candidate metric before finalizing:
 | Desired Outcome | A valid solution-free performance metric for the step | *Minimize the likelihood of omitting required status information* |
 | Solution / Feature | A product capability, technology, or interface tool | *Fast Jira export button* |
 | Compound Outcome | Multiple metrics combined in a single statement | *Minimize time and likelihood of error* |
+| Vague Metric | Abstract likelihood target or non-formulaic quality buzzword | *Minimize the likelihood of error during verification* |
 | Job Map Step | A functional action rather than a performance metric | *Verify completeness of information* |
 | Emotional / Social Outcome | Internal psychological feeling or social status | *Maximize feeling of confidence* |
 | Business / Vendor Metric | Internal company revenue or operational goal | *Maximize subscription renewals* |
@@ -59,8 +60,8 @@ Classify each candidate metric before finalizing:
 1. Validate that `core_functional_job`, `job_executor`, and `job_map_step` are provided. If missing, return `insufficient_input`.
 2. Extract direct customer statements or domain rationale related to the step.
 3. Label candidate metrics using the classification distinctions.
-4. Filter out solutions, feature requests, compound metrics, and emotional goals.
-5. Format valid metrics into formulaic Desired Outcome Statements (`Direction + Metric + Object + Clarifier`).
+4. Filter out solutions, feature requests, compound metrics, vague metrics, and emotional goals.
+5. Format valid metrics into formulaic Desired Outcome Statements (`Direction + Metric + Target + Clarifier`).
 6. Audit each outcome using the Validation Checklist.
 7. Return the structured output with `status: hypothesis` (unless direct research evidence is attached).
 
@@ -70,6 +71,7 @@ Reject, remove, or rewrite any outcome statement that:
 
 - Names a brand, product, software, feature, technology, interface, or channel
 - Uses vague buzzwords such as fast, easy, seamless, reliable, convenient, or user-friendly instead of a formulaic metric
+- Uses abstract likelihood targets (e.g., "error", "inaccuracy", "failure") without naming a concrete undesired event
 - Combines multiple metrics (e.g., combining time AND likelihood in one statement)
 - Describes a job step (action) rather than a performance metric (result)
 - Describes an emotional state (confidence, pride) or social perception
@@ -91,8 +93,8 @@ outcomes_status: provisional | evidence_supported | insufficient_input
 desired_outcomes:
   - statement: ""
     direction: minimize | maximize
-    metric_type: time | likelihood | output
-    object_of_control: ""
+    metric_type: time | likelihood | effort | cost | output
+    measurement_target: ""
     contextual_clarifier: ""
     status: hypothesis | evidence_supported
     basis: direct_evidence | domain_rationale | explicit_request
@@ -101,7 +103,7 @@ desired_outcomes:
 
 excluded_items:
   - statement: ""
-    classification: solution | compound_outcome | job_step | emotional_social | vendor_metric
+    classification: solution | compound_outcome | vague_metric | job_step | emotional_social | vendor_metric
     reason: ""
 
 evidence_gaps: []
