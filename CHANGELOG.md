@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.5.7] - 2026-07-25
+
+### Fixed
+- **Clean Raw Text Write Without Tool Escaping**: Overwrote `README.md`, `skills/opportunity-discovery/SKILL.md`, and `principles/evidence-model.md` directly with clean unescaped UTF-8 Markdown text. Verified zero escape backslashes (`grep -nE '\\\\[#*[\]`>-]'`) and valid YAML front matter (`---`).
+
+---
+
 ## [0.5.6] - 2026-07-25
 
 ### Fixed
