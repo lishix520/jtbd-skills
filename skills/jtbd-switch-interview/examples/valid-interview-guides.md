@@ -30,9 +30,14 @@ The customer is asking for a specific solution feature ("Jira button"). Asking a
 ### ⚠️ What NOT to Ask Right Now
 "What fields or options would you like us to put on the Jira button?" *(Avoid discussing feature specifications or solution mechanics during discovery!)*
 
+### 📌 Current Understanding Summary
+- **What is Known**: The customer experiences frustration with weekly status report creation and desires a Jira solution button.
+- **What is Assumed**: Manual status report compilation creates significant time pressure or workflow friction before weekly reviews.
+- **What is Missing**: The current manual workaround, specific failure event, and why existing tools are no longer sufficient.
+
 ---
 
-### 📊 Structured Metadata
+### 📊 Structured Metadata (Agent Mode)
 
 ```yaml
 analysis_status: evidence_extracted
@@ -85,9 +90,14 @@ The customer reached the active evaluation stage (`decision`), but an unmitigate
 ### ⚠️ What NOT to Ask Right Now
 "Don't you think the automated features are worth the small monthly subscription cost?" *(Avoid defending the solution or arguing value with the interviewee!)*
 
+### 📌 Current Understanding Summary
+- **What is Known**: The team evaluated a SaaS reporting service last month, liked the demo, but chose to remain with spreadsheets.
+- **What is Assumed**: A specific unaddressed anxiety or security compliance policy blocked the final purchasing decision.
+- **What is Missing**: The exact risk factor, compliance policy, or stakeholder concern that triggered the hesitation.
+
 ---
 
-### 📊 Structured Metadata
+### 📊 Structured Metadata (Agent Mode)
 
 ```yaml
 analysis_status: evidence_extracted

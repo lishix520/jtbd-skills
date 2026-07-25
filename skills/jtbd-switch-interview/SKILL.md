@@ -32,7 +32,7 @@ Do not invent customer statements, motivations, or purchase decisions.
 
 ### 2. Single Quote Mode (Fragment / Feedback Input)
 - Identify which phase of the decision timeline is missing (`first_thought`, `passive_looking`, `active_looking`, `decision`, `first_use`, `ongoing_use`).
-- Output **1 Main Question**, **1 Follow-up Probe**, and **1 Forbidden Question (What NOT to Ask)**.
+- Output **1 Main Question**, **1 Follow-up Probe**, **1 Forbidden Question (What NOT to Ask)**, and a **Known / Assumed / Missing Summary**.
 
 ### 3. Transcript Mode (Partial Transcript Input)
 - Extract a chronological timeline summary.
@@ -45,15 +45,15 @@ Do not invent customer statements, motivations, or purchase decisions.
 
 1. **Ask About Past Behavior, Not Future Speculation**: Ask "When was the last time you..." rather than "Would you buy...".
 2. **One Question at a Time**: Never overload the interviewer with long lists of questions. Output exactly ONE primary question.
-3. **Never Lead With Solution Features**: If a customer mentions a feature request (e.g., "I want a button"), redirect to the triggering event and current approach.
+3. **Never Lead With Solution Features**: If a customer mentions a feature request (e.g., "I want a Jira button"), redirect to the triggering event and current approach.
 4. **Isolate Specific Events**: Focus on concrete, anchored moments in time (who was there, what happened, when it failed).
-5. **Separate Human Conversational Output from Structured Data**: Always render a clean, human-readable interview guide first, followed by structured metadata for downstream agents.
+5. **Human-First Conversational Output**: Always render a clean, human-readable interview guide first, followed by structured metadata for downstream agents.
 
 ---
 
-## Output Format
+## Default Output Format (Human-First UX)
 
-Outputs MUST include both a **Human-Facing Interview Guide** and a **Structured Metadata Block**.
+Outputs MUST render the **Human Conversational Guide** first, followed by **Structured Metadata**.
 
 ```markdown
 ## 💬 What to Ask Next
@@ -69,9 +69,14 @@ Outputs MUST include both a **Human-Facing Interview Guide** and a **Structured 
 ### ⚠️ What NOT to Ask Right Now
 "[Explicit warning against a specific leading question, feature discussion, or speculative query]"
 
+### 📌 Current Understanding Summary
+- **What is Known**: [Direct evidence extracted from input]
+- **What is Assumed**: [Interpretation or logical hypothesis]
+- **What is Missing**: [Key evidence gap to investigate next]
+
 ---
 
-### 📊 Structured Metadata
+### 📊 Structured Metadata (Agent Mode)
 
 ```yaml
 analysis_status: plan_generated | evidence_extracted | insufficient_input

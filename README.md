@@ -8,19 +8,27 @@ Designed according to the [Agent Skills Specification](https://github.com/agents
 
 ---
 
-## 💬 Start Here: Understand Why People Change
+## 🎯 What Do You Want To Do?
 
-Paste any customer quote or feedback into your Agent, then ask:
+Paste any customer quote, transcript, or feedback into your AI Agent:
 
-> **"Help me choose the next interview question."**
+### 💬 "I have a customer quote — what should I ask next?"
+> Calls **`jtbd-switch-interview`** (Skill 8).  
+> Immediately gives you **1 non-leading question** to speak out loud, **why it matters**, a **vague-answer probe**, and **what NOT to ask yet** (avoiding feature traps).
 
-The **Interview Guide (`jtbd-switch-interview`)** immediately gives you:
-1. **One non-leading question** to speak out loud.
-2. **Why it matters** in 2 simple sentences.
-3. **A follow-up probe** if the answer is vague.
-4. **⚠️ What NOT to ask right now** (avoiding feature discussions and leading queries).
+### 🔍 "I have interview notes — what did I actually learn?"
+> Calls **`jtbd-context-explorer`** (Skill 6).  
+> Extracts real circumstances, desired progress, workarounds, feature requests, and policy constraints without inventing customer facts.
 
-Behind the scenes, structured methodology engines (`context-explorer`, `forces-analyzer`, `job-definer`, `opportunity-calculator`, `growth-strategist`) maintain strict evidence contracts for deep analysis.
+### ⚡ "I want to understand why users do not switch."
+> Calls **`jtbd-forces-analyzer`** (Skill 7).  
+> Maps customer evidence into Push, Pull, Habit, and Anxiety forces to uncover why users remain stuck with legacy tools.
+
+---
+
+### ⚙️ Behind the Scenes: The Methodology Engine
+
+Behind these natural conversational entry points, 8 modular single-responsibility skills (`job-definer`, `job-mapper`, `outcome-engineer`, `opportunity-calculator`, `growth-strategist`, `context-explorer`, `forces-analyzer`, `switch-interview`) enforce strict evidence contracts, anti-hallucination rules, and deterministic calculation tools.
 
 ---
 
