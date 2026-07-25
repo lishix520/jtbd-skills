@@ -125,8 +125,6 @@ JTBD Skills 帮你发现市场机会、做出更好卖的产品和服务，并�
 - 这是偶发抱怨，还是值得投入解决的问题
 - 对方到底会为怎样的改进付钱或切换
 
-</details>
-
 ---
 
 ## ⚙️ How It Works (Methodology Engine)
