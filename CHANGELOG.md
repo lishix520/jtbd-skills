@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.4.3] - 2026-07-25
+
+### Added
+- **Market Signal Entrances & Directory Submission Copy (`docs/awesome-agent-skills-submission.md`)**: Added standardized discoverability keywords and pre-formatted user-outcome submission text for external Agent Skills directories (e.g. `VoltAgent/awesome-agent-skills`).
+
+---
+
 ## [0.4.2] - 2026-07-25
 
 ### Fixed
