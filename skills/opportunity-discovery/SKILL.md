@@ -23,7 +23,7 @@ description: Top-level evidence-aware orchestrator and router for product discov
   1. **`idea_only`**: Raw product/feature idea with zero customer facts.
   2. **`customer_signal`**: Raw customer quotes, support tickets, reviews, or sales feedback.
   3. **`research_evidence`**: Interview transcripts or structured research notes.
-  4. **`ready_for_outcome_ranking`**: Outcome survey ratings ($1\text{--}10$).
+  4. **`ready_for_outcome_ranking`**: Outcome survey ratings ($1--10$).
   5. **`ready_for_strategy_assessment`**: Ranked outcomes + segment + price/cost/performance data.
   6. **`partial_market_evidence`**: Price/cost materials without outcome survey ratings.
 
@@ -50,7 +50,7 @@ description: Top-level evidence-aware orchestrator and router for product discov
 | **`idea_only`** | Solution idea or feature proposal; no customer facts. | `idea_only` (Do not build yet; validate problem existence). | **`jtbd-switch-interview`** (Formulate interview questions for target users). |
 | **`customer_signal`** | Reviews, support tickets, complaints, or feature requests. | `anecdotal_signal` (Extract real-world context & workarounds). | **`jtbd-context-explorer`** (Extract context, constraints, and workarounds). |
 | **`research_evidence`** | Interview transcripts containing current tool & prospective tool. | `evidence_emerging` (Map customer switching forces or functional jobs). | **`jtbd-forces-analyzer`** or **`jtbd-job-definer`**. |
-| **`ready_for_outcome_ranking`** | Structured $1\text{--}10$ Importance & Satisfaction outcome survey ratings. | `ready_for_outcome_ranking` (Compute opportunity rankings). | **`jtbd-opportunity-calculator`** (Compute mathematical Opportunity Scores). |
+| **`ready_for_outcome_ranking`** | Structured $1--10$ Importance & Satisfaction outcome survey ratings. | `ready_for_outcome_ranking` (Compute opportunity rankings). | **`jtbd-opportunity-calculator`** (Compute mathematical Opportunity Scores). |
 | **`ready_for_strategy_assessment`** | Ranked outcomes + target segment + price/cost/performance evidence. | `ready_for_strategy_assessment` (Evaluate growth strategy matrix). | **`jtbd-growth-strategist`** (Evaluate growth strategy prerequisites). |
 | **`partial_market_evidence`** | Price, cost, or competitor materials without outcome survey ratings or target segment. | `not_decision_ready` (Cannot conclude strategy; missing survey/segment). | State missing outcome survey & segment evidence; route to **`jtbd-outcome-engineer`**. |
 

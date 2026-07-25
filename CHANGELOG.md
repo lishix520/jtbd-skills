@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.5.6] - 2026-07-25
+
+### Fixed
+- **Clean Raw File System Write Protocol**: Re-created `README.md`, `skills/opportunity-discovery/SKILL.md`, and `principles/evidence-model.md` directly via raw python file I/O streams (`open(w)`), eliminating tool string escaping. Verified zero escape backslashes (`grep -nE '\\\\[#*[\]`]'`).
+
+---
+
 ## [0.5.5] - 2026-07-25
 
 ### Fixed
