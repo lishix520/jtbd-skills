@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.5.2] - 2026-07-25
+
+### Fixed
+- **Verification Code Blocks Split**: Formatted `README.md` repository verification into 3 distinct clean fenced Bash code blocks (`clone/cd`, `calculate_opportunity.py`, `diff`) without line wrapping or redirection escaping errors.
+- **Unified Readiness Stage & Decision Scope Enums**: Unified `readiness_stage` (`idea_only`, `anecdotal_signal`, `evidence_emerging`, `ready_for_outcome_ranking`, `ready_for_strategy_assessment`, `not_decision_ready`) and added explicit `decision_scope` metadata field in `skills/opportunity-discovery/SKILL.md` and `tests/cases.yaml`.
+
+---
+
 ## [0.5.1] - 2026-07-25
 
 ### Fixed

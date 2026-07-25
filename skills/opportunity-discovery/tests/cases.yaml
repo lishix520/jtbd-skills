@@ -34,5 +34,5 @@ cases:
           importance_mean: 9.0
           satisfaction_mean: 4.0
     expected:
-      current_stage: decision_ready_for_next_step
+      current_stage: ready_for_outcome_ranking
       recommended_skill: jtbd-opportunity-calculator

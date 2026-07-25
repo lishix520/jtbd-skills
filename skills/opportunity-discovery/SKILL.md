@@ -19,11 +19,13 @@ description: Top-level evidence-aware orchestrator and router for product discov
 - You want an AI to make a speculative binary investment prediction ("Build it" or "Don't build it") without customer data.
 
 ## Minimum input
-- **Minimum Input**: Any text input—from a raw 1-sentence product idea ("I want to build an AI diary app") to a full interview transcript or quantitative survey file. Supports 4 input modes:
+- **Minimum Input**: Any text input—from a raw 1-sentence product idea ("I want to build an AI diary app") to a full interview transcript or quantitative survey file. Supports 6 input modes:
   1. **`idea_only`**: Raw product/feature idea with zero customer facts.
   2. **`customer_signal`**: Raw customer quotes, support tickets, reviews, or sales feedback.
   3. **`research_evidence`**: Interview transcripts or structured research notes.
-  4. **`quantitative_evidence`**: Outcome survey ratings ($1\text{--}10$) or market price/cost data.
+  4. **`ready_for_outcome_ranking`**: Outcome survey ratings ($1\text{--}10$).
+  5. **`ready_for_strategy_assessment`**: Ranked outcomes + segment + price/cost/performance data.
+  6. **`partial_market_evidence`**: Price/cost materials without outcome survey ratings.
 
 ## What you get
 1. **Decision Brief**: A clear 5-part summary of current readiness stage, direct evidence vs hypotheses, what can and cannot be concluded, and the recommended action.
@@ -43,14 +45,14 @@ description: Top-level evidence-aware orchestrator and router for product discov
 
 ## 🚦 Input Classification & Routing Matrix
 
-| Input Tier | Source Characteristics | System Assessment & Readiness | Downstream Skill Routing |
+| Input Tier | Source Characteristics | System Assessment & Readiness Stage | Downstream Skill Routing |
 | :--- | :--- | :--- | :--- |
-| **`idea_only`** | Solution idea or feature proposal; no customer facts. | `Idea only` (Do not build yet; validate problem existence). | **`jtbd-switch-interview`** (Formulate interview questions for target users). |
-| **`customer_signal`** | Reviews, support tickets, complaints, or feature requests. | `Anecdotal signal` (Extract real-world context & workarounds). | **`jtbd-context-explorer`** (Extract context, constraints, and workarounds). |
-| **`research_evidence`** | Interview transcripts containing current tool & prospective tool. | `Evidence emerging` (Map customer switching forces or functional jobs). | **`jtbd-forces-analyzer`** or **`jtbd-job-definer`**. |
-| **`ready_for_outcome_ranking`** | Structured $1\text{--}10$ Importance & Satisfaction outcome survey ratings. | `Decision-ready for next step` (Compute opportunity rankings). | **`jtbd-opportunity-calculator`** (Compute mathematical Opportunity Scores). |
-| **`ready_for_strategy_assessment`** | Ranked outcomes + target segment + price/cost/performance evidence. | `Decision-ready for strategy` (Evaluate growth strategy matrix). | **`jtbd-growth-strategist`** (Evaluate growth strategy prerequisites). |
-| **`partial_market_evidence`** | Price, cost, or competitor materials without outcome survey ratings or target segment. | `Not decision-ready` (Cannot conclude strategy; missing survey/segment). | State missing outcome survey & segment evidence; route to **`jtbd-outcome-engineer`**. |
+| **`idea_only`** | Solution idea or feature proposal; no customer facts. | `idea_only` (Do not build yet; validate problem existence). | **`jtbd-switch-interview`** (Formulate interview questions for target users). |
+| **`customer_signal`** | Reviews, support tickets, complaints, or feature requests. | `anecdotal_signal` (Extract real-world context & workarounds). | **`jtbd-context-explorer`** (Extract context, constraints, and workarounds). |
+| **`research_evidence`** | Interview transcripts containing current tool & prospective tool. | `evidence_emerging` (Map customer switching forces or functional jobs). | **`jtbd-forces-analyzer`** or **`jtbd-job-definer`**. |
+| **`ready_for_outcome_ranking`** | Structured $1\text{--}10$ Importance & Satisfaction outcome survey ratings. | `ready_for_outcome_ranking` (Compute opportunity rankings). | **`jtbd-opportunity-calculator`** (Compute mathematical Opportunity Scores). |
+| **`ready_for_strategy_assessment`** | Ranked outcomes + target segment + price/cost/performance evidence. | `ready_for_strategy_assessment` (Evaluate growth strategy matrix). | **`jtbd-growth-strategist`** (Evaluate growth strategy prerequisites). |
+| **`partial_market_evidence`** | Price, cost, or competitor materials without outcome survey ratings or target segment. | `not_decision_ready` (Cannot conclude strategy; missing survey/segment). | State missing outcome survey & segment evidence; route to **`jtbd-outcome-engineer`**. |
 
 ---
 
@@ -60,7 +62,7 @@ description: Top-level evidence-aware orchestrator and router for product discov
 ## 📋 Opportunity Decision Brief
 
 ### 🚦 Current Assessment
-- **Readiness Stage**: [Idea only | Anecdotal signal | Evidence emerging | Decision-ready for next step]
+- **Readiness Stage**: [idea_only | anecdotal_signal | evidence_emerging | ready_for_outcome_ranking | ready_for_strategy_assessment | not_decision_ready]
 - **Current Assessment**: [Actionable assessment statement, e.g., "Do not start development yet; validate problem frequency and current workarounds."]
 - **Confidence Rating**: [low | medium | high] (Evaluated across Traceability, Relevance, Coverage, Consistency, Decision Alignment)
 
@@ -83,7 +85,8 @@ description: Top-level evidence-aware orchestrator and router for product discov
 
 ```yaml
 decision_brief:
-  current_stage: idea_only | anecdotal_signal | evidence_emerging | decision_ready_for_next_step
+  current_stage: idea_only | anecdotal_signal | evidence_emerging | ready_for_outcome_ranking | ready_for_strategy_assessment | not_decision_ready
+  decision_scope: switch_interview | context_exploration | switching_forces | job_definition | outcome_ranking | strategy_assessment | none
   evidence:
     direct: []
     inferred: []
