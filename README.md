@@ -1,13 +1,13 @@
-# Find Opportunities People Will Pay For.
+# Find opportunities people will pay for.
 
-JTBD Skills helps you discover market opportunities, build products and services that sell better, and generate more revenue.
+JTBD Skills helps you find market opportunities, build products and services that sell better, and make more money.
 
 Use it to:
-- Find unaddressed needs
-- Validate whether an idea is worth building
-- Improve existing products or services
-- Understand why users adopt, switch, or stay
-- Identify value customers are willing to pay a premium for
+- Find unmet needs
+- Decide whether an idea is worth pursuing
+- Improve an existing product or service
+- Understand why customers choose, switch, or stay
+- Find what customers will pay more for
 - Decide what to do next
 
 [中文说明 / Chinese Section](#-找到人们愿意付钱的机会中文说明)
@@ -139,7 +139,7 @@ JTBD Skills combines two complementary research and innovation methodologies:
 
 2. **Quantitative Underserved Needs & Strategy Matrix (Ulwick ODI Path)**:
    `Job Definer` ──► `Job Mapper` ──► `Outcome Engineer` ──► `Opportunity Calculator` ──► `Growth Strategist`
-   *Calculate Opportunity Scores ($Opp \ge 10.0$) and dictate product/business strategy.*
+   *Calculate Opportunity Scores and evaluate evidence-backed product and business strategy options.*
 
 For complete architecture details, dual methodology pipelines, and stopping rules, see [ARCHITECTURE.md](./ARCHITECTURE.md).
 
@@ -202,6 +202,10 @@ jtbd-skills/
 │   │   │   └── opportunity-algorithm-rules.md # Mathematical formula & scale rules
 │   │   ├── scripts/
 │   │   │   └── calculate_opportunity.py       # Deterministic calculation script
+│   │   ├── templates/
+│   │   │   ├── survey-input-template.json     # Standard JSON survey input template
+│   │   │   ├── survey-input-template.csv      # Standard CSV survey input template
+│   │   │   └── survey-question-template.md    # Standard 1-10 survey question template
 │   │   ├── examples/
 │   │   │   ├── valid-calculations.md          # Valid calculation examples
 │   │   │   └── invalid-calculations.md        # Calculation anti-pattern examples

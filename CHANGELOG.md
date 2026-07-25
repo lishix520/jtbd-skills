@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.4.1] - 2026-07-25
+
+### Fixed
+- **Verbatim English Hero Copy Restored**: Restored verbatim locked English Hero text in `README.md` ("Find opportunities people will pay for.").
+- **Removed Over-Promising Wording**: Replaced "dictate product/business strategy" with "evaluate evidence-backed product and business strategy options" to align with stopping rule evidence discipline.
+- **Repository Tree Folding**: Verified rendering of `<details><summary><b>📁 Repository Structure</b></summary>` to prevent page cluttering.
+
+---
+
 ## [0.4.0] - 2026-07-25
 
 ### Added
