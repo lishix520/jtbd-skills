@@ -5,19 +5,36 @@ description: Extract Jobs-to-be-Done context evidence from customer interviews, 
 
 # JTBD Context Explorer
 
-Extract and organize evidence about the circumstances in which a person seeks to make progress. Preserve the difference between direct evidence, inference, and unresolved uncertainty.
+**Turn messy customer feedback into "what happened, how they do it now, where they get stuck, and what to ask next."**
 
-This skill investigates context around a possible job. It does not define or validate a Core Functional Job, map a workflow, generate desired outcomes, compute market opportunity, or select a strategy.
+---
 
-## Required Input
+## Use this when
+- You have customer interview transcripts, reviews, support tickets, or feedback notes and need to extract what actually happened.
+- You want to separate real-world constraints and workarounds from feature requests.
+- You need to identify non-consumption barriers or emotional/social context signals.
 
-Accept one or more of:
-- Interview excerpts or transcripts
-- Customer feedback, reviews, support tickets, or open-text survey responses
-- A scenario description with clearly identified source and limitations
+## Don't use this when
+- You need to define a solution-free Core Functional Job statement (use `jtbd-job-definer`).
+- You want to evaluate Push, Pull, Habit, and Anxiety switching tensions (use `jtbd-forces-analyzer`).
+- You need quantitative market opportunity scores (use `jtbd-opportunity-calculator`).
 
-If no source material is supplied, return `analysis_status: insufficient_input`.
-Do not invent a customer circumstance, motivation, competing alternative, or non-consumption behavior.
+## Minimum input
+- **Minimum Input**: Raw customer text (interview notes, reviews, support tickets, or feedback quotes). If no source text is supplied, returns `analysis_status: insufficient_input`.
+
+## What you get
+1. **Human Summary**: A clear 5-point breakdown of what is happening, current workarounds, biggest constraints, likely problems, and next best questions.
+2. **Structured Context Evidence**: Categorized arrays for `circumstances`, `desired_progress`, `current_approaches`, `non_consumption`, `feature_requests`, `constraints`, and `competing_alternatives`.
+3. **Unresolved Evidence Gaps**: Key unanswered research questions.
+
+## Quick prompt
+> *"Extract the customer context, current workarounds, and key constraints from this feedback: '[Paste feedback here]'."*
+
+## What to do next
+- Want to analyze switching tensions? Pass extracted context to **`jtbd-forces-analyzer`**.
+- Ready to formalize a solution-free customer goal? Pass to **`jtbd-job-definer`**.
+
+---
 
 ## Scope
 
@@ -47,23 +64,16 @@ Extract evidence for:
 9. Record contradictions rather than resolving them through guesswork.
 10. Return the smallest next research question that would reduce the most consequential uncertainty.
 
-## Procedure
-
-1. Assign stable source IDs to supplied material.
-2. Extract direct excerpts without paraphrasing their evidentiary meaning.
-3. Classify each excerpt into one or more evidence categories.
-4. Record proposed solution statements under `feature_requests`.
-5. Build a circumstance record only when source material identifies a concrete situation, trigger, constraint, or change.
-6. Identify current approaches and alternatives, including delay and doing nothing.
-7. Extract top-level constraints (policy, security, time, money, etc.).
-8. Mark non-consumption only when the required evidence threshold is met.
-9. Separate emotional and social signals from functional progress.
-10. List contradictions, unsupported hypotheses, and evidence gaps.
-11. Produce research questions; do not turn gaps into conclusions.
-
 ## Output Format
 
 ```yaml
+human_summary:
+  what_is_happening: ""
+  current_workaround: ""
+  biggest_constraint: ""
+  likely_problem_to_verify: ""
+  next_best_question: ""
+
 analysis_status: evidence_extracted | insufficient_input
 
 sources:

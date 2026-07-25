@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.4.0] - 2026-07-25
+
+### Added
+- **Standardized Human-First Headers Across All 8 Skills**: Updated all 8 `SKILL.md` files with standard `Use this when`, `Don't use this when`, `Minimum input`, `What you get`, `Quick prompt`, and `What to do next` sections.
+- **Human-Readable Summaries**: Integrated plain-language summary outputs (`human_summary`, `plain_language`, `next_use`, `executive_summary`, `decision_readiness`) across all 8 skills.
+- **Survey Templates for Opportunity Calculator (`skills/jtbd-opportunity-calculator/templates/`)**: Added `survey-input-template.json`, `survey-input-template.csv`, and `survey-question-template.md`.
+- **Handoff & Next Step Guidance**: Added explicit `What to do next` cross-skill handoff links across all 8 skills.
+
+---
+
 ## [0.3.1] - 2026-07-25
 
 ### Fixed

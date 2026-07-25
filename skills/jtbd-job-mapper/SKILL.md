@@ -1,139 +1,96 @@
 ---
 name: jtbd-job-mapper
-description: Build or audit a solution-free Universal Job Map for a defined Core Functional Job. Use when asked to decompose a customer's functional job into Define, Locate, Prepare, Confirm, Execute, Monitor, Modify, and Conclude steps; identify missing, misordered, solution-specific, or vendor-centric job-map steps; or prepare a validated job map for ODI desired-outcome research.
+description: Deconstruct a defined Core Functional Job into a chronological Universal Job Map across standard stages (define, locate, prepare, confirm, execute, monitor, modify, conclude). Use when asked to map the steps of a customer job, identify functional dependencies between steps, or uncover missing execution steps in a workflow. Do not use to write desired outcome statements, calculate opportunity scores, or recommend product strategy.
 ---
 
-# JTBD Universal Job Mapper
+# JTBD Job Mapper
 
-Map how a job executor completes an already-defined Core Functional Job.
+**Deconstruct a customer job from start to finish to find where the journey gets stuck.**
 
-A job map describes the customer's functional process, not a product workflow,
-feature list, purchase journey, vendor process, or current solution.
+---
 
-## Scope
+## Use this when
+- You have a defined Core Functional Job and want to break it down into an 8-stage universal execution map.
+- You want to identify functional step dependencies, conditional loops, or missing preparation/monitoring steps.
+- You want to pinpoint which specific execution stage has the highest uncertainty or friction for research.
 
-Input must include:
-- A Core Functional Job statement
-- A job executor, confirmed or explicitly marked as a hypothesis
-- Evidence, a domain description, or an explicit request to produce a provisional map
+## Don't use this when
+- You need to extract qualitative switching forces or non-consumption barriers (use `jtbd-context-explorer` or `jtbd-forces-analyzer`).
+- You need to write formulaic outcome metrics for a specific step (use `jtbd-outcome-engineer`).
+- You have survey ratings and need Opportunity Scores (use `jtbd-opportunity-calculator`).
 
-Output:
-- Job-map stages and a functional dependency flow using Universal Job Map categories
-- Evidence and confidence for each step
-- Explicit gaps, alternative paths, and non-applicable stages
-- A map suitable as input to `jtbd-outcome-engineer`
+## Minimum input
+- **Minimum Input**: A Core Functional Job statement and Job Executor. Supports two starting points:
+  1. **Validated Job**: Maps an accepted Core Functional Job.
+  2. **Candidate Job**: Maps a `candidate` job hypothesis, explicitly marking unverified steps as `hypothesis` or `domain_rationale`.
 
-Do not:
-- Redefine the Core Functional Job
-- Add desired outcomes, features, products, technologies, or performance claims
-- Treat the current workflow as the ideal job map
-- Force all eight stages to contain a step
-- Infer missing steps as facts without evidence
-- Calculate opportunities or recommend product strategy
+## What you get
+1. **Human Summary**: Journey summary in one sentence, likely pain points to test, and unknown steps to validate.
+2. **Universal Job Map**: Step statements organized across up to 8 universal stages (`define`, `locate`, `prepare`, `confirm`, `execute`, `monitor`, `modify`, `conclude`).
+3. **Flow Dependency Graph**: Functional dependencies (`flow.edges`) between stages.
 
-## Universal Job Map categories
+## Quick prompt
+> *"Break down the execution steps for this job statement: '[Paste job statement]'."*
 
-Use these categories as an organizing framework:
+## What to do next
+- Select a specific job map step with high friction or uncertainty -> Pass to **`jtbd-outcome-engineer`** to formulate Desired Outcome Statements.
 
-1. Define — determine objectives, constraints, criteria, or plan
-2. Locate — identify, gather, access, or obtain required inputs
-3. Prepare — arrange, configure, organize, or make inputs ready
-4. Confirm — verify readiness, validity, completeness, or appropriateness
-5. Execute — perform the central action that advances the job
-6. Monitor — observe progress, status, output, or changing conditions
-7. Modify — correct, adjust, adapt, or refine when required
-8. Conclude — finalize, preserve, communicate, hand off, or close the job
+---
 
-A category may be:
-- `present`: supported by direct evidence or an explicitly labeled domain rationale
-- `conditional`: occurs only in stated circumstances
-- `not_applicable`: genuinely irrelevant to this job
-- `unknown`: insufficient evidence; do not invent a step
+## Universal Job Map Stages
 
-## Step rules
+1. **Define**: Determine objectives and plan execution.
+2. **Locate**: Gather necessary information, inputs, or materials.
+3. **Prepare**: Set up the environment, format inputs, or configure tools.
+4. **Confirm**: Verify readiness, completeness, or safety before execution.
+5. **Execute**: Perform the core functional action of the job.
+6. **Monitor**: Track execution progress, status, or environmental changes.
+7. **Modify**: Adjust or revise execution when monitoring reveals variance.
+8. **Conclude**: Finish, store, hand off, or clean up after execution.
 
-Every step must:
-
-1. Use the job executor's perspective.
-2. State a functional action, not a product feature, channel, technology, vendor activity, or internal company process.
-3. Be solution-free and outcome-free.
-4. Represent an observable part of completing the core job, not a separate independent job.
-5. Be mutually distinguishable from adjacent steps.
-6. Be ordered by functional dependency, not necessarily by current product workflow.
-7. Be concise: one primary action per step.
-8. Preserve loops and branches when evidence requires them; do not force a linear path.
-
-## Procedure
-
-1. Validate that the input Core Functional Job is present and solution-free.
-2. Confirm the job executor. If unknown, return `insufficient_input`.
-3. Extract direct evidence and label assumptions separately.
-4. For each Universal Job Map category, identify supported candidate actions.
-5. Mark unsupported categories as `unknown` or `not_applicable`; never fill them merely for completeness.
-6. Check that each step advances the specified Core Functional Job.
-7. Identify loops, branches, and conditional steps using `flow.edges`.
-8. Audit for solution, outcome, vendor, purchase, and lifecycle contamination.
-9. Return the map and the smallest next research question needed to resolve the highest-impact uncertainty.
-
-## Validation checklist
-
-Reject, remove, or rewrite any step that:
-
-- Names a brand, product, feature, technology, interface, channel, or implementation
-- Includes performance criteria such as fast, accurate, safe, cheap, easy, reliable, or seamless
-- Describes the vendor's internal process
-- Describes buying, receiving, installing, learning, maintaining, repairing, or disposing of a solution
-- Is an emotional or social objective
-- Repeats another step without a distinct functional role
-- Is a different independent job
-- Exists only because the eight-step template demands it
-
-## Output format
+## Output Format
 
 ```yaml
+human_summary:
+  job: ""
+  journey_in_one_sentence: ""
+  likely_pain_points_to_test: []
+  unknown_steps_to_validate: []
+
 job:
   core_functional_job: ""
-  status: accepted | candidate | rejected
+  status: candidate | accepted
   job_executor:
     value: ""
-    status: confirmed | inferred | unknown
+    status: direct_evidence | inferred | unknown
 
-map_status: provisional | evidence_supported | insufficient_input
+map_status: provisional | validated
 
 stages:
   - category: define | locate | prepare | confirm | execute | monitor | modify | conclude
-    applicability: present | conditional | not_applicable | unknown
+    applicability: present | conditional | unknown
     steps:
       - statement: ""
         status: evidence_supported | hypothesis
-        basis: direct_evidence | domain_rationale | explicit_request
+        basis: direct_evidence | domain_rationale
         evidence: []
         assumptions: []
-    notes: ""
 
 flow:
   edges:
-    - from: define | locate | prepare | confirm | execute | monitor | modify | conclude
-      to: define | locate | prepare | confirm | execute | monitor | modify | conclude
-      when: "" # optional condition for loops or branches
+    - from: ""
+      to: ""
+      when: ""
   branches: []
 
-excluded_items:
-  - statement: ""
-    classification: solution | desired_outcome | vendor_activity | lifecycle_activity | emotional_job | social_job | separate_job
-    reason: ""
-
+excluded_items: []
 evidence_gaps: []
 next_research_question: ""
 ```
 
-## Reference materials
+## Reference
 
 Read `references/universal-job-map-rules.md` before:
-- Mapping a job with ambiguous stage boundaries
-- Auditing an existing job map
-- Deciding whether a category is conditional or not applicable
-- Handling loops, repeated execution, or non-linear workflows
-
-Read `examples/valid-job-maps.md` for expected scope and granularity.
-Read `examples/invalid-job-maps.md` when correcting common errors.
+- Distinguishing job steps from solution features
+- Mapping conditional loops (`monitor` -> `modify` -> `execute`)
+- Assigning step basis (`direct_evidence` vs `domain_rationale`)

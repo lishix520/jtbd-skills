@@ -1,104 +1,61 @@
 ---
 name: jtbd-job-definer
-description: Define, rewrite, or audit a Jobs-to-be-Done Core Functional Job from customer research, product descriptions, feedback, or candidate job statements. Use when asked to identify a customer's core functional job, separate a job from a solution or outcome, validate a JTBD job statement, or rewrite a feature-oriented request as a solution-free functional job.
+description: Extract, audit, or rewrite a solution-free and outcome-free Core Functional Job statement from customer quotes or candidate sentences. Use when given a proposed product feature or customer statement and asked to express the underlying functional job, audit a job statement for solution contamination, or determine if enough evidence exists to validate a job statement. Do not use to map job steps, write desired outcomes, calculate opportunity scores, or recommend product strategy.
 ---
 
-# JTBD Core Functional Job Definer
+# JTBD Job Definer
 
-Define the stable functional progress the job executor is trying to make.
-Do not define a product, feature, purchase decision, emotional outcome, social outcome,
-performance metric, or implementation method.
+**Rewrite "I want this feature" into a solution-free customer job statement.**
 
-## Scope
+---
 
-Produce one Core Functional Job hypothesis at a time.
+## Use this when
+- A user asks for a specific product feature or button, and you need to uncover the underlying solution-free goal.
+- You have a proposed Core Job statement and need to audit it for embedded technologies, products, quality adjectives, or outcome metrics.
+- You want to establish a clean Core Functional Job statement before mapping workflow steps.
 
-Use this skill to:
-- Extract a candidate core functional job from supplied evidence
-- Audit whether a candidate statement is a valid core functional job
-- Rewrite an invalid statement into a candidate job statement
-- Identify missing evidence that prevents a confident definition
+## Don't use this when
+- You want to extract raw circumstances, non-consumption barriers, or feature requests without defining a job (use `jtbd-context-explorer`).
+- You need to map the step-by-step execution journey (use `jtbd-job-mapper`).
+- You need to engineer quantitative metric statements (use `jtbd-outcome-engineer`).
 
-Do not:
-- Infer market size, opportunity, satisfaction, or customer segments
-- Create a job map or desired outcomes
-- Treat a proposed product or feature as the job
-- Present an inference as a verified customer fact
+## Minimum input
+- **Minimum Input**: A customer statement, feedback quote, feature request, or candidate job statement. Includes two operating modes:
+  1. **Audit Mode**: Provide a job statement -> audits for embedded solutions, features, or outcomes.
+  2. **Rewrite Mode**: Provide a feature request or quote -> formulates a candidate solution-free job statement.
 
-## Required distinctions
+## What you get
+1. **Plain Language Explanation**: A 3-part summary explaining what the customer is trying to do, what was removed (and why), and what evidence is still missing.
+2. **Core Functional Job Statement**: A single solution-free, outcome-free functional statement (`[Verb] + [Object of Control] + [Contextual Clarifier]`).
+3. **Quality Check Audit**: Boolean checks verifying customer perspective, solution-free, outcome-free, and appropriate scope.
 
-Classify each relevant statement before defining the job:
+## Quick prompt
+> *"Rewrite this feature request into a solution-free Core Functional Job: '[Paste feature request or quote]'."*
 
-| Type | Definition |
-|---|---|
-| Core functional job | The functional progress the job executor seeks, independent of a solution |
-| Solution | A product, feature, technology, channel, brand, or implementation |
-| Desired outcome | A measurable success criterion, such as less time, lower likelihood, or reduced effort |
-| Emotional job | How the executor wants to feel |
-| Social job | How the executor wants to be perceived |
-| Non-core activities | Purchase decisions, consumption chain support (install/clean/setup), or vendor internal activities |
-| Context | A circumstance that disambiguates the job without prescribing a solution |
-| Evidence gap | Information required to define the job reliably |
+## What to do next
+- Core job accepted or candidate defined? Pass to **`jtbd-job-mapper`** to break it down into an 8-stage functional workflow map.
 
-## Definition rules
+---
 
-A valid Core Functional Job:
+## Operating Rules
 
-1. Uses the job executor's perspective.
-2. States a functional objective using `Verb + Object`.
-3. May include a contextual clarifier only when it distinguishes this job from another.
-4. Is solution-free: exclude products, features, brands, channels, technologies, and implementation methods.
-5. Is outcome-free: exclude speed, cost, accuracy, safety, ease, quality, and other performance criteria.
-6. Is emotionally and socially neutral.
-7. Is neither so broad that it contains multiple independent jobs nor so narrow that it describes one workflow step or one product use.
-8. Describes the job being done, not the vendor's internal activity, buying process, or a proposed intervention.
+1. **Solution-Free Rule**: A Core Functional Job MUST NOT mention any technology, product, feature, tool, or vendor name.
+2. **Outcome-Free Rule**: A Core Functional Job MUST NOT contain quality adjectives or performance metrics (e.g., "fast", "reliable", "cheap", "easily"). Performance criteria belong in Desired Outcome Statements (`jtbd-outcome-engineer`).
+3. **Single Job Focus**: Output exactly ONE Core Functional Job statement per request.
+4. **Status Discipline**: Mark unverified inferences as `status: candidate`. Only mark `status: accepted` when direct source evidence proves the job executor's primary functional goal.
 
-## Procedure
-
-1. Identify the likely job executor. If unknown, state it as an evidence gap.
-2. Extract direct evidence, preserving quotations or source references where available.
-3. Label supplied statements using the required distinctions.
-4. Identify candidate functional verbs and objects.
-5. Draft one solution-free Core Functional Job statement.
-6. Run the validation checklist.
-7. If the evidence supports multiple independent jobs, return separate hypotheses; do not merge them.
-8. If evidence is insufficient, return no definitive job. State the smallest missing fact needed.
-
-## Validation checklist
-
-Reject or rewrite a candidate if it:
-- Names a product, feature, technology, platform, supplier, or channel
-- Includes a performance outcome such as quickly, safely, accurately, cheaply, easily, or reliably
-- Includes emotional or social language such as confidently, professionally, or without embarrassment
-- Describes a purchase, adoption, installation, configuration, maintenance, or disposal activity rather than the core functional objective
-- Contains multiple independent verbs or objectives that should be separate jobs
-- Is merely a single step within a larger job
-- Cannot be attributed to a specific job executor
-
-## Output format
-
-Return this structure:
+## Output Format
 
 ```yaml
-job_executor:
-  value: ""
-  status: confirmed | inferred | unknown
+plain_language:
+  customer_is_trying_to: ""
+  this_is_not_the_job_because: []
+  what_we_still_need_to_know: ""
 
-core_functional_job:
+job:
   statement: ""
-  status: candidate | validated_from_evidence | insufficient_evidence
-  rationale: ""
-
-classification:
-  solution_or_feature: []
-  desired_outcomes: []
-  emotional_jobs: []
-  social_jobs: []
-  non_core_job_activities:
-    - statement: ""
-      type: vendor_internal_activity | purchase_activity | consumption_chain_job
-      reason: ""
-  context: []
+  status: candidate | accepted | insufficient_evidence
+  executor: ""
 
 evidence:
   direct: []
@@ -106,17 +63,19 @@ evidence:
   contradictions: []
 
 quality_check:
-  customer_perspective: pass | fail | unknown
-  functional_only: pass | fail | unknown
-  solution_free: pass | fail | unknown
-  outcome_free: pass | fail | unknown
-  appropriately_scoped: pass | fail | unknown
+  customer_perspective: pass | fail
+  functional_only: pass | fail
+  solution_free: pass | fail
+  outcome_free: pass | fail
+  appropriately_scoped: pass | fail
 
 missing_evidence: []
 next_research_question: ""
 ```
 
-## Examples
+## Reference
 
-Read `references/job-statement-rules.md` before resolving ambiguous cases.
-Read `examples/valid-examples.md` and `examples/invalid-examples.md` when asked to audit or rewrite a statement.
+Read `references/job-statement-rules.md` before:
+- Stripping embedded technologies or features from candidate statements
+- Resolving whether a job is micro-scoped (step) or macro-scoped (life goal)
+- Auditing quality buzzwords and performance criteria

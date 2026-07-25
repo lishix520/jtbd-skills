@@ -1,40 +1,41 @@
 ---
 name: jtbd-growth-strategist
-description: Evaluate market growth strategy candidates (Differentiated, Dominant, Disruptive, Discrete, Sustaining) using calculated ODI Opportunity Scores, segment definitions, price/cost/performance evidence, and market constraints. Use when asked to map market opportunities to growth strategies, evaluate strategy feasibility against customer evidence, identify disconfirming evidence, or define next validation actions.
+description: Map quantitative Opportunity Scores and market evidence to candidate growth strategies (differentiated, dominant, disruptive, discrete, sustaining). Use when given opportunity calculation results, segment metadata, and structured price/cost/performance evidence, and asked to evaluate strategic positioning or disconfirming evidence. Do not use to invent market evidence or recommend product strategy without required prerequisites.
 ---
 
 # JTBD Growth Strategist
 
-Evaluate and map Outcome-Driven Innovation® (ODI) Opportunity landscapes into candidate market growth strategies.
+**Audit your market evidence before deciding to raise prices, differentiate, cut costs, or target a niche.**
 
-The Growth Strategist acts as a decision support engine. It evaluates whether customer and market evidence aligns with specific growth strategies (Differentiated, Dominant, Disruptive, Discrete, or Sustaining) without forcing speculative strategic conclusions when critical evidence is missing.
+---
 
-## Scope
+## Use this when
+- You have quantitative Opportunity Scores ($Opp \ge 10.0$) AND structured market evidence (price willingness-to-pay, unit cost, performance benchmarks, or environmental constraints).
+- You want to evaluate whether a proposed strategy (differentiated, dominant, disruptive, discrete, sustaining) has sufficient prerequisite evidence.
+- You want to identify disconfirming evidence that contradicts a proposed strategy.
 
-Input must include:
-- `opportunity_analysis`: `data_quality_status`, `calculation_status`, `methodological_assessment`, and `results` from `jtbd-opportunity-calculator`
-- `segment_definition`: Target segment name, evidence, and sample size
-- `market_context`: Current alternatives, structured `price_evidence`, `cost_evidence`, `performance_evidence`, `constraint_evidence`, and `nonconsumption_evidence`
-- `strategy_constraints`: Target price position and target performance position
+## Don't use this when
+- You only have qualitative interview notes or complaints without market evidence (use `jtbd-context-explorer` or `jtbd-forces-analyzer`).
+- You have not yet computed quantitative Opportunity Scores (use `jtbd-opportunity-calculator`).
+- You want to invent pricing or strategy recommendations without data.
 
-Output:
-- `strategy_assessment`: `status` (`evidence_aligned`, `hypothesis_only`, `insufficient_evidence`)
-- `candidate_strategies`: List of supported strategy options with rationale and required conditions
-- `excluded_strategies`: Strategies rejected due to evidence contradictions or missing prerequisites
-- `disconfirming_evidence`: Customer or market data contradicting specific strategy options
-- `evidence_gaps`: Missing data preventing a conclusive strategy evaluation
-- `next_validation_actions`: Smallest specific experiments or data collection steps needed
+## Minimum input
+- **Minimum Input**: `opportunity_analysis` results from `jtbd-opportunity-calculator`, target `segment_definition`, and structured market evidence (`price_evidence`, `cost_evidence`, `performance_evidence`, `constraint_evidence`). If required evidence is missing, returns `status: insufficient_evidence`.
 
-Do not:
-- Force a single "winner" strategy when price/cost/performance evidence is missing
-- Claim `evidence_aligned` is a forecast of commercial success or market victory
-- Recommend a Dominant strategy without structured `cost_evidence` demonstrating lower/parity cost-to-serve
-- Recommend a Disruptive strategy without structured `cost_evidence` and overserved outcomes ($Opp < 8.0$) or non-consumption
-- Recommend a Differentiated strategy without high-value underserved outcomes ($Opp \ge 12.0$) and willingness-to-pay evidence
-- Recommend a Discrete strategy without explicit evidence of distinct outcome priorities
-- Invent financial forecasts, ROI projections, or market size estimations
+## What you get
+1. **Decision Readiness Summary**: Decision under review, present evidence, missing evidence, what cannot be decided yet, and the smallest next research step.
+2. **Strategy Assessment Status**: `evidence_aligned` (all prerequisites met), `hypothesis_only` ($N < 100$), or `insufficient_evidence` (missing evidence).
+3. **Excluded Strategies**: Explicit reasons and contradicting evidence for excluded strategies.
 
-## Strategy Selection Prerequisites
+## Quick prompt
+> *"Audit market evidence and evaluate candidate growth strategies for this opportunity dataset: '[Paste opportunity results and market evidence]'."*
+
+## What to do next
+- Status is `insufficient_evidence`? Use `decision_readiness.smallest_next_research_step` to gather missing price WTP, cost-to-serve, or performance benchmark evidence via **`jtbd-switch-interview`** or user surveys.
+
+---
+
+## Strategy Matrix Prerequisites
 
 ### Performance / Price / Cost Strategies
 | Strategy | Minimum Evidence Prerequisites |
@@ -62,23 +63,15 @@ Do not:
 - **`insufficient_evidence`**:
   - `opportunity_analysis.calculation_status != "completed"`, OR required evidence for the candidate strategy is missing.
 
-## Procedure
-
-1. Audit `opportunity_analysis` (`data_quality_status`, `calculation_status`, `sample_size_status`).
-2. Evaluate `market_context` for structured price, cost, and performance evidence (checking `source_type` and claims).
-3. Compare opportunity landscape against the Strategy Prerequisites Matrix.
-4. Identify `disconfirming_evidence` for each strategy (e.g., attempting a premium price position when extreme underserved outcomes dominate).
-5. Categorize candidate strategies into supported vs excluded.
-6. Determine `strategy_assessment.status` (`evidence_aligned`, `hypothesis_only`, or `insufficient_evidence`).
-7. Formulate `evidence_gaps` and `next_validation_actions`.
-
 ## Output Format
 
 ```yaml
-job_context:
-  core_functional_job: ""
-  job_executor: ""
-  segment_name: ""
+decision_readiness:
+  decision_under_review: ""
+  evidence_present: []
+  evidence_missing: []
+  what_cannot_be_decided_yet: []
+  smallest_next_research_step: ""
 
 strategy_assessment:
   status: evidence_aligned | hypothesis_only | insufficient_evidence
@@ -101,9 +94,9 @@ evidence_gaps: []
 next_validation_actions: []
 ```
 
-## Reference Materials
+## Reference
 
 Read `references/growth-strategy-matrix-rules.md` before:
-- Evaluating structured evidence source types for `price_evidence`, `cost_evidence`, and `performance_evidence`
-- Assessing prerequisites for `dominant` vs `differentiated` strategies
-- Auditing `discrete` strategy prerequisites (constraints + distinct outcome priorities)
+- Checking price, cost, and performance evidence schemas
+- Verifying discrete strategy prerequisite constraints
+- Identifying disconfirming market evidence

@@ -1,86 +1,64 @@
 ---
 name: jtbd-outcome-engineer
-description: Formulate, audit, or rewrite solution-free Desired Outcome Statements for a specific step in a JTBD Universal Job Map. Use when asked to extract customer performance metrics, remove solution or feature bias from outcome statements, deduplicate outcome metrics, structure customer success criteria for Outcome-Driven Innovation (ODI) research, or prepare desired outcomes for a job-map step.
+description: Formulate formulaic Desired Outcome Statements for a specific job map step using ODI metrics (time, likelihood, effort, cost, output). Use when given a job map step, qualitative pain point, or survey question and asked to express performance metrics, audit outcome statements, or prepare survey items for quantitative research. Do not use to calculate opportunity scores or recommend product strategy.
 ---
 
 # JTBD Desired Outcome Engineer
 
-Formulate how a job executor measures success when executing a specific step in a Universal Job Map.
+**Turn "users want it faster and easier" into measurable, survey-ready research metrics.**
 
-A Desired Outcome Statement defines a customer's metric of value and performance. It does not describe a product feature, technology capability, job map step, emotional aspiration, or commercial goal.
+---
 
-## Scope
+## Use this when
+- You have a specific job map step and want to engineer precise performance metric statements.
+- You have vague customer complaints ("too slow", "hard to use") and want to rewrite them into formulaic metrics.
+- You are preparing an ODI quantitative survey and need standardized outcome statements.
 
-Input must include:
-- A Core Functional Job statement
-- A job executor, confirmed or explicitly marked as a hypothesis
-- A specific `job_map_step` (Category and Statement)
+## Don't use this when
+- You need to extract switching forces or non-consumption barriers (use `jtbd-context-explorer` or `jtbd-forces-analyzer`).
+- You need to calculate mathematical Opportunity Scores from survey ratings (use `jtbd-opportunity-calculator`).
+- You need to evaluate market growth strategies (use `jtbd-growth-strategist`).
 
-Output:
-- A set of formulaic Desired Outcome Statements linked to the target `job_map_step`
-- Evidence, status, and classification for each statement
-- Identification of solution-contaminated, outcome-compound, or invalid candidate metrics
-- Smallest next research question required for empirical validation
+## Minimum input
+- **Minimum Input**: Core Functional Job, Job Executor, and a single `job_map_step` (or a qualitative pain point statement). Supports three modes:
+  1. **Step-to-Outcome Mode**: Generate outcomes for a job map step.
+  2. **Audit Mode**: Audit an existing survey question for formulaic precision.
+  3. **Pain-Point Mode**: Convert a broad complaint into candidate outcome statements.
 
-Do not:
-- Redefine the Core Functional Job or rewrite the input `job_map_step`
-- Generate outcomes without an explicit `job_map_step` input
-- Include products, features, technologies, channels, or implementation methods in outcome statements
-- Calculate Importance, Satisfaction, or Opportunity Scores
-- Design survey rating scales or market segmentation strategy
-- Fabricate customer research scores or claim unverified statements are customer-validated facts
+## What you get
+1. **Next Use Handoff**: Qualitative questions for interview probes AND survey-ready questions for quantitative surveys.
+2. **Formulaic Desired Outcome Statements**: Statements following `[Direction] + [Metric] + [Target] + [Contextual Clarifier]`.
+3. **Metric Classification**: Metric type tag (`time`, `likelihood`, `effort`, `cost`, `output`).
 
-## Formulaic Syntax Rules
+## Quick prompt
+> *"Formulate desired outcome metrics for this job step: '[Paste job map step statement]'."*
 
-Every valid Desired Outcome Statement MUST follow this structure:
+## What to do next
+- Need qualitative interview probes? Use the `next_use.qualitative` questions in **`jtbd-switch-interview`**.
+- Ready to collect quantitative data? Export `next_use.quantitative` items into an ODI survey, then pass ratings to **`jtbd-opportunity-calculator`**.
 
-$$\text{Desired Outcome} = \text{Direction} + \text{Performance Metric} + \text{Measurement Target} + [\text{Optional Contextual Clarifier}]$$
+---
 
-1. **Direction**: Must be `Minimize` (preferred for 95%+ of ODI metrics: time, likelihood of error, effort, cost) or `Maximize` (when increasing output/yield without trade-offs).
-2. **Performance Metric**: The unit of measurement (e.g., `the time it takes to...`, `the likelihood of...`, `the effort required to...`, `the cost required to...`).
-3. **Measurement Target**: The specific action, object, event, state, or result whose performance is being measured during the job-map step.
-4. **Optional Contextual Clarifier**: Added ONLY to specify the condition under which the outcome is desired.
+## Outcome Statement Formula
 
-## Classification Distinctions
+Every Desired Outcome Statement MUST follow this exact structure:
 
-Classify each candidate metric before finalizing:
+$$\text{Desired Outcome} = \text{Direction} + \text{Metric Type} + \text{Measurement Target} + [\text{Contextual Clarifier}]$$
 
-| Type | Definition | Example |
-|---|---|---|
-| Desired Outcome | A valid solution-free performance metric for the step | *Minimize the likelihood of omitting required status information* |
-| Solution / Feature | A product capability, technology, or interface tool | *Fast Jira export button* |
-| Compound Outcome | Multiple metrics combined in a single statement | *Minimize time and likelihood of error* |
-| Vague Metric | Abstract likelihood target or non-formulaic quality buzzword | *Minimize the likelihood of error during verification* |
-| Job Map Step | A functional action rather than a performance metric | *Verify completeness of information* |
-| Emotional / Social Outcome | Internal psychological feeling or social status | *Maximize feeling of confidence* |
-| Business / Vendor Metric | Internal company revenue or operational goal | *Maximize subscription renewals* |
-
-## Procedure
-
-1. Validate that `core_functional_job`, `job_executor`, and `job_map_step` are provided. If missing, return `insufficient_input`.
-2. Extract direct customer statements or domain rationale related to the step.
-3. Label candidate metrics using the classification distinctions.
-4. Filter out solutions, feature requests, compound metrics, vague metrics, and emotional goals.
-5. Format valid metrics into formulaic Desired Outcome Statements (`Direction + Metric + Target + Clarifier`).
-6. Audit each outcome using the Validation Checklist.
-7. Return the structured output with `status: hypothesis` (unless direct research evidence is attached).
-
-## Validation Checklist
-
-Reject, remove, or rewrite any outcome statement that:
-
-- Names a brand, product, software, feature, technology, interface, or channel
-- Uses vague buzzwords such as fast, easy, seamless, reliable, convenient, or user-friendly instead of a formulaic metric
-- Uses abstract likelihood targets (e.g., "error", "inaccuracy", "failure") without naming a concrete undesired event
-- Combines multiple metrics (e.g., combining time AND likelihood in one statement)
-- Describes a job step (action) rather than a performance metric (result)
-- Describes an emotional state (confidence, pride) or social perception
-- Describes vendor profit, sales, or business goals
-- Lacks a link to a specific `job_map_step`
+- **Direction**: `Minimize` (or `Maximize` when increasing capacity/yield).
+- **Metric Type**: `time` | `likelihood` | `effort` | `cost` | `output`.
+- **Measurement Target**: The precise action, event, error, or state being controlled. (Must be concrete and observable; avoid vague words like "error", "failure", "problem").
+- **Contextual Clarifier**: Optional phrase specifying environmental or conditional boundaries.
 
 ## Output Format
 
 ```yaml
+next_use:
+  qualitative:
+    - "Interview probe question for qualitative discovery"
+  quantitative:
+    - "Survey question item for 1-10 Importance/Satisfaction rating"
+
 job_context:
   core_functional_job: ""
   job_executor: ""
@@ -88,32 +66,31 @@ job_context:
     category: define | locate | prepare | confirm | execute | monitor | modify | conclude
     statement: ""
 
-outcomes_status: provisional | evidence_supported | insufficient_input
+outcomes_status: provisional | validated
 
 desired_outcomes:
-  - statement: ""
+  - id: ""
+    statement: ""
     direction: minimize | maximize
     metric_type: time | likelihood | effort | cost | output
     measurement_target: ""
     contextual_clarifier: ""
-    status: hypothesis | evidence_supported
-    basis: direct_evidence | domain_rationale | explicit_request
+    source_step:
+      category: ""
+      statement: ""
+    status: evidence_supported | hypothesis
+    basis: direct_evidence | domain_rationale
     evidence: []
     assumptions: []
 
-excluded_items:
-  - statement: ""
-    classification: solution | compound_outcome | vague_metric | job_step | emotional_social | vendor_metric
-    reason: ""
-
+excluded_items: []
 evidence_gaps: []
 next_research_question: ""
 ```
 
-## Reference Materials
+## Reference
 
 Read `references/outcome-statement-rules.md` before:
-- Formatting complex desired outcome statements
-- Auditing candidate customer metrics for solution contamination
-- Deciding whether to use `time` vs `likelihood`
-- Splitting compound outcome statements
+- Distinguishing metric types (`time`, `likelihood`, `effort`, `cost`, `output`)
+- Enforcing concrete specificity on likelihood targets
+- Stripping quality buzzwords ("easily", "reliably", "accurately")

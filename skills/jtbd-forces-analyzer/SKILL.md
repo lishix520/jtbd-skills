@@ -5,28 +5,36 @@ description: Analyze Jobs-to-be-Done switching forces from interview excerpts, c
 
 # JTBD Four Forces Analyzer
 
-Organize evidence about a possible change from a current approach to a new approach using the Four Forces framework:
+**Explain why customers want to change, yet still won't buy, switch, or renew.**
 
-- **Push**: Dissatisfaction, friction, risk, or pressure in the current situation.
-- **Pull**: An attractive promised progress, benefit, or attribute of a prospective alternative.
-- **Habit**: Familiarity, routines, switching inertia, or embedded dependencies supporting the current approach.
-- **Anxiety**: Uncertainty, perceived risk, effort, cost, or concern about adopting a prospective alternative.
+---
 
-The Four Forces are a qualitative evidence framework, not a scoring model or a purchase-probability calculator.
+## Use this when
+- You want to understand why prospects dislike their current tool but still hesitate to switch.
+- You have customer interview notes or sales feedback containing current workarounds and prospective tools.
+- You need to map Push, Pull, Habit, and Anxiety switching forces without making speculative purchase probability claims.
 
-## Required Input
+## Don't use this when
+- You need to design a customer discovery interview or get immediate next questions (use `jtbd-switch-interview`).
+- You need to formulate formulaic desired outcomes or calculate survey opportunity scores (use `jtbd-opportunity-calculator`).
+- You need to audit strategic pricing or growth matrix positioning (use `jtbd-growth-strategist`).
 
-Accept either:
-- Source excerpts from interviews, reviews, feedback, or support material; or
-- A structured output from `jtbd-context-explorer`, including source excerpts.
+## Minimum input
+- **Minimum Input**: Raw interview quotes or structured context data containing both a **current approach** (status quo) and a **prospective alternative** (candidate solution). If either is missing, returns `analysis_status: insufficient_switching_context` with specific questions needed to complete the context.
 
-The input must establish, or explicitly leave unknown:
-- A job executor or decision actor
-- A current approach, behavior, or status quo
-- A possible alternative, proposed change, or prospective new approach
+## What you get
+1. **Human Summary**: 5 key insights detailing reasons to change (Push), reasons to stay (Habit), reasons to choose you (Pull), reasons to hesitate (Anxiety), and the single most critical thing to validate next.
+2. **Four Forces Arrays**: Source-linked excerpts for `push`, `pull`, `habit`, and `anxiety`.
+3. **Switching Readiness Hypothesis**: A qualitative assessment (`hypothesis_available | insufficient_evidence`) stating supporting forces and missing evidence. (No numerical formulas or purchase probabilities).
 
-If source material is absent, return `analysis_status: insufficient_input`.
-If no current approach or prospective alternative is established, return `analysis_status: insufficient_switching_context`; do not invent one.
+## Quick prompt
+> *"Analyze the switching forces (Push, Pull, Habit, Anxiety) from this interview excerpt: '[Paste interview text here]'."*
+
+## What to do next
+- Need to validate missing anxiety or friction points? Run **`jtbd-switch-interview`** to get targeted follow-up questions.
+- Ready to formalize the customer's functional goal? Pass to **`jtbd-job-definer`**.
+
+---
 
 ## Analysis Status Discipline
 
@@ -59,20 +67,16 @@ Extract and classify evidence for:
 9. A switching-readiness statement must remain a hypothesis and must identify supporting and missing evidence.
 10. Big Hire and Little Hire are signals, not mandatory stages; mark them `unknown` when evidence is absent.
 
-## Procedure
-
-1. Validate that the material establishes a current approach and possible alternative; otherwise stop with `analysis_status: insufficient_switching_context`.
-2. Identify the actor making or influencing the possible switch.
-3. Extract source-linked evidence for each force (`push`, `pull`, `habit`, `anxiety`).
-4. Separate direct evidence, inference, vendor claims, and unknowns.
-5. Identify Big Hire and Little Hire signals only where the material supports them.
-6. Record contradictions, including evidence that favors retaining the status quo.
-7. Produce an optional switching-readiness hypothesis only when at least one push or pull signal and one habit or anxiety signal are evidenced.
-8. State research questions that would most reduce switching uncertainty.
-
 ## Output Format
 
 ```yaml
+human_summary:
+  reason_to_change: ""
+  reason_to_stay: ""
+  reason_to_choose_you: ""
+  reason_to_hesitate: ""
+  most_important_thing_to_validate_next: ""
+
 analysis_status: evidence_extracted | insufficient_input | insufficient_switching_context
 
 switching_context:

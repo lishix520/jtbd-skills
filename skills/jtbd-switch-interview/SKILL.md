@@ -5,22 +5,37 @@ description: Interactive interview guide and question generator for understandin
 
 # JTBD Switch Interview Guide
 
-**Interview Guide for Understanding Why People Change**
-
-Guide interviewers through a natural, non-leading customer discovery conversation. Reconstruct the timeline of a customer's decision to switch solutions or change behavior—from the first thought to ongoing use—without asking leading questions or discussing product features.
-
-This skill provides immediate, actionable conversational guidance for everyday users while preserving structured evidence tracking for underlying methodology agents.
+**Turn customer feedback into a discovery conversation that uncovers real reasons for buying, switching, or churning.**
 
 ---
 
-## Required Input
+## Use this when
+- You have a customer quote, review, feedback fragment, or sales note and need to know what to ask next.
+- You are planning a customer discovery interview and want to avoid asking leading questions.
+- You want to uncover why a customer switched solutions, bought a competitor, or hesitated to sign up.
 
-Accept any of:
-1. **Empty / Starting Scenario**: No quote provided (returns a starting interview plan and first non-leading question).
-2. **Single Customer Quote or Feedback**: A fragment, review, or customer statement.
-3. **Partial Interview Transcript**: Transcript notes from a discovery session.
+## Don't use this when
+- You need to map a complete 8-stage functional workflow (use `jtbd-job-mapper`).
+- You have quantitative survey rating data and need Opportunity Scores (use `jtbd-opportunity-calculator`).
+- You need to audit strategic pricing or growth positioning (use `jtbd-growth-strategist`).
 
-Do not invent customer statements, motivations, or purchase decisions.
+## Minimum input
+- **Minimum Input**: A single customer quote, a feedback statement, an interview transcript fragment, or a target customer behavior you want to investigate. (Can also run with zero input to generate an initial interview plan).
+
+## What you get
+1. **One primary non-leading question** to speak out loud.
+2. **Why it matters** in 2 simple sentences.
+3. **A follow-up probe** if the customer's answer is vague.
+4. **⚠️ What NOT to ask right now** (avoiding feature traps and speculative questions).
+5. **📌 Current Understanding Summary** (What is Known, What is Assumed, What is Missing).
+6. **Structured Metadata** for downstream methodology agents.
+
+## Quick prompt
+> *"Help me choose the next interview question for this customer quote: '[Paste customer statement here]'."*
+
+## What to do next
+- Have customer notes/transcripts? Pass them to **`jtbd-context-explorer`** to extract structured circumstances and constraints.
+- Want to analyze switching inertia vs push forces? Pass excerpts to **`jtbd-forces-analyzer`**.
 
 ---
 
@@ -52,8 +67,6 @@ Do not invent customer statements, motivations, or purchase decisions.
 ---
 
 ## Default Output Format (Human-First UX)
-
-Outputs MUST render the **Human Conversational Guide** first, followed by **Structured Metadata**.
 
 ```markdown
 ## 💬 What to Ask Next

@@ -74,6 +74,14 @@ See full use cases and examples: [examples/business-use-cases.md](./examples/bus
 | **I have customer feedback, but don't know what it means** | Distinction between current approaches, real-world circumstances, constraints, feature requests, and unverified assumptions | `jtbd-context-explorer` |
 | **Users are unhappy, but still won't buy, switch, or renew** | Triggers causing change, inertia keeping them, anxiety about new solutions, and next validation steps | `jtbd-forces-analyzer` |
 
+### 🛠️ Need something more specific?
+
+- **Turn a feature request into a solution-free customer job** → `jtbd-job-definer`
+- **Map a customer task from start to finish** → `jtbd-job-mapper`
+- **Turn a pain point into measurable research questions** → `jtbd-outcome-engineer`
+- **Rank needs using quantitative survey data** → `jtbd-opportunity-calculator`
+- **Check whether you have enough evidence for a growth decision** → `jtbd-growth-strategist`
+
 ---
 
 ## 🌐 找到人们愿意付钱的机会。（中文说明）
