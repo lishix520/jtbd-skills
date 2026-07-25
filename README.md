@@ -16,12 +16,12 @@ Use it to:
 
 ## 🎯 When You Can Use It
 
-- **New Idea**: You have a new product idea, but aren’t sure if anyone truly needs it
-- **Feature Overload**: Users request many features, but you don’t know which to build first
-- **Sales Friction**: Products aren’t selling well, and you need to understand why prospects aren’t buying
+- **New Idea**: You have a new product idea, but aren't sure if anyone truly needs it
+- **Feature Overload**: Users request many features, but you don't know which to build first
+- **Sales Friction**: Products aren't selling well, and you need to understand why prospects aren't buying
 - **Customer Churn**: Customers are leaving or not renewing, and you need to uncover why
-- **Pricing Strategy**: You want to raise prices or launch a premium tier, but don’t know if customers will pay
-- **Growth Directions**: You’re looking for new growth opportunities without relying on guesswork
+- **Pricing Strategy**: You want to raise prices or launch a premium tier, but don't know if customers will pay
+- **Growth Directions**: You're looking for new growth opportunities without relying on guesswork
 
 ---
 
@@ -31,7 +31,7 @@ Use it to:
 
 > "I spend two hours every Friday manually copying updates into spreadsheets. I really wish Jira had a button to auto-generate weekly reports."
 
-**Don’t build the Jira feature right away. Ask first:**
+**Don't build the Jira feature right away. Ask first:**
 
 > "Tell me about the last time that became a major pain—what was happening right before you started, and what took place between starting the report and sending it?"
 
@@ -52,7 +52,7 @@ Paste any of the following into an AI tool supporting Agent Skills:
 - An interview transcript or discovery notes
 - A negative or positive review
 - A sales or customer support conversation
-- A product, service, or feature idea you’re evaluating
+- A product, service, or feature idea you're evaluating
 
 **Say directly to the AI:**
 
@@ -71,9 +71,9 @@ See full use cases and real-world demos: [examples/business-use-cases.md](./exam
 | What You Want To Do | What You Get | Underlying Skill |
 | :--- | :--- | :--- |
 | **I have a new idea or quote and need to decide what to validate next** | An Opportunity Decision Brief (stage, direct evidence, hypotheses, what CAN/CANNOT be concluded, smallest next step) | **`opportunity-discovery`** |
-| **I don’t know what to ask next** | One natural, non-leading follow-up question; why it matters; how to probe vague answers; what NOT to ask yet | `jtbd-switch-interview` |
-| **I have customer feedback, but don’t know what it means** | Distinction between current approaches, real-world circumstances, constraints, feature requests, and unverified assumptions | `jtbd-context-explorer` |
-| **Users are unhappy, but still won’t buy, switch, or renew** | Triggers causing change, inertia keeping them, anxiety about new solutions, and next validation steps | `jtbd-forces-analyzer` |
+| **I don't know what to ask next** | One natural, non-leading follow-up question; why it matters; how to probe vague answers; what NOT to ask yet | `jtbd-switch-interview` |
+| **I have customer feedback, but don't know what it means** | Distinction between current approaches, real-world circumstances, constraints, feature requests, and unverified assumptions | `jtbd-context-explorer` |
+| **Users are unhappy, but still won't buy, switch, or renew** | Triggers causing change, inertia keeping them, anxiety about new solutions, and next validation steps | `jtbd-forces-analyzer` |
 
 ### 🛠️ Need something more specific?
 
@@ -179,14 +179,20 @@ Browse the repository structure in the [GitHub file tree](./skills/).
 
 ### 🧪 Verify the Repository
 
+Clone the repository:
+
 ```bash
 git clone https://github.com/lishix520/jtbd-skills.git
 cd jtbd-skills
 ```
 
+Run the deterministic Opportunity Calculator:
+
 ```bash
 python3 skills/jtbd-opportunity-calculator/scripts/calculate_opportunity.py integration/project-status-update/04-survey-input.json > /tmp/calculated_out.json
 ```
+
+Verify the output:
 
 ```bash
 diff -u /tmp/calculated_out.json integration/project-status-update/05-opportunity-results.json

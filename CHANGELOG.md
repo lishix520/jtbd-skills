@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.5.5] - 2026-07-25
+
+### Fixed
+- **Clean Unescaped Raw Markdown Restoration Across Key Files**: Restored `README.md`, `skills/opportunity-discovery/SKILL.md`, and `principles/evidence-model.md` to raw unescaped Markdown without backslash escaping (`\#`, `\*`, `\[`, `\``). Verified via strict `grep -nE '\\\\[#*[\]`]'` assertion test.
+
+---
+
 ## [0.5.4] - 2026-07-25
 
 ### Fixed
