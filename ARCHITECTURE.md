@@ -1,46 +1,46 @@
 # JTBD Skills Suite Architecture & Pipeline Contracts
 
-This document details the architectural design, dual methodological pipelines, evidence discipline, and contract boundaries across the 8 atomic skills in the **JTBD Skills Suite**.
+This document details the architectural design, dual methodological pipelines, evidence discipline, and contract boundaries across the 9 skills in the **JTBD Skills Suite**.
 
 ---
 
-## 🏗️ Dual Methodological Pipelines Overview
+## 🏗️ Dual Methodological Pipelines & Top-Level Orchestration
 
-The repository supports two distinct, complementary Jobs-to-be-Done methodological pipelines:
+The repository features **`opportunity-discovery`** as a top-level Evidence Gate Orchestrator that classifies user input and routes to two distinct, complementary Jobs-to-be-Done methodological pipelines:
 
 ```text
-                             [ Raw Customer Research Materials ]
-                                    │               │
-            ┌───────────────────────┘               └───────────────────────┐
-            ▼                                                               ▼
-   【 Christensen Qualitative Path 】                               【 Ulwick Quantitative ODI Path 】
-            │                                                               │
-   8. jtbd-switch-interview                                         1. jtbd-job-definer
-     (Interactive Interview Guide, Next Question,                     (Solution-Free Core Functional Job)
-      Vague Probe, Forbidden Questions)                                     │
-            │                                                               ▼
-            ▼                                                       2. jtbd-job-mapper
-   6. jtbd-context-explorer                                           (Universal Job Map & Flow Edges)
-     (Circumstance, Progress, Workarounds,                                  │
-      Non-Consumption, Feature Requests)                                    ▼
-            │                                                       3. jtbd-outcome-engineer
-            ▼                                                         (Formulaic Desired Outcomes)
-   7. jtbd-forces-analyzer                                                  │
-     (Push, Pull, Habit, Anxiety,                                           ▼
-      Big Hire / Little Hire Signals)                               4. jtbd-opportunity-calculator
-                                                                      (Opportunity Scores & Script)
-                                                                            │
-                                                                            ▼
-                                                                    5. jtbd-growth-strategist
-                                                                      (Evidence-Aligned Strategy Matrix)
+                             [ Raw Input: Idea / Quote / Feedback / Survey ]
+                                                   │
+                                                   ▼
+                                      opportunity-discovery
+                             (Evidence Gate & Decision Brief Router)
+                                                   │
+                                ┌──────────────────┴──────────────────┐
+                                ▼                                     ▼
+               【 Christensen Qualitative Path 】            【 Ulwick Quantitative ODI Path 】
+                                │                                     │
+                       jtbd-switch-interview                   jtbd-job-definer
+                                │                                     │
+                                ▼                                     ▼
+                       jtbd-context-explorer                   jtbd-job-mapper
+                                │                                     │
+                                ▼                                     ▼
+                       jtbd-forces-analyzer                  jtbd-outcome-engineer
+                                                                      │
+                                                                      ▼
+                                                             jtbd-opportunity-calculator
+                                                                      │
+                                                                      ▼
+                                                             jtbd-growth-strategist
 ```
 
 ---
 
 ## 📋 Skill Input/Output Contracts & Evidence Boundaries
 
-| Skill Name | Pipeline | Expected Input Contract | Output Contract | Evidence Discipline & Stopping Rule |
+| Skill Name | Role / Pipeline | Expected Input Contract | Output Contract | Evidence Discipline & Stopping Rule |
 | :--- | :--- | :--- | :--- | :--- |
+| **`opportunity-discovery`** | Top-Level Orchestrator | Raw product idea, customer quote, transcript, or survey data | Opportunity Decision Brief, readiness stage, smallest next validation step | Classifies input into 4 tiers; refuses binary build verdicts on pure ideas. |
 | **`jtbd-switch-interview`** | Christensen | Raw customer quote, feedback, or empty starting target | Non-leading primary question, vague probe, forbidden question, known/assumed/missing summary | Focuses on past events; forbids leading feature questions or future speculation. |
 | **`jtbd-context-explorer`** | Christensen | Interview excerpts, reviews, support tickets, or feedback | Qualitative context, workarounds, constraints, human summary | Separates feature requests, policy constraints, and emotional/social signals. Never defines Core Job. |
 | **`jtbd-forces-analyzer`** | Christensen | Context explorer output or raw switching interview excerpts | Four Forces (Push, Pull, Habit, Anxiety) & human summary | **Qualitative hypothesis only**. Stops at `insufficient_switching_context` if current/prospective tools are missing. |
@@ -54,7 +54,7 @@ The repository supports two distinct, complementary Jobs-to-be-Done methodologic
 
 ## 🛡️ Evidence & Confidence Hierarchy
 
-Every data object passed across skills MUST explicitly disclose its confidence level:
+Every data object passed across skills MUST explicitly disclose its confidence level (see [principles/evidence-model.md](./principles/evidence-model.md)):
 
 1. **`direct_evidence`**: Supported by an explicit customer quote or transcript (with `source_id`).
 2. **`domain_rationale`**: Inferred from logical domain necessity. Must be marked `status: hypothesis` or `status: inferred`.
@@ -68,7 +68,8 @@ Every data object passed across skills MUST explicitly disclose its confidence l
 
 The architecture enforces strict stopping boundaries to prevent AI hallucination and premature strategic conclusions:
 
-1. **Missing Job Executor**: `jtbd-job-definer` & `jtbd-job-mapper` return `insufficient_input` if the job executor is unknown.
-2. **Missing Numerical Ratings**: `jtbd-opportunity-calculator` returns `calculation_status: blocked` if ratings are missing; it refuses to convert qualitative text into numeric ratings.
-3. **Missing Market Evidence**: `jtbd-growth-strategist` returns `status: insufficient_evidence` if price, performance, or cost evidence for a candidate strategy is absent.
-4. **Missing Switching Context**: `jtbd-forces-analyzer` returns `analysis_status: insufficient_switching_context` if a current approach or prospective alternative cannot be established.
+1. **Pure Product Ideas**: `opportunity-discovery` sets stage to `idea_only` and refuses binary build recommendations without customer facts.
+2. **Missing Job Executor**: `jtbd-job-definer` & `jtbd-job-mapper` return `insufficient_input` if the job executor is unknown.
+3. **Missing Numerical Ratings**: `jtbd-opportunity-calculator` returns `calculation_status: blocked` if ratings are missing; it refuses to convert qualitative text into numeric ratings.
+4. **Missing Market Evidence**: `jtbd-growth-strategist` returns `status: insufficient_evidence` if price, performance, or cost evidence for a candidate strategy is absent.
+5. **Missing Switching Context**: `jtbd-forces-analyzer` returns `analysis_status: insufficient_switching_context` if a current approach or prospective alternative cannot be established.

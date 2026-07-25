@@ -1,0 +1,38 @@
+version: 0.1
+
+cases:
+  - id: idea-only-ai-diary-case
+    input:
+      text: "I want to build an AI diary app that automatically organizes my daily thoughts."
+    expected:
+      current_stage: idea_only
+      confidence: low
+      recommended_skill: jtbd-switch-interview
+      recommended_action_contains:
+        - "Do not"
+      must_contain_sections:
+        - "What is Known"
+        - "What is Only a Hypothesis"
+        - "What You CAN and CANNOT Conclude Right Now"
+        - "Recommended Smallest Next Validation Step"
+
+  - id: feature-request-pdf-export-case
+    input:
+      text: "Users are asking for a PDF export button on the project dashboard."
+    expected:
+      current_stage: anecdotal_signal
+      recommended_skill: jtbd-context-explorer
+      cannot_conclude_contains:
+        - solution
+
+  - id: survey-quantitative-case
+    input:
+      survey_metadata:
+        sample_size: 120
+      outcomes:
+        - id: O-001
+          importance_mean: 9.0
+          satisfaction_mean: 4.0
+    expected:
+      current_stage: decision_ready_for_next_step
+      recommended_skill: jtbd-opportunity-calculator

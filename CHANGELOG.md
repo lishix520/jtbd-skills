@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.5.0] - 2026-07-25
+
+### Added
+- **`opportunity-discovery` Orchestrator Skill**: Top-level Evidence Gate orchestrator and router (`skills/opportunity-discovery/`) that classifies input into 4 tiers (`idea_only`, `customer_signal`, `research_evidence`, `quantitative_evidence`), routes to downstream skills, and outputs an Opportunity Decision Brief.
+- **Shared Evidence Gate Protocol (`principles/evidence-model.md`)**: Shared protocol defining 4 evidence tiers (`direct_evidence`, `inference`, `hypothesis`, `unknown`) and 5 readiness statuses (`Idea only`, `Anecdotal signal`, `Evidence emerging`, `Decision-ready for next step`, `Not decision-ready`).
+- **3 Real-World Demos**:
+  - `examples/01-idea-only-ai-diary.md` (Idea Only -> Do not build yet; interview 5 target users)
+  - `examples/02-feature-request-pdf-export.md` (Feature Request -> Validate executive report workflow pain first)
+  - `examples/03-survey-opportunity-ranking.md` (Quantitative Survey -> Opportunity Scores rank outcomes, do not predict company success)
+- **Architecture Diagram Update**: Updated `ARCHITECTURE.md` to cover `opportunity-discovery` as the 9th skill orchestrating both Christensen and Ulwick ODI pipelines.
+
+---
+
 ## [0.4.4] - 2026-07-25
 
 ### Fixed

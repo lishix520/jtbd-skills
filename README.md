@@ -62,7 +62,7 @@ Paste any of the following into an AI tool supporting Agent Skills:
 
 > *"I want to know if this idea is worth building. Tell me what evidence is missing, who to talk to, and how to validate it next."*
 
-See full use cases and examples: [examples/business-use-cases.md](./examples/business-use-cases.md)
+See full use cases and real-world demos: [examples/business-use-cases.md](./examples/business-use-cases.md) | [01-idea-only-ai-diary.md](./examples/01-idea-only-ai-diary.md) | [02-feature-request-pdf-export.md](./examples/02-feature-request-pdf-export.md) | [03-survey-opportunity-ranking.md](./examples/03-survey-opportunity-ranking.md)
 
 ---
 
@@ -70,6 +70,7 @@ See full use cases and examples: [examples/business-use-cases.md](./examples/bus
 
 | What You Want To Do | What You Get | Underlying Skill |
 | :--- | :--- | :--- |
+| **I have a new idea or quote and need to decide what to validate next** | An Opportunity Decision Brief (stage, direct evidence, hypotheses, what CAN/CANNOT be concluded, smallest next step) | **`opportunity-discovery`** |
 | **I don't know what to ask next** | One natural, non-leading follow-up question; why it matters; how to probe vague answers; what NOT to ask yet | `jtbd-switch-interview` |
 | **I have customer feedback, but don't know what it means** | Distinction between current approaches, real-world circumstances, constraints, feature requests, and unverified assumptions | `jtbd-context-explorer` |
 | **Users are unhappy, but still won't buy, switch, or renew** | Triggers causing change, inertia keeping them, anxiety about new solutions, and next validation steps | `jtbd-forces-analyzer` |
@@ -81,6 +82,14 @@ See full use cases and examples: [examples/business-use-cases.md](./examples/bus
 - **Turn a pain point into measurable research questions** → `jtbd-outcome-engineer`
 - **Rank needs using quantitative survey data** → `jtbd-opportunity-calculator`
 - **Check whether you have enough evidence for a growth decision** → `jtbd-growth-strategist`
+
+---
+
+## 🛡️ Not Another Product-Analysis Prompt
+
+JTBD Skills separates evidence, hypotheses, and unknowns.
+When the evidence is not enough, it does not pretend to know the answer.
+It tells you the smallest next step needed to make a better decision.
 
 ---
 
@@ -134,11 +143,11 @@ JTBD Skills 帮你发现市场机会、做出更好卖的产品和服务，并�
 JTBD Skills combines two complementary research and innovation methodologies:
 
 1. **Qualitative Context & Switching Forces (Christensen & Moesta Path)**:
-   `Context Explorer` ──► `Four Forces Analyzer` ──► `Switch Interview Guide`
+   `opportunity-discovery` ──► `Context Explorer` ──► `Four Forces Analyzer` ──► `Switch Interview Guide`
    *Understand why people adopt, switch, stay, or leave.*
 
 2. **Quantitative Underserved Needs & Strategy Matrix (Ulwick ODI Path)**:
-   `Job Definer` ──► `Job Mapper` ──► `Outcome Engineer` ──► `Opportunity Calculator` ──► `Growth Strategist`
+   `opportunity-discovery` ──► `Job Definer` ──► `Job Mapper` ──► `Outcome Engineer` ──► `Opportunity Calculator` ──► `Growth Strategist`
    *Calculate Opportunity Scores and evaluate evidence-backed product and business strategy options.*
 
 For complete architecture details, dual methodology pipelines, and stopping rules, see [ARCHITECTURE.md](./ARCHITECTURE.md).
@@ -155,15 +164,16 @@ Browse the repository structure in the [GitHub file tree](./skills/).
 
 | Skill Name | Scope | Status |
 | :--- | :--- | :--- |
-| **`principles`** | Cross-skill contract, terminology & evidence rules | `v0.4` |
-| **`jtbd-switch-interview`** | Turn customer conversations into better business questions | `v0.4` |
-| **`jtbd-job-definer`** | Extract, audit, and rewrite solution-free Core Functional Jobs | `v0.4` |
-| **`jtbd-job-mapper`** | Deconstruct defined jobs into solution-free Universal Job Maps | `v0.4` |
-| **`jtbd-outcome-engineer`** | Formulate formulaic Desired Outcome Statements for a job map step | `v0.4` |
-| **`jtbd-opportunity-calculator`** | Compute quantitative ODI Opportunity Scores from survey ratings | `v0.4` |
-| **`jtbd-growth-strategist`** | Map opportunity landscapes and market evidence to growth strategies | `v0.4` |
-| **`jtbd-context-explorer`** | Extract qualitative circumstances, progress, and non-consumption evidence | `v0.4` |
-| **`jtbd-forces-analyzer`** | Organize switching evidence into Push, Pull, Habit, and Anxiety forces | `v0.4` |
+| **`principles`** | Cross-skill contract, terminology & evidence rules | `v0.5` |
+| **`opportunity-discovery`** | Evidence-aware opportunity discovery & decision brief generator (Top-level Orchestrator) | `v0.5` |
+| **`jtbd-switch-interview`** | Turn customer conversations into better business questions | `v0.5` |
+| **`jtbd-context-explorer`** | Extract qualitative circumstances, progress, and non-consumption evidence | `v0.5` |
+| **`jtbd-forces-analyzer`** | Organize switching evidence into Push, Pull, Habit, and Anxiety forces | `v0.5` |
+| **`jtbd-job-definer`** | Extract, audit, and rewrite solution-free Core Functional Jobs | `v0.5` |
+| **`jtbd-job-mapper`** | Deconstruct defined jobs into solution-free Universal Job Maps | `v0.5` |
+| **`jtbd-outcome-engineer`** | Formulate formulaic Desired Outcome Statements for a job map step | `v0.5` |
+| **`jtbd-opportunity-calculator`** | Compute quantitative ODI Opportunity Scores from survey ratings | `v0.5` |
+| **`jtbd-growth-strategist`** | Map opportunity landscapes and market evidence to growth strategies | `v0.5` |
 
 ---
 
