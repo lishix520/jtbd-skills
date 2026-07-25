@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.3.0] - 2026-07-25
+
+### Added
+- **`jtbd-switch-interview` (Skill 8)**: Conversational interview guide providing 30-second natural-language next questions, follow-up probes, and forbidden leading question warnings for non-expert users. Promoted to `v0.3`.
+- **User-Centric Hero & Product Positioning**: Updated `README.md` with locked hero copy ("找到人们愿意付钱的机会") and 6 business scenario entry points.
+- **Business Use Cases Guide (`examples/business-use-cases.md`)**: Comprehensive practical guide mapping 6 core business scenarios to customer quotes and actionable insights.
+
+---
+
 ## [0.2.1] - 2026-07-25
 
 ### Fixed
