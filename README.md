@@ -186,7 +186,7 @@ git clone https://github.com/lishix520/jtbd-skills.git
 cd jtbd-skills
 ```
 
-Run deterministic Opportunity Calculator calculation:
+Run the deterministic Opportunity Calculator:
 
 ```bash
 python3 skills/jtbd-opportunity-calculator/scripts/calculate_opportunity.py \
@@ -194,7 +194,7 @@ python3 skills/jtbd-opportunity-calculator/scripts/calculate_opportunity.py \
   > /tmp/calculated_out.json
 ```
 
-Verify output against quantitative golden fixture:
+Verify the output:
 
 ```bash
 diff -u /tmp/calculated_out.json \
