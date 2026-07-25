@@ -1,0 +1,123 @@
+analysis_status: evidence_extracted
+
+sources:
+  - id: research-01
+    type: interview
+    limitations: ["Synthetic interview quote"]
+  - id: research-02
+    type: interview
+    limitations: ["Synthetic interview quote"]
+  - id: research-03
+    type: interview
+    limitations: ["Synthetic interview quote"]
+  - id: research-04
+    type: interview
+    limitations: ["Synthetic interview quote"]
+  - id: research-05
+    type: interview
+    limitations: ["Synthetic interview quote"]
+  - id: research-06
+    type: feedback
+    limitations: ["Synthetic product feedback statement"]
+
+circumstances:
+  - id: CIR-001
+    statement: "Department size doubled, creating manual spreadsheet consolidation workload and causing missed Friday review deadlines."
+    status: direct_evidence
+    evidence:
+      - source_id: research-01
+        excerpt: "Since the team doubled, I spend two hours every Friday combining spreadsheets, and we now miss review deadlines."
+    assumptions: []
+    constraint_ids:
+      - CON-001
+
+desired_progress:
+  - id: DP-001
+    statement: "Streamline project status collection and ensure on-time delivery before Friday reviews."
+    status: inferred
+    evidence:
+      - source_id: research-01
+        excerpt: "Since the team doubled, I spend two hours every Friday combining spreadsheets, and we now miss review deadlines."
+    assumptions: []
+
+current_approaches:
+  - id: CA-001
+    statement: "Combining team spreadsheets manually every Friday"
+    type: workaround
+    status: direct_evidence
+    evidence:
+      - source_id: research-01
+        excerpt: "I spend two hours every Friday combining spreadsheets"
+    assumptions: []
+
+switching_triggers:
+  - id: ST-001
+    statement: "Team growth doubled manual workload, resulting in missed review deadlines."
+    status: direct_evidence
+    evidence:
+      - source_id: research-01
+        excerpt: "Since the team doubled... and we now miss review deadlines."
+    assumptions: []
+
+non_consumption:
+  - id: NC-001
+    statement: "Public cloud reporting tools"
+    barrier_type: policy_or_regulation
+    status: direct_evidence
+    evidence:
+      - source_id: research-05
+        excerpt: "Our policy prohibits transmitting internal project status outside the company firewall."
+    assumptions: []
+
+feature_requests:
+  - id: FR-001
+    statement: "Jira button to automatically generate weekly report"
+    status: direct_evidence
+    evidence:
+      - source_id: research-06
+        excerpt: "If Jira could generate the weekly report, that would save time."
+    assumptions: []
+
+constraints:
+  - id: CON-001
+    statement: "Company policy prohibits transmitting internal project status outside the firewall."
+    type: policy_or_regulation
+    status: direct_evidence
+    evidence:
+      - source_id: research-05
+        excerpt: "Our policy prohibits transmitting internal project status outside the company firewall."
+    assumptions: []
+
+competing_alternatives:
+  - id: ALT-001
+    statement: "Acme Reporting Service"
+    type: product
+    status: direct_evidence
+    evidence:
+      - source_id: research-03
+        excerpt: "We are evaluating Acme Reporting Service"
+    assumptions: []
+
+emotional_signals:
+  - id: EM-001
+    statement: "Anxiety regarding potential project history loss during tool migration"
+    status: direct_evidence
+    evidence:
+      - source_id: research-04
+        excerpt: "I worry that migration could lose project history"
+    assumptions: []
+
+social_signals:
+  - id: SOC-001
+    statement: "Concern about internal audit failure and team compliance perception"
+    audience: "Internal IT auditors / Leadership"
+    status: inferred
+    evidence:
+      - source_id: research-04
+        excerpt: "and that a cloud tool may fail our internal audit."
+    assumptions: []
+
+contradictions: []
+evidence_gaps:
+  - "Whether Acme Reporting Service offers an on-premise or firewall-compliant deployment option."
+next_research_question: "Does Acme Reporting Service satisfy corporate firewall policy CON-001?"

@@ -1,0 +1,95 @@
+analysis_status: evidence_extracted
+
+switching_context:
+  actor:
+    value: "Project Manager"
+    status: inferred
+  circumstance:
+    statement: "Team doubled in size, causing manual spreadsheet consolidation to miss Friday review deadlines."
+    status: direct_evidence
+    evidence:
+      - source_id: research-01
+        excerpt: "Since the team doubled, I spend two hours every Friday combining spreadsheets, and we now miss review deadlines."
+  current_approach:
+    statement: "Combining spreadsheets manually every Friday"
+    status: direct_evidence
+    evidence:
+      - source_id: research-01
+        excerpt: "I spend two hours every Friday combining spreadsheets"
+  prospective_alternative:
+    statement: "Acme Reporting Service"
+    status: direct_evidence
+    evidence:
+      - source_id: research-03
+        excerpt: "We are evaluating Acme Reporting Service"
+
+forces:
+  push:
+    - id: PUSH-001
+      statement: "Team growth doubled manual spreadsheet workload and causes missed review deadlines."
+      status: direct_evidence
+      evidence:
+        - source_id: research-01
+          excerpt: "Since the team doubled, I spend two hours every Friday combining spreadsheets, and we now miss review deadlines."
+      assumptions: []
+
+  pull:
+    - id: PULL-001
+      statement: "Promise of automatic update consolidation by Acme Reporting Service."
+      status: direct_evidence
+      evidence:
+        - source_id: research-03
+          excerpt: "because it can consolidate updates automatically."
+      assumptions: []
+
+  habit:
+    - id: HABIT-001
+      statement: "Team familiarity with spreadsheet template creates routine inertia against switching."
+      status: direct_evidence
+      evidence:
+        - source_id: research-02
+          excerpt: "Everyone knows the spreadsheet template, so changing it would disrupt our weekly routine."
+      assumptions: []
+
+  anxiety:
+    - id: ANX-001
+      statement: "Concern that migration could result in lost project history."
+      status: direct_evidence
+      evidence:
+        - source_id: research-04
+          excerpt: "I worry that migration could lose project history"
+      assumptions: []
+    - id: ANX-002
+      statement: "Concern that cloud solution violates firewall policy and fails internal audit."
+      status: direct_evidence
+      evidence:
+        - source_id: research-04
+          excerpt: "and that a cloud tool may fail our internal audit."
+        - source_id: research-05
+          excerpt: "Our policy prohibits transmitting internal project status outside the company firewall."
+      assumptions: []
+
+hire_signals:
+  big_hire:
+    status: unknown
+    signals: []
+  little_hire:
+    status: unknown
+    signals: []
+
+switching_readiness:
+  status: hypothesis_available
+  statement: "Missed review deadlines (PUSH-001) and automatic aggregation (PULL-001) drive intent to switch to Acme Reporting Service, but team template inertia (HABIT-001), history loss anxiety (ANX-001), and firewall audit risks (ANX-002) prevent adoption unless an on-premise firewall option is verified."
+  supporting_force_ids:
+    - PUSH-001
+    - PULL-001
+    - HABIT-001
+    - ANX-001
+    - ANX-002
+  missing_evidence:
+    - "Verification of on-premise deployment or security clearance for Acme Reporting Service."
+
+contradictions: []
+evidence_gaps:
+  - "Whether Feature Request FR-001 (Jira button) is an internal workaround preference or actively evaluated."
+next_research_question: "Can Acme Reporting Service be deployed self-hosted within the corporate firewall to resolve ANX-002?"

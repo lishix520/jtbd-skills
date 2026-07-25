@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.2.0] - 2026-07-25
+
+### Added
+- **`jtbd-context-explorer` (Skill 6)**: Qualitative context extraction skill extracting circumstance, desired progress, current approaches, feature requests, policy/security constraints, and non-consumption barriers.
+- **`jtbd-forces-analyzer` (Skill 7)**: Qualitative switching tension analysis skill organizing customer switching evidence into Push, Pull, Habit, Anxiety, and Big Hire / Little Hire signals.
+- **Qualitative Golden Path Integration Fixture (`integration/spreadsheet-to-reporting-service/`)**: End-to-end integration test suite for Christensen's qualitative path demonstrating ID linkage and evidence traceability across Skills 6 and 7.
+- **Dual Methodological Pipelines Architecture**: Updated `ARCHITECTURE.md` to document both Christensen's qualitative path and Ulwick's quantitative ODI path.
+- **CI Validation Expansion**: Updated `.github/workflows/validate.yml` to automatically validate qualitative fixture ID traceability alongside YAML/JSON syntax and script execution.
+
+---
+
 ## [0.1.1] - 2026-07-24
 
 ### Fixed

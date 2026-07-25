@@ -54,8 +54,27 @@ jobs:
                       sys.exit(1)
           "
 
-      - name: Test Deterministic Opportunity Calculator against Golden Fixture
+      - name: Test Quantitative Golden Path Fixture (Ulwick ODI Path)
         run: |
           python3 skills/jtbd-opportunity-calculator/scripts/calculate_opportunity.py integration/project-status-update/04-survey-input.json > /tmp/calculated_out.json
           diff -u /tmp/calculated_out.json integration/project-status-update/05-opportunity-results.json
-          echo "Golden Path Fixture Output Matches Deterministic Script Execution!"
+          echo "Quantitative Golden Path Fixture Output Matches Deterministic Script Execution!"
+
+      - name: Validate Qualitative Golden Path Traceability (Christensen Path)
+        run: |
+          python -c "
+          import yaml, sys
+          with open('integration/spreadsheet-to-reporting-service/01-context-analysis.yaml', 'r') as f:
+              ctx = yaml.safe_load(f)
+          with open('integration/spreadsheet-to-reporting-service/02-four-forces-analysis.yaml', 'r') as f:
+              forces = yaml.safe_load(f)
+          
+          assert ctx['analysis_status'] == 'evidence_extracted', 'Invalid context status'
+          assert forces['analysis_status'] == 'evidence_extracted', 'Invalid forces status'
+          assert len(forces['forces']['push']) > 0, 'Missing push force'
+          assert len(forces['forces']['pull']) > 0, 'Missing pull force'
+          assert len(forces['forces']['habit']) > 0, 'Missing habit force'
+          assert len(forces['forces']['anxiety']) > 0, 'Missing anxiety force'
+          assert forces['switching_readiness']['status'] == 'hypothesis_available', 'Readiness must be hypothesis'
+          print('Qualitative Golden Path Traceability Validated!')
+          "

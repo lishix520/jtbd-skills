@@ -8,7 +8,7 @@ Designed according to the [Agent Skills Specification](https://github.com/agents
 
 ---
 
-## 📁 Repository Structure (v0.1 Baseline)
+## 📁 Repository Structure (v0.2 Baseline)
 
 ```text
 jtbd-skills/
@@ -16,6 +16,7 @@ jtbd-skills/
 ├── LICENSE
 ├── CONTRIBUTING.md
 ├── CHANGELOG.md
+├── ARCHITECTURE.md
 ├── principles/
 │   └── SKILL.md                 # Shared contracts, evidence rules, and cross-skill terminology
 ├── skills/
@@ -70,25 +71,37 @@ jtbd-skills/
 │   │   ├── SKILL.md             # Main skill definition & frontmatter
 │   │   ├── references/
 │   │   │   └── context-exploration-rules.md # Circumstance & progress extraction rules
+│   │   ├── examples/
+│   │   │   ├── valid-context-analyses.md      # Valid context extraction examples
+│   │   │   └── invalid-context-analyses.md    # Context extraction anti-pattern examples
 │   │   └── tests/
 │   │       └── cases.yaml               # Test suite for context extraction validation
 │   └── jtbd-forces-analyzer/    # Four Forces Analyzer (Atomic Skill 7)
 │       ├── SKILL.md             # Main skill definition & frontmatter
 │       ├── references/
 │       │   └── four-forces-rules.md     # Push, Pull, Habit, and Anxiety rules
+│       ├── examples/
+│       │   ├── valid-four-forces-analyses.md   # Valid Four Forces analysis examples
+│       │   └── invalid-four-forces-analyses.md # Four Forces analysis anti-pattern examples
 │       └── tests/
 │           └── cases.yaml               # Test suite for Four Forces analysis validation
 └── integration/
-    └── project-status-update/    # Golden Path Integration Fixture
-        ├── README.md            # Fixture architecture & pipeline documentation
-        ├── 00-research-input.md # Synthetic research statements
-        ├── 01-job-definition.yaml # Skill 1 Output
-        ├── 02-job-map.yaml      # Skill 2 Output
-        ├── 03-desired-outcomes.yaml # Skill 3 Output
-        ├── 04-survey-input.json # Quantitative survey input
-        ├── 05-opportunity-results.json # Skill 4 Output (Script-generated)
-        ├── 06-strategy-assessment.yaml # Skill 5 Output (Insufficient evidence stopping)
-        └── validation.md        # Traceability & hash validation report
+    ├── project-status-update/              # Quantitative ODI Golden Path Fixture (Skill 1-5)
+    │   ├── README.md                      # Fixture architecture & pipeline documentation
+    │   ├── 00-research-input.md           # Synthetic research statements
+    │   ├── 01-job-definition.yaml         # Skill 1 Output
+    │   ├── 02-job-map.yaml                # Skill 2 Output
+    │   ├── 03-desired-outcomes.yaml       # Skill 3 Output
+    │   ├── 04-survey-input.json           # Quantitative survey input
+    │   ├── 05-opportunity-results.json   # Skill 4 Output (Script-generated)
+    │   ├── 06-strategy-assessment.yaml   # Skill 5 Output (Insufficient evidence stopping)
+    │   └── validation.md                  # Traceability & hash validation report
+    └── spreadsheet-to-reporting-service/   # Qualitative Christensen Golden Path Fixture (Skill 6-7)
+        ├── README.md                      # Qualitative fixture architecture & pipeline documentation
+        ├── 00-research-input.md           # Synthetic qualitative research quotes
+        ├── 01-context-analysis.yaml       # Skill 6 Output (Context & progress extraction)
+        ├── 02-four-forces-analysis.yaml   # Skill 7 Output (Push, Pull, Habit, Anxiety)
+        └── validation.md                  # ID traceability & evidence linkage report
 ```
 
 ---
@@ -113,8 +126,10 @@ All skills in this repository strictly adhere to core ODI principles:
 | **`jtbd-outcome-engineer`** | Formulate formulaic Desired Outcome Statements for a job map step | `v0.1` |
 | **`jtbd-opportunity-calculator`** | Compute quantitative ODI Opportunity Scores from survey ratings | `v0.1` |
 | **`jtbd-growth-strategist`** | Map opportunity landscapes and market evidence to growth strategies | `v0.1` |
-| **`jtbd-context-explorer`** | Extract qualitative circumstances, progress, and non-consumption evidence | `v0.2 (Draft)` |
-| **`jtbd-forces-analyzer`** | Organize switching evidence into Push, Pull, Habit, and Anxiety forces | `v0.2 (Draft)` |
+| **`jtbd-context-explorer`** | Extract qualitative circumstances, progress, and non-consumption evidence | `v0.2` |
+| **`jtbd-forces-analyzer`** | Organize switching evidence into Push, Pull, Habit, and Anxiety forces | `v0.2` |
+
+---
 
 ## ⚡ Quick Start
 
@@ -124,7 +139,7 @@ Validate the repository and run the end-to-end integration pipeline in 3 command
 # 1. Clone the repository
 git clone https://github.com/lishix520/jtbd-skills.git && cd jtbd-skills
 
-# 2. Run deterministic Opportunity Calculator script against the Golden Path Fixture
+# 2. Run deterministic Opportunity Calculator script against the Quantitative Golden Path Fixture
 python3 skills/jtbd-opportunity-calculator/scripts/calculate_opportunity.py \
   integration/project-status-update/04-survey-input.json > /tmp/calculated_out.json
 
@@ -132,7 +147,7 @@ python3 skills/jtbd-opportunity-calculator/scripts/calculate_opportunity.py \
 diff -u /tmp/calculated_out.json integration/project-status-update/05-opportunity-results.json
 ```
 
-For complete architecture details, pipeline contracts, and evidence hierarchies, see [ARCHITECTURE.md](./ARCHITECTURE.md).
+For complete architecture details, dual methodology pipelines, and evidence hierarchies, see [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 ---
 
