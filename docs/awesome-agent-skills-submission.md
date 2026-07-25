@@ -4,10 +4,14 @@ This document contains pre-formatted submission copy for listing **JTBD Skills**
 
 ---
 
-## 📌 Submission Details
+## 📌 Repository Metadata & About Section
 
 - **Name**: `jtbd-skills`
 - **Repository URL**: `https://github.com/lishix520/jtbd-skills`
+- **GitHub About Description**:
+  ```text
+  Find opportunities people will pay for with evidence-aware customer research skills for AI agents.
+  ```
 - **Recommended Category**: `Product & Market Research / Customer Discovery` or `Business & Strategy`
 - **License**: `MIT`
 
@@ -21,9 +25,9 @@ This document contains pre-formatted submission copy for listing **JTBD Skills**
 
 ---
 
-## 🏷️ Standard Discoverability Keywords
+## 🏷️ Standard Discoverability Keywords (Topics)
 
-When configuring repository tags or submitting metadata, use the following standardized search keywords:
+When configuring GitHub repository Topics or submitting directory tags, use the following search keywords:
 
 ```text
 customer-discovery

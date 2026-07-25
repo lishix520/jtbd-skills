@@ -147,117 +147,7 @@ For complete architecture details, dual methodology pipelines, and stopping rule
 
 ## 🛠️ For Builders & AI-Agent Users
 
-<details>
-<summary><b>📁 Repository Structure</b></summary>
-
-```text
-jtbd-skills/
-├── README.md
-├── LICENSE
-├── CONTRIBUTING.md
-├── CHANGELOG.md
-├── ARCHITECTURE.md
-├── principles/
-│   └── SKILL.md                 # Shared contracts, evidence rules, and cross-skill terminology
-├── skills/
-│   ├── jtbd-switch-interview/   # Turn customer conversations into better business questions
-│   │   ├── SKILL.md             # Main skill definition & frontmatter
-│   │   ├── references/
-│   │   │   └── switch-interview-rules.md # Non-leading interview rules & cheat sheet
-│   │   ├── examples/
-│   │   │   ├── valid-interview-guides.md   # Dual-output valid interview guides
-│   │   │   └── invalid-interview-guides.md # Anti-pattern interview guidance examples
-│   │   └── tests/
-│   │       └── cases.yaml               # Test suite for conversational interview validation
-│   ├── jtbd-job-definer/        # Core Functional Job Definer
-│   │   ├── SKILL.md             # Main skill definition & frontmatter
-│   │   ├── references/
-│   │   │   └── job-statement-rules.md   # Detailed syntax, scope, and resolution rules
-│   │   ├── examples/
-│   │   │   ├── valid-examples.md        # Valid core functional job statements
-│   │   │   └── invalid-examples.md      # Anti-pattern examples & rewrites
-│   │   └── tests/
-│   │       └── cases.yaml               # Test suite for agent validation & auditing
-│   ├── jtbd-job-mapper/         # Universal Job Mapper
-│   │   ├── SKILL.md             # Main skill definition & frontmatter
-│   │   ├── references/
-│   │   │   └── universal-job-map-rules.md # Stage boundaries & mapping rules
-│   │   ├── examples/
-│   │   │   ├── valid-job-maps.md        # Provisional valid job map examples
-│   │   │   └── invalid-job-maps.md      # Map-level anti-pattern examples
-│   │   └── tests/
-│   │       └── cases.yaml               # Test suite for job mapping validation
-│   ├── jtbd-outcome-engineer/   # Desired Outcome Engineer
-│   │   ├── SKILL.md             # Main skill definition & frontmatter
-│   │   ├── references/
-│   │   │   └── outcome-statement-rules.md # Syntax & metric rules
-│   │   ├── examples/
-│   │   │   ├── valid-outcomes.md        # Provisional desired outcome examples
-│   │   │   └── invalid-outcomes.md      # Anti-pattern outcome examples
-│   │   └── tests/
-│   │       └── cases.yaml               # Test suite for outcome validation
-│   ├── jtbd-opportunity-calculator/ # Opportunity Calculator
-│   │   ├── SKILL.md             # Main skill definition & frontmatter
-│   │   ├── references/
-│   │   │   └── opportunity-algorithm-rules.md # Mathematical formula & scale rules
-│   │   ├── scripts/
-│   │   │   └── calculate_opportunity.py       # Deterministic calculation script
-│   │   ├── templates/
-│   │   │   ├── survey-input-template.json     # Standard JSON survey input template
-│   │   │   ├── survey-input-template.csv      # Standard CSV survey input template
-│   │   │   └── survey-question-template.md    # Standard 1-10 survey question template
-│   │   ├── examples/
-│   │   │   ├── valid-calculations.md          # Valid calculation examples
-│   │   │   └── invalid-calculations.md        # Calculation anti-pattern examples
-│   │   └── tests/
-│   │       └── cases.yaml               # Test suite for score calculation validation
-│   ├── jtbd-growth-strategist/   # Growth Strategist
-│   │   ├── SKILL.md             # Main skill definition & frontmatter
-│   │   ├── references/
-│   │   │   └── growth-strategy-matrix-rules.md # Matrix prerequisites & evidence rules
-│   │   ├── examples/
-│   │   │   ├── valid-strategy-assessments.md   # Valid strategy evaluation examples
-│   │   │   └── invalid-strategy-assessments.md # Strategy evaluation anti-pattern examples
-│   │   └── tests/
-│   │       └── cases.yaml               # Test suite for strategy assessment validation
-│   ├── jtbd-context-explorer/   # Context Explorer
-│   │   ├── SKILL.md             # Main skill definition & frontmatter
-│   │   ├── references/
-│   │   │   └── context-exploration-rules.md # Circumstance & progress extraction rules
-│   │   ├── examples/
-│   │   │   ├── valid-context-analyses.md      # Valid context extraction examples
-│   │   │   └── invalid-context-analyses.md    # Context extraction anti-pattern examples
-│   │   └── tests/
-│   │       └── cases.yaml               # Test suite for context extraction validation
-│   └── jtbd-forces-analyzer/    # Four Forces Analyzer
-│       ├── SKILL.md             # Main skill definition & frontmatter
-│       ├── references/
-│       │   └── four-forces-rules.md     # Push, Pull, Habit, and Anxiety rules
-│       ├── examples/
-│       │   ├── valid-four-forces-analyses.md   # Valid Four Forces analysis examples
-│       │   └── invalid-four-forces-analyses.md # Four Forces analysis anti-pattern examples
-│       └── tests/
-│           └── cases.yaml               # Test suite for Four Forces analysis validation
-└── integration/
-    ├── project-status-update/              # Quantitative ODI Golden Path Fixture (Skill 1-5)
-    │   ├── README.md                      # Fixture architecture & pipeline documentation
-    │   ├── 00-research-input.md           # Synthetic research statements
-    │   ├── 01-job-definition.yaml         # Skill 1 Output
-    │   ├── 02-job-map.yaml                # Skill 2 Output
-    │   ├── 03-desired-outcomes.yaml       # Skill 3 Output
-    │   ├── 04-survey-input.json           # Quantitative survey input
-    │   ├── 05-opportunity-results.json   # Skill 4 Output (Script-generated)
-    │   ├── 06-strategy-assessment.yaml   # Skill 5 Output (Insufficient evidence stopping)
-    │   └── validation.md                  # Traceability & hash validation report
-    └── spreadsheet-to-reporting-service/   # Qualitative Christensen Golden Path Fixture (Skill 6-7)
-        ├── README.md                      # Qualitative fixture architecture & pipeline documentation
-        ├── 00-research-input.md           # Synthetic qualitative research quotes
-        ├── 01-context-analysis.yaml       # Skill 6 Output (Context & progress extraction)
-        ├── 02-four-forces-analysis.yaml   # Skill 7 Output (Push, Pull, Habit, Anxiety)
-        └── validation.md                  # ID traceability & evidence linkage report
-```
-
-</details>
+Browse the repository structure in the [GitHub file tree](./skills/).
 
 ---
 
@@ -279,11 +169,22 @@ jtbd-skills/
 
 ### 🧪 Verify the Repository
 
-Clone the repository and run deterministic validation tests:
+Clone the repository:
 
 ```bash
-git clone https://github.com/lishix520/jtbd-skills.git && cd jtbd-skills
-python3 skills/jtbd-opportunity-calculator/scripts/calculate_opportunity.py integration/project-status-update/04-survey-input.json > /tmp/calculated_out.json && diff -u /tmp/calculated_out.json integration/project-status-update/05-opportunity-results.json
+git clone https://github.com/lishix520/jtbd-skills.git
+cd jtbd-skills
+```
+
+Run deterministic calculation and golden output diff verification:
+
+```bash
+python3 skills/jtbd-opportunity-calculator/scripts/calculate_opportunity.py \
+  integration/project-status-update/04-survey-input.json \
+  > /tmp/calculated_out.json
+
+diff -u /tmp/calculated_out.json \
+  integration/project-status-update/05-opportunity-results.json
 ```
 
 ---

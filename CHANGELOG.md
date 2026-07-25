@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.4.4] - 2026-07-25
+
+### Fixed
+- **Clean Repository Structure Link**: Replaced bulky ASCII tree block in `README.md` with a concise link (`Browse the repository structure in the GitHub file tree.`).
+- **Robust Verification Commands**: Split `README.md` repository verification into two bullet-proof, easy-to-copy Bash code blocks.
+- **GitHub About & Submission Alignment**: Updated `docs/awesome-agent-skills-submission.md` with official GitHub About description ("Find opportunities people will pay for with evidence-aware customer research skills for AI agents.") and search intent Topics.
+
+---
+
 ## [0.4.3] - 2026-07-25
 
 ### Added
