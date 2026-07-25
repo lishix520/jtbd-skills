@@ -141,7 +141,8 @@ git clone https://github.com/lishix520/jtbd-skills.git && cd jtbd-skills
 
 # 2. Run deterministic Opportunity Calculator script against the Quantitative Golden Path Fixture
 python3 skills/jtbd-opportunity-calculator/scripts/calculate_opportunity.py \
-  integration/project-status-update/04-survey-input.json > /tmp/calculated_out.json
+  integration/project-status-update/04-survey-input.json \
+  > /tmp/calculated_out.json
 
 # 3. Verify script calculation against golden output
 diff -u /tmp/calculated_out.json integration/project-status-update/05-opportunity-results.json

@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.2.1] - 2026-07-25
+
+### Fixed
+- **Quick Start Formatting**: Formatted multi-line Bash continuation commands in `README.md` to prevent double-backslash copy-paste errors.
+
+---
+
 ## [0.2.0] - 2026-07-25
 
 ### Added
