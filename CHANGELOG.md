@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.5.4] - 2026-07-25
+
+### Fixed
+- **Clean Raw Markdown Format Cleanup**: Re-created `README.md` cleanly without string escaping, removing all accidental backslash escapes (`\#`, `\*\*`, `\[`), and verified zero escaped backslashes (`grep -nE '\\\\[#*\[\]`]' README.md`). Single-line commands provided for Verify section.
+
+---
+
 ## [0.5.3] - 2026-07-25
 
 ### Fixed
