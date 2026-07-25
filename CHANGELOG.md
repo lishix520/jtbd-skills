@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.5.1] - 2026-07-25
+
+### Fixed
+- **Single Authoritative Evidence Protocol Path**: Consolidated and verified `principles/evidence-model.md` as the single authoritative protocol path across `opportunity-discovery/SKILL.md`, `README.md`, and `ARCHITECTURE.md`.
+- **Refined Quantitative Routing Matrix**: Split broad quantitative routing in `opportunity-discovery` into 3 precise rows: `ready_for_outcome_ranking` (`jtbd-opportunity-calculator`), `ready_for_strategy_assessment` (`jtbd-growth-strategist`), and `partial_market_evidence` (requires outcome survey & segment evidence).
+- **Added 5-Dimension Confidence Criteria**: Updated `principles/evidence-model.md` with explicit confidence evaluation criteria (Traceability, Relevance, Coverage, Consistency, Decision Alignment) to ensure quantitative data is not automatically assumed to be high confidence.
+- **GitHub About Alignment**: Updated GitHub repository About description to `Find opportunities people will pay for with evidence-aware product discovery skills for AI agents.`.
+
+---
+
 ## [0.5.0] - 2026-07-25
 
 ### Added

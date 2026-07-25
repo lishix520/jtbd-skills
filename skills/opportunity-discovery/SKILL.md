@@ -23,7 +23,7 @@ description: Top-level evidence-aware orchestrator and router for product discov
   1. **`idea_only`**: Raw product/feature idea with zero customer facts.
   2. **`customer_signal`**: Raw customer quotes, support tickets, reviews, or sales feedback.
   3. **`research_evidence`**: Interview transcripts or structured research notes.
-  4. **`quantitative_evidence`**: Survey ratings ($1\text{--}10$) or market price/cost data.
+  4. **`quantitative_evidence`**: Outcome survey ratings ($1\text{--}10$) or market price/cost data.
 
 ## What you get
 1. **Decision Brief**: A clear 5-part summary of current readiness stage, direct evidence vs hypotheses, what can and cannot be concluded, and the recommended action.
@@ -48,7 +48,9 @@ description: Top-level evidence-aware orchestrator and router for product discov
 | **`idea_only`** | Solution idea or feature proposal; no customer facts. | `Idea only` (Do not build yet; validate problem existence). | **`jtbd-switch-interview`** (Formulate interview questions for target users). |
 | **`customer_signal`** | Reviews, support tickets, complaints, or feature requests. | `Anecdotal signal` (Extract real-world context & workarounds). | **`jtbd-context-explorer`** (Extract context, constraints, and workarounds). |
 | **`research_evidence`** | Interview transcripts containing current tool & prospective tool. | `Evidence emerging` (Map customer switching forces or functional jobs). | **`jtbd-forces-analyzer`** or **`jtbd-job-definer`**. |
-| **`quantitative_evidence`** | Structured 1-10 survey ratings or price/cost/performance data. | `Decision-ready for next step` (Compute opportunity rankings). | **`jtbd-opportunity-calculator`** or **`jtbd-growth-strategist`**. |
+| **`ready_for_outcome_ranking`** | Structured $1\text{--}10$ Importance & Satisfaction outcome survey ratings. | `Decision-ready for next step` (Compute opportunity rankings). | **`jtbd-opportunity-calculator`** (Compute mathematical Opportunity Scores). |
+| **`ready_for_strategy_assessment`** | Ranked outcomes + target segment + price/cost/performance evidence. | `Decision-ready for strategy` (Evaluate growth strategy matrix). | **`jtbd-growth-strategist`** (Evaluate growth strategy prerequisites). |
+| **`partial_market_evidence`** | Price, cost, or competitor materials without outcome survey ratings or target segment. | `Not decision-ready` (Cannot conclude strategy; missing survey/segment). | State missing outcome survey & segment evidence; route to **`jtbd-outcome-engineer`**. |
 
 ---
 
@@ -60,7 +62,7 @@ description: Top-level evidence-aware orchestrator and router for product discov
 ### 🚦 Current Assessment
 - **Readiness Stage**: [Idea only | Anecdotal signal | Evidence emerging | Decision-ready for next step]
 - **Current Assessment**: [Actionable assessment statement, e.g., "Do not start development yet; validate problem frequency and current workarounds."]
-- **Confidence Rating**: [low | medium | high]
+- **Confidence Rating**: [low | medium | high] (Evaluated across Traceability, Relevance, Coverage, Consistency, Decision Alignment)
 
 ### ✅ What is Known (Direct Evidence)
 - [Source-linked customer quote or verified fact]
