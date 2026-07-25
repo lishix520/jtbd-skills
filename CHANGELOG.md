@@ -10,7 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.4.2] - 2026-07-25
 
 ### Fixed
-- **Folded Repository Tree**: Folded the README repository tree under `<details><summary><b>📁 Repository Structure</b></summary></details>` by removing a stray orphan tag.
+- **Repository Tree Folding**: Folded the README repository tree under `<details><summary><b>📁 Repository Structure</b></summary></details>` by removing a stray orphan tag.
+- **Architecture Synchronization**: Updated `ARCHITECTURE.md` to cover all 8 atomic skills and included `jtbd-switch-interview` in the dual methodology pipelines overview diagram and contract matrix.
+- **Cleaned Internal Skill Numbering**: Removed internal `Skill 8` and `Atomic Skill 1–7` labels from `README.md` and updated Overview status badges to `v0.4` baseline.
 
 ---
 

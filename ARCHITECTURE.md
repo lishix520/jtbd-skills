@@ -1,6 +1,6 @@
 # JTBD Skills Suite Architecture & Pipeline Contracts
 
-This document details the architectural design, dual methodological pipelines, evidence discipline, and contract boundaries across the 7 atomic skills in the **JTBD Skills Suite**.
+This document details the architectural design, dual methodological pipelines, evidence discipline, and contract boundaries across the 8 atomic skills in the **JTBD Skills Suite**.
 
 ---
 
@@ -15,19 +15,19 @@ The repository supports two distinct, complementary Jobs-to-be-Done methodologic
             ▼                                                               ▼
    【 Christensen Qualitative Path 】                               【 Ulwick Quantitative ODI Path 】
             │                                                               │
-   6. jtbd-context-explorer                                         1. jtbd-job-definer
-     (Circumstance, Progress,                                         (Solution-Free Core Functional Job)
-      Non-Consumption, Feature Requests)                                    │
+   8. jtbd-switch-interview                                         1. jtbd-job-definer
+     (Interactive Interview Guide, Next Question,                     (Solution-Free Core Functional Job)
+      Vague Probe, Forbidden Questions)                                     │
             │                                                               ▼
             ▼                                                       2. jtbd-job-mapper
-   7. jtbd-forces-analyzer                                            (Universal Job Map & Flow Edges)
-     (Push, Pull, Habit, Anxiety,                                           │
-      Big Hire / Little Hire Signals)                                        ▼
-                                                                    3. jtbd-outcome-engineer
-                                                                      (Formulaic Desired Outcomes)
-                                                                            │
-                                                                            ▼
-                                                                    4. jtbd-opportunity-calculator
+   6. jtbd-context-explorer                                           (Universal Job Map & Flow Edges)
+     (Circumstance, Progress, Workarounds,                                  │
+      Non-Consumption, Feature Requests)                                    ▼
+            │                                                       3. jtbd-outcome-engineer
+            ▼                                                         (Formulaic Desired Outcomes)
+   7. jtbd-forces-analyzer                                                  │
+     (Push, Pull, Habit, Anxiety,                                           ▼
+      Big Hire / Little Hire Signals)                               4. jtbd-opportunity-calculator
                                                                       (Opportunity Scores & Script)
                                                                             │
                                                                             ▼
@@ -41,13 +41,14 @@ The repository supports two distinct, complementary Jobs-to-be-Done methodologic
 
 | Skill Name | Pipeline | Expected Input Contract | Output Contract | Evidence Discipline & Stopping Rule |
 | :--- | :--- | :--- | :--- | :--- |
-| **`jtbd-job-definer`** | Ulwick ODI | Customer research quotes or candidate statements | Solution-free Core Functional Job | Rejects solutions, features, and outcomes. Marks unverified jobs as `candidate`. |
-| **`jtbd-job-mapper`** | Ulwick ODI | Core Functional Job + Job Executor | Universal Job Map (8 categories) | Labels unverified steps as `hypothesis`/`domain_rationale`. Leaves unsupported stages as `unknown`. |
-| **`jtbd-outcome-engineer`** | Ulwick ODI | Core Job + Job Executor + Single `job_map_step` | Formulaic Desired Outcomes | Bans abstract "error" targets and quality buzzwords. Binds metrics to specific step. |
-| **`jtbd-opportunity-calculator`** | Ulwick ODI | Structured survey metadata ($1\_10$) + Numerical ratings | Quantitative Opportunity Scores | **Script-driven**. Rejects missing numbers; never invents ratings from qualitative text. |
-| **`jtbd-growth-strategist`** | Ulwick ODI | Opportunity results + segment + price/cost/performance evidence | Growth Strategy Assessment | **Stops at `insufficient_evidence`** if price/cost/performance data is missing. Never forces a strategy. |
-| **`jtbd-context-explorer`** | Christensen | Interview excerpts, reviews, support tickets, or feedback | Qualitative Context & Progress | Separates feature requests, policy constraints, and emotional/social signals. Never defines Core Job. |
-| **`jtbd-forces-analyzer`** | Christensen | Context explorer output or switching interview excerpts | Four Forces (Push, Pull, Habit, Anxiety) | **Qualitative hypothesis only**. Never calculates purchase probability or numerical force formulas. |
+| **`jtbd-switch-interview`** | Christensen | Raw customer quote, feedback, or empty starting target | Non-leading primary question, vague probe, forbidden question, known/assumed/missing summary | Focuses on past events; forbids leading feature questions or future speculation. |
+| **`jtbd-context-explorer`** | Christensen | Interview excerpts, reviews, support tickets, or feedback | Qualitative context, workarounds, constraints, human summary | Separates feature requests, policy constraints, and emotional/social signals. Never defines Core Job. |
+| **`jtbd-forces-analyzer`** | Christensen | Context explorer output or raw switching interview excerpts | Four Forces (Push, Pull, Habit, Anxiety) & human summary | **Qualitative hypothesis only**. Stops at `insufficient_switching_context` if current/prospective tools are missing. |
+| **`jtbd-job-definer`** | Ulwick ODI | Customer research quotes, feature requests, or candidate statements | Solution-free Core Functional Job & plain-language breakdown | Rejects solutions, features, and outcomes. Marks unverified jobs as `candidate`. |
+| **`jtbd-job-mapper`** | Ulwick ODI | Core Functional Job + Job Executor (or Candidate Job) | Universal Job Map (8 categories) & journey summary | Labels unverified steps as `hypothesis`/`domain_rationale`. Leaves unsupported stages as `unknown`. |
+| **`jtbd-outcome-engineer`** | Ulwick ODI | Core Job + Job Executor + Single `job_map_step` (or pain point) | Formulaic Desired Outcomes & qualitative/quantitative handoffs | Bans abstract "error" targets and quality buzzwords. Binds metrics to specific step. |
+| **`jtbd-opportunity-calculator`** | Ulwick ODI | Structured survey metadata ($1\_10$) + Numerical ratings | Quantitative Opportunity Scores & executive summary | **Script-driven**. Rejects missing numbers; never invents ratings from qualitative text. |
+| **`jtbd-growth-strategist`** | Ulwick ODI | Opportunity results + segment + price/cost/performance evidence | Growth Strategy Assessment & decision readiness summary | **Stops at `insufficient_evidence`** if price/cost/performance data is missing. Never forces a strategy. |
 
 ---
 

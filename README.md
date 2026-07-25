@@ -125,6 +125,8 @@ JTBD Skills 帮你发现市场机会、做出更好卖的产品和服务，并�
 - 这是偶发抱怨，还是值得投入解决的问题
 - 对方到底会为怎样的改进付钱或切换
 
+</details>
+
 ---
 
 ## ⚙️ How It Works (Methodology Engine)
@@ -158,7 +160,7 @@ jtbd-skills/
 ├── principles/
 │   └── SKILL.md                 # Shared contracts, evidence rules, and cross-skill terminology
 ├── skills/
-│   ├── jtbd-switch-interview/   # Turn customer conversations into better business questions (Skill 8)
+│   ├── jtbd-switch-interview/   # Turn customer conversations into better business questions
 │   │   ├── SKILL.md             # Main skill definition & frontmatter
 │   │   ├── references/
 │   │   │   └── switch-interview-rules.md # Non-leading interview rules & cheat sheet
@@ -167,7 +169,7 @@ jtbd-skills/
 │   │   │   └── invalid-interview-guides.md # Anti-pattern interview guidance examples
 │   │   └── tests/
 │   │       └── cases.yaml               # Test suite for conversational interview validation
-│   ├── jtbd-job-definer/        # Core Functional Job Definer (Atomic Skill 1)
+│   ├── jtbd-job-definer/        # Core Functional Job Definer
 │   │   ├── SKILL.md             # Main skill definition & frontmatter
 │   │   ├── references/
 │   │   │   └── job-statement-rules.md   # Detailed syntax, scope, and resolution rules
@@ -176,7 +178,7 @@ jtbd-skills/
 │   │   │   └── invalid-examples.md      # Anti-pattern examples & rewrites
 │   │   └── tests/
 │   │       └── cases.yaml               # Test suite for agent validation & auditing
-│   ├── jtbd-job-mapper/         # Universal Job Mapper (Atomic Skill 2)
+│   ├── jtbd-job-mapper/         # Universal Job Mapper
 │   │   ├── SKILL.md             # Main skill definition & frontmatter
 │   │   ├── references/
 │   │   │   └── universal-job-map-rules.md # Stage boundaries & mapping rules
@@ -185,7 +187,7 @@ jtbd-skills/
 │   │   │   └── invalid-job-maps.md      # Map-level anti-pattern examples
 │   │   └── tests/
 │   │       └── cases.yaml               # Test suite for job mapping validation
-│   ├── jtbd-outcome-engineer/   # Desired Outcome Engineer (Atomic Skill 3)
+│   ├── jtbd-outcome-engineer/   # Desired Outcome Engineer
 │   │   ├── SKILL.md             # Main skill definition & frontmatter
 │   │   ├── references/
 │   │   │   └── outcome-statement-rules.md # Syntax & metric rules
@@ -194,7 +196,7 @@ jtbd-skills/
 │   │   │   └── invalid-outcomes.md      # Anti-pattern outcome examples
 │   │   └── tests/
 │   │       └── cases.yaml               # Test suite for outcome validation
-│   ├── jtbd-opportunity-calculator/ # Opportunity Calculator (Atomic Skill 4)
+│   ├── jtbd-opportunity-calculator/ # Opportunity Calculator
 │   │   ├── SKILL.md             # Main skill definition & frontmatter
 │   │   ├── references/
 │   │   │   └── opportunity-algorithm-rules.md # Mathematical formula & scale rules
@@ -209,7 +211,7 @@ jtbd-skills/
 │   │   │   └── invalid-calculations.md        # Calculation anti-pattern examples
 │   │   └── tests/
 │   │       └── cases.yaml               # Test suite for score calculation validation
-│   ├── jtbd-growth-strategist/   # Growth Strategist (Atomic Skill 5)
+│   ├── jtbd-growth-strategist/   # Growth Strategist
 │   │   ├── SKILL.md             # Main skill definition & frontmatter
 │   │   ├── references/
 │   │   │   └── growth-strategy-matrix-rules.md # Matrix prerequisites & evidence rules
@@ -218,7 +220,7 @@ jtbd-skills/
 │   │   │   └── invalid-strategy-assessments.md # Strategy evaluation anti-pattern examples
 │   │   └── tests/
 │   │       └── cases.yaml               # Test suite for strategy assessment validation
-│   ├── jtbd-context-explorer/   # Context Explorer (Atomic Skill 6)
+│   ├── jtbd-context-explorer/   # Context Explorer
 │   │   ├── SKILL.md             # Main skill definition & frontmatter
 │   │   ├── references/
 │   │   │   └── context-exploration-rules.md # Circumstance & progress extraction rules
@@ -227,7 +229,7 @@ jtbd-skills/
 │   │   │   └── invalid-context-analyses.md    # Context extraction anti-pattern examples
 │   │   └── tests/
 │   │       └── cases.yaml               # Test suite for context extraction validation
-│   └── jtbd-forces-analyzer/    # Four Forces Analyzer (Atomic Skill 7)
+│   └── jtbd-forces-analyzer/    # Four Forces Analyzer
 │       ├── SKILL.md             # Main skill definition & frontmatter
 │       ├── references/
 │       │   └── four-forces-rules.md     # Push, Pull, Habit, and Anxiety rules
@@ -263,15 +265,15 @@ jtbd-skills/
 
 | Skill Name | Scope | Status |
 | :--- | :--- | :--- |
-| **`principles`** | Cross-skill contract, terminology & evidence rules | `v0.1` |
-| **`jtbd-switch-interview`** | Turn customer conversations into better business questions | `v0.3` |
-| **`jtbd-job-definer`** | Extract, audit, and rewrite solution-free Core Functional Jobs | `v0.1` |
-| **`jtbd-job-mapper`** | Deconstruct defined jobs into solution-free Universal Job Maps | `v0.1` |
-| **`jtbd-outcome-engineer`** | Formulate formulaic Desired Outcome Statements for a job map step | `v0.1` |
-| **`jtbd-opportunity-calculator`** | Compute quantitative ODI Opportunity Scores from survey ratings | `v0.1` |
-| **`jtbd-growth-strategist`** | Map opportunity landscapes and market evidence to growth strategies | `v0.1` |
-| **`jtbd-context-explorer`** | Extract qualitative circumstances, progress, and non-consumption evidence | `v0.2` |
-| **`jtbd-forces-analyzer`** | Organize switching evidence into Push, Pull, Habit, and Anxiety forces | `v0.2` |
+| **`principles`** | Cross-skill contract, terminology & evidence rules | `v0.4` |
+| **`jtbd-switch-interview`** | Turn customer conversations into better business questions | `v0.4` |
+| **`jtbd-job-definer`** | Extract, audit, and rewrite solution-free Core Functional Jobs | `v0.4` |
+| **`jtbd-job-mapper`** | Deconstruct defined jobs into solution-free Universal Job Maps | `v0.4` |
+| **`jtbd-outcome-engineer`** | Formulate formulaic Desired Outcome Statements for a job map step | `v0.4` |
+| **`jtbd-opportunity-calculator`** | Compute quantitative ODI Opportunity Scores from survey ratings | `v0.4` |
+| **`jtbd-growth-strategist`** | Map opportunity landscapes and market evidence to growth strategies | `v0.4` |
+| **`jtbd-context-explorer`** | Extract qualitative circumstances, progress, and non-consumption evidence | `v0.4` |
+| **`jtbd-forces-analyzer`** | Organize switching evidence into Push, Pull, Habit, and Anxiety forces | `v0.4` |
 
 ---
 
