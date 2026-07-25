@@ -1,4 +1,82 @@
-# 找到人们愿意付钱的机会。
+# Find Opportunities People Will Pay For.
+
+JTBD Skills helps you discover market opportunities, build products and services that sell better, and generate more revenue.
+
+Use it to:
+- Find unaddressed needs
+- Validate whether an idea is worth building
+- Improve existing products or services
+- Understand why users adopt, switch, or stay
+- Identify value customers are willing to pay a premium for
+- Decide what to do next
+
+[中文说明 / Chinese Section](#-找到人们愿意付钱的机会中文说明)
+
+---
+
+## 🎯 When You Can Use It
+
+- **New Idea**: You have a new product idea, but aren't sure if anyone truly needs it
+- **Feature Overload**: Users request many features, but you don't know which to build first
+- **Sales Friction**: Products aren't selling well, and you need to understand why prospects aren't buying
+- **Customer Churn**: Customers are leaving or not renewing, and you need to uncover why
+- **Pricing Strategy**: You want to raise prices or launch a premium tier, but don't know if customers will pay
+- **Growth Directions**: You're looking for new growth opportunities without relying on guesswork
+
+---
+
+## 💡 See How It Helps You
+
+**Someone tells you:**
+
+> "I spend two hours every Friday manually copying updates into spreadsheets. I really wish Jira had a button to auto-generate weekly reports."
+
+**Don't build the Jira feature right away. Ask first:**
+
+> "Tell me about the last time that became a major pain—what was happening right before you started, and what took place between starting the report and sending it?"
+
+**This helps you see clearly:**
+
+- Where they actually get stuck in their workflow
+- Why their current approach is no longer sufficient
+- Whether this is a minor complaint or a problem worth solving
+- What specific improvement they would actually pay for or switch solutions to adopt
+
+---
+
+## 🚀 Start Here
+
+Paste any of the following into an AI tool supporting Agent Skills:
+
+- A customer quote or feedback statement
+- An interview transcript or discovery notes
+- A negative or positive review
+- A sales or customer support conversation
+- A product, service, or feature idea you're evaluating
+
+**Say directly to the AI:**
+
+> *"Help me understand the underlying need behind this, and tell me what I should ask next."*
+
+**Or:**
+
+> *"I want to know if this idea is worth building. Tell me what evidence is missing, who to talk to, and how to validate it next."*
+
+See full use cases and examples: [examples/business-use-cases.md](./examples/business-use-cases.md)
+
+---
+
+## 🔍 Choose Based On Your Need
+
+| What You Want To Do | What You Get | Underlying Skill |
+| :--- | :--- | :--- |
+| **I don't know what to ask next** | One natural, non-leading follow-up question; why it matters; how to probe vague answers; what NOT to ask yet | `jtbd-switch-interview` |
+| **I have customer feedback, but don't know what it means** | Distinction between current approaches, real-world circumstances, constraints, feature requests, and unverified assumptions | `jtbd-context-explorer` |
+| **Users are unhappy, but still won't buy, switch, or renew** | Triggers causing change, inertia keeping them, anxiety about new solutions, and next validation steps | `jtbd-forces-analyzer` |
+
+---
+
+## 🌐 找到人们愿意付钱的机会。（中文说明）
 
 JTBD Skills 帮你发现市场机会、做出更好卖的产品和服务，并赚到更多钱。
 
@@ -10,9 +88,10 @@ JTBD Skills 帮你发现市场机会、做出更好卖的产品和服务，并�
 - 找出客户愿意多付钱的价值
 - 决定下一步该做什么
 
----
+<details>
+<summary><b>展开阅读中文详细指南与场景</b></summary>
 
-## 🎯 你可以在这些时候用它
+### 🎯 你可以在这些时候用它
 
 - **有新想法**：你有一个新想法，但不确定有没有人真的需要
 - **功能繁杂**：用户提了很多功能需求，但你不知道该做哪个
@@ -21,9 +100,7 @@ JTBD Skills 帮你发现市场机会、做出更好卖的产品和服务，并�
 - **尝试提价**：想提高价格、做新套餐或新服务，但不知道用户愿不愿意多付钱
 - **寻找增长**：想找一个新的增长方向，却不想只凭感觉下注
 
----
-
-## 💡 看看它怎么帮你
+### 💡 看看它怎么帮你
 
 **有人对你说：**
 
@@ -40,53 +117,23 @@ JTBD Skills 帮你发现市场机会、做出更好卖的产品和服务，并�
 - 这是偶发抱怨，还是值得投入解决的问题
 - 对方到底会为怎样的改进付钱或切换
 
----
-
-## 🚀 从这里开始
-
-把以下任一种内容交给支持 Agent Skills 的 AI 工具：
-
-- 一句客户反馈
-- 一段访谈记录
-- 一条差评或好评
-- 一次销售或客服对话
-- 你正在考虑做的产品、服务或功能想法
-
-**直接对 AI 说：**
-
-> *"帮我判断这背后有什么值得解决的需求，以及我下一步该问什么。"*
-
-**或者：**
-
-> *"我想知道这个想法值不值得做。请告诉我还缺什么信息、该找谁聊、下一步怎么验证。"*
-
-查看完整使用场景与案例：[examples/business-use-cases.md](./examples/business-use-cases.md)
-
----
-
-## 🔍 根据你的需要选择
-
-| 用户想做的事 | 用户得到的结果 | 底层能力 |
-| :--- | :--- | :--- |
-| **我不知道下一句该问什么** | 一条自然、非诱导的后续问题；为什么问；答案含糊时怎么追问；现在别问什么 | `jtbd-switch-interview` |
-| **我有很多客户反馈，但不知道真正说明了什么** | 当前做法、真实场景、限制条件、功能请求与待验证假设的区分 | `jtbd-context-explorer` |
-| **用户明明不满意，为什么还是不买、不换或不续费** | 促使改变的原因、留下的惯性、换新方案的顾虑与下一步验证点 | `jtbd-forces-analyzer` |
+</details>
 
 ---
 
 ## ⚙️ How It Works (Methodology Engine)
 
-JTBD Skills 结合了两种互补的创新与市场研究方法论：
+JTBD Skills combines two complementary research and innovation methodologies:
 
-1. **定性探索与切换动力 (Christensen & Moesta Path)**：
+1. **Qualitative Context & Switching Forces (Christensen & Moesta Path)**:
    `Context Explorer` ──► `Four Forces Analyzer` ──► `Switch Interview Guide`
-   *理解用户为什么买、切换、留下来或离开。*
+   *Understand why people adopt, switch, stay, or leave.*
 
-2. **定量未满足需求与策略评估 (Ulwick ODI Path)**：
+2. **Quantitative Underserved Needs & Strategy Matrix (Ulwick ODI Path)**:
    `Job Definer` ──► `Job Mapper` ──► `Outcome Engineer` ──► `Opportunity Calculator` ──► `Growth Strategist`
-   *计算未满足需求量化分值（Opp Score），决定产品与商业策略。*
+   *Calculate Opportunity Scores ($Opp \ge 10.0$) and dictate product/business strategy.*
 
-想了解完整方法论架构、输入输出契约与止步规则，请参阅 [ARCHITECTURE.md](./ARCHITECTURE.md)。
+For complete architecture details, dual methodology pipelines, and stopping rules, see [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 ---
 

@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.3.1] - 2026-07-25
+
+### Fixed
+- **Bilingual Readme Optimization**: Set English as the primary default presentation in `README.md` ("Find Opportunities People Will Pay For") with the Chinese translation ("找到人们愿意付钱的机会") integrated directly below as an optional section.
+
+---
+
 ## [0.3.0] - 2026-07-25
 
 ### Added
