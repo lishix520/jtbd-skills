@@ -1,0 +1,59 @@
+version: 0.1
+
+cases:
+  - id: generate-starting-interview-plan
+    input: {}
+    expected:
+      analysis_status: plan_generated
+      next_question_type: event_anchor
+      must_contain_sections:
+        - "What to Ask Next"
+        - "Why This Question Matters"
+        - "What NOT to Ask Right Now"
+      must_not_ask_future_speculation: true
+
+  - id: redirect-feature-request-to-event
+    input:
+      sources:
+        - id: feedback-01
+          type: feedback
+          text: "I really need a Jira button that automatically creates my weekly status report."
+    expected:
+      analysis_status: evidence_extracted
+      interview_focus: first_thought
+      next_question_type: current_workaround
+      forbidden_question_contains:
+        - feature
+      must_not_ask:
+        - "What fields should the button have?"
+        - "How would you like the button to work?"
+
+  - id: probe-push-trigger-from-complaint
+    input:
+      sources:
+        - id: interview-01
+          type: interview
+          text: "I spend two hours every Thursday combining spreadsheets from team leads."
+    expected:
+      analysis_status: evidence_extracted
+      interview_focus: passive_looking
+      next_question_type: push_trigger
+      primary_question_contains:
+        - last time
+      must_not_ask:
+        - "Would you buy an automated tool?"
+
+  - id: probe-anxiety-on-switching-hesitation
+    input:
+      sources:
+        - id: interview-01
+          type: interview
+          text: "We evaluated a cloud reporting service last month, but we hesitated to sign up."
+    expected:
+      analysis_status: evidence_extracted
+      interview_focus: decision
+      next_question_type: anxiety_probe
+      primary_question_contains:
+        - worried
+      must_not_ask:
+        - "Don't you think the features are worth it?"

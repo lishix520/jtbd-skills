@@ -8,6 +8,22 @@ Designed according to the [Agent Skills Specification](https://github.com/agents
 
 ---
 
+## 💬 Start Here: Understand Why People Change
+
+Paste any customer quote or feedback into your Agent, then ask:
+
+> **"Help me choose the next interview question."**
+
+The **Interview Guide (`jtbd-switch-interview`)** immediately gives you:
+1. **One non-leading question** to speak out loud.
+2. **Why it matters** in 2 simple sentences.
+3. **A follow-up probe** if the answer is vague.
+4. **⚠️ What NOT to ask right now** (avoiding feature discussions and leading queries).
+
+Behind the scenes, structured methodology engines (`context-explorer`, `forces-analyzer`, `job-definer`, `opportunity-calculator`, `growth-strategist`) maintain strict evidence contracts for deep analysis.
+
+---
+
 ## 📁 Repository Structure (v0.2 Baseline)
 
 ```text
@@ -20,6 +36,15 @@ jtbd-skills/
 ├── principles/
 │   └── SKILL.md                 # Shared contracts, evidence rules, and cross-skill terminology
 ├── skills/
+│   ├── jtbd-switch-interview/   # Interview Guide for Why People Change (Skill 8 - Interactive UX)
+│   │   ├── SKILL.md             # Main skill definition & frontmatter
+│   │   ├── references/
+│   │   │   └── switch-interview-rules.md # Non-leading interview rules & cheat sheet
+│   │   ├── examples/
+│   │   │   ├── valid-interview-guides.md   # Dual-output valid interview guides
+│   │   │   └── invalid-interview-guides.md # Anti-pattern interview guidance examples
+│   │   └── tests/
+│   │       └── cases.yaml               # Test suite for conversational interview validation
 │   ├── jtbd-job-definer/        # Core Functional Job Definer (Atomic Skill 1)
 │   │   ├── SKILL.md             # Main skill definition & frontmatter
 │   │   ├── references/
@@ -121,6 +146,7 @@ All skills in this repository strictly adhere to core ODI principles:
 | Skill Name | Scope | Status |
 | :--- | :--- | :--- |
 | **`principles`** | Cross-skill contract, terminology & evidence rules | `v0.1` |
+| **`jtbd-switch-interview`** | Interactive Interview Guide: "Why People Change" (Conversational UX) | `v0.2 (Draft)` |
 | **`jtbd-job-definer`** | Extract, audit, and rewrite solution-free Core Functional Jobs | `v0.1` |
 | **`jtbd-job-mapper`** | Deconstruct defined jobs into solution-free Universal Job Maps | `v0.1` |
 | **`jtbd-outcome-engineer`** | Formulate formulaic Desired Outcome Statements for a job map step | `v0.1` |

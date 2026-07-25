@@ -1,0 +1,109 @@
+---
+name: jtbd-switch-interview
+description: Interactive interview guide and question generator for understanding why customers change behaviors, buy products, or switch solutions. Use when asked to design a customer interview, formulate non-leading follow-up questions, reconstruct a decision timeline, or avoid leading feature questions during customer discovery. Do not use to define a Core Functional Job, calculate opportunity scores, or recommend product strategy.
+---
+
+# JTBD Switch Interview Guide
+
+**Interview Guide for Understanding Why People Change**
+
+Guide interviewers through a natural, non-leading customer discovery conversation. Reconstruct the timeline of a customer's decision to switch solutions or change behavior—from the first thought to ongoing use—without asking leading questions or discussing product features.
+
+This skill provides immediate, actionable conversational guidance for everyday users while preserving structured evidence tracking for underlying methodology agents.
+
+---
+
+## Required Input
+
+Accept any of:
+1. **Empty / Starting Scenario**: No quote provided (returns a starting interview plan and first non-leading question).
+2. **Single Customer Quote or Feedback**: A fragment, review, or customer statement.
+3. **Partial Interview Transcript**: Transcript notes from a discovery session.
+
+Do not invent customer statements, motivations, or purchase decisions.
+
+---
+
+## Scope & Three Interactive Modes
+
+### 1. Starting Mode (No Input Provided)
+- Identify target interviewee persona criteria.
+- Formulate the first neutral, event-based opening question.
+
+### 2. Single Quote Mode (Fragment / Feedback Input)
+- Identify which phase of the decision timeline is missing (`first_thought`, `passive_looking`, `active_looking`, `decision`, `first_use`, `ongoing_use`).
+- Output **1 Main Question**, **1 Follow-up Probe**, and **1 Forbidden Question (What NOT to Ask)**.
+
+### 3. Transcript Mode (Partial Transcript Input)
+- Extract a chronological timeline summary.
+- Identify unverified hypotheses and major evidence gaps.
+- Output the single most critical next question for the subsequent interview round.
+
+---
+
+## Core Interviewing Discipline
+
+1. **Ask About Past Behavior, Not Future Speculation**: Ask "When was the last time you..." rather than "Would you buy...".
+2. **One Question at a Time**: Never overload the interviewer with long lists of questions. Output exactly ONE primary question.
+3. **Never Lead With Solution Features**: If a customer mentions a feature request (e.g., "I want a button"), redirect to the triggering event and current approach.
+4. **Isolate Specific Events**: Focus on concrete, anchored moments in time (who was there, what happened, when it failed).
+5. **Separate Human Conversational Output from Structured Data**: Always render a clean, human-readable interview guide first, followed by structured metadata for downstream agents.
+
+---
+
+## Output Format
+
+Outputs MUST include both a **Human-Facing Interview Guide** and a **Structured Metadata Block**.
+
+```markdown
+## 💬 What to Ask Next
+
+"[Primary non-leading question to speak out loud]"
+
+### Why This Question Matters
+[Brief 2-sentence explanation of what timeline gap or hypothesis this question investigates.]
+
+### If the Answer Is Vague
+"[Concrete follow-up probe asking for specific past details or events]"
+
+### ⚠️ What NOT to Ask Right Now
+"[Explicit warning against a specific leading question, feature discussion, or speculative query]"
+
+---
+
+### 📊 Structured Metadata
+
+```yaml
+analysis_status: plan_generated | evidence_extracted | insufficient_input
+
+interview_focus: first_thought | passive_looking | active_looking | decision | first_use | ongoing_use | unknown
+
+timeline_summary:
+  first_thought: ""
+  passive_looking: ""
+  active_looking: ""
+  decision: ""
+  first_use: ""
+  ongoing_use: ""
+
+current_hypotheses:
+  - id: "HYP-001"
+    statement: ""
+    status: unverified
+
+evidence_gaps:
+  - ""
+
+next_question_type: event_anchor | push_trigger | current_workaround | alternative_evaluation | anxiety_probe | outcome_clarification
+```
+```
+
+---
+
+## Reference
+
+Read `references/switch-interview-rules.md` before:
+- Redirecting a feature request into a timeline event
+- Formulating non-leading timeline questions
+- Identifying the 6 phases of the decision timeline
+- Distinguishing behavioral evidence from customer speculation
