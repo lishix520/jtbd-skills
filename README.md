@@ -1,6 +1,8 @@
 # Find opportunities people will pay for.
 
-JTBD Skills helps you find market opportunities, build products and services that sell better, and make more money.
+JTBD Skills (**Opportunity Discovery Skills**) helps you find market opportunities, build products and services that sell better, and make more money.
+
+**Opportunity Discovery Skills** is an evidence-aware product discovery toolkit built on Jobs-to-Be-Done and Outcome-Driven Innovation.
 
 Use it to:
 - Find unmet needs

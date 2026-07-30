@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.5.8] - 2026-07-30
+
+### Added
+- **Dual-Tier Naming Strategy & Opportunity Discovery Skills Positioning**: Formalized the dual-tier product naming structure in `README.md` and `docs/awesome-agent-skills-submission.md` (Repo/ID: `jtbd-skills`, Display Name: `Opportunity Discovery Skills` / `机会发现 Agent Skills`, Tagline: `Find opportunities people will pay for.`, Technical Foundation: `Built on Jobs-to-Be-Done and Outcome-Driven Innovation.`).
+
+---
+
 ## [0.5.7] - 2026-07-25
 
 ### Fixed
